@@ -1,0 +1,7 @@
+{
+  "name": "App-Y",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
