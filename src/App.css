@@ -1,0 +1,18 @@
+.h-100percent {
+	height: 100%;
+}
+/* 
+ion-content {
+	--ion-background-color: #42d77d;
+	--ion-background-color-rgb: 66, 215, 125;
+} */
+
+.ion-color-light .not-green {
+	background-color: white;
+}
+
+.center-vertically{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
