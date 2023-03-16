@@ -10,6 +10,7 @@
 
 # production
 /build
+/android
 
 # misc
 .DS_Store
@@ -27,3 +28,6 @@ yarn-error.log*
 
 # Optional eslint cache
 .eslintcache
+
+# My files
+android_emulator_launch.ps1
