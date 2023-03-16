@@ -25,6 +25,7 @@ const Register = () => {
 	const usernameBox = useRef<HTMLIonInputElement>(null);
 	const passwordBox = useRef<HTMLIonInputElement>(null);
 	const confirmPasswordBox = useRef<HTMLIonInputElement>(null);
+	const birthDateBox = useRef<HTMLIonInputElement>(null);
 
 	const [pwdValid, setPwdValid] = useState<boolean>(true);
 
@@ -58,6 +59,12 @@ const Register = () => {
 									setPwdValid(confirmPasswordBox.current!.value === passwordBox.current!.value);
 								}}
 							/>
+						</IonCol>
+					</IonRow>
+
+					<IonRow>
+						<IonCol>
+							<Input type="date" label="Data di nascita" reference={birthDateBox} />
 						</IonCol>
 					</IonRow>
 

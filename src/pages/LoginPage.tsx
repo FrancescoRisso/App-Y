@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
 					<IonTitle>App-Y</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-			<IonContent color="success">
+			<IonContent color="main">
 				<Login />
 			</IonContent>
 		</IonPage>

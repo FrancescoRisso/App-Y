@@ -21,7 +21,7 @@ export interface ButtonProps {
 
 const Button = ({ text, action, link }: ButtonProps) => {
 	return (
-		<IonButton color="success" onClick={action ? action : (e) => {}}>
+		<IonButton color="main" onClick={action ? action : (e) => {}}>
 			{text}
 		</IonButton>
 	);

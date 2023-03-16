@@ -17,7 +17,7 @@ import { useMemo } from "react";
 
 export interface InputProps {
 	// the type of input that should go inside
-	type: "password" | "text" | "email";
+	type: "password" | "text" | "email" | "date";
 
 	// a reference that will be set to this input to retreive its value
 	reference: React.RefObject<HTMLIonInputElement>;
@@ -39,13 +39,15 @@ const Input = ({ type, reference, label, error, loseFocusAction }: InputProps) =
 				return "email";
 			case "password":
 				return "password";
+			case "date":
+				return "date";
 			default:
 				return "text";
 		}
 	}, [type]);
 
 	return (
-		<IonItem fill="outline" color="success" className={`${error && "ion-invalid"}`}>
+		<IonItem fill="outline" color="main" className={`${error && "ion-invalid"}`}>
 			<IonLabel position="stacked">{label}</IonLabel>
 			<IonInput ref={reference} type={inputType} onIonBlur={loseFocusAction}></IonInput>
 			{error && <IonNote slot="error">{error}</IonNote>}

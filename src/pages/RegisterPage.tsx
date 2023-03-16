@@ -24,7 +24,7 @@ const RegisterPage: React.FC = () => {
 					<IonTitle>App-Y</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-			<IonContent color="success">
+			<IonContent color="main">
 				<Register />
 			</IonContent>
 		</IonPage>
