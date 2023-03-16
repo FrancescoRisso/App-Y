@@ -23,6 +23,7 @@ import "./theme/variables.css";
 
 /* Components */
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from './pages/RegisterPage';
 
 /* My css */
 import "./App.css";
@@ -33,6 +34,10 @@ const App: React.FC = () => (
 	<IonApp>
 		<IonReactRouter>
 			<IonRouterOutlet>
+				<Route exact path="/register">
+					<RegisterPage />
+				</Route>
+
 				<Route exact path="/login">
 					<LoginPage />
 				</Route>

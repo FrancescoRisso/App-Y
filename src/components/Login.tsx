@@ -15,8 +15,9 @@ context:
 
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonRow } from "@ionic/react";
 import { useRef } from "react";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "./General_components/Input";
+import Button from "./General_components/Button";
+import { Link } from "react-router-dom";
 
 export interface LoginProps {}
 
@@ -43,7 +44,7 @@ const Login = () => {
 						</IonCol>
 					</IonRow>
 
-					<br/>
+					<br />
 
 					<IonRow>
 						<IonCol>
@@ -57,31 +58,15 @@ const Login = () => {
 
 					<IonRow>
 						<IonCol>
-							<Button text="Registrati" />
+							<Link to="/register">
+								<Button text="Registrati" />
+							</Link>
 						</IonCol>
 					</IonRow>
 				</IonGrid>
 			</IonCardContent>
 		</IonCard>
 	);
-
-	// return (
-	// 	<IonGrid className="h-100percent">
-	// 		<IonRow className="h-100percent">
-	// 			<IonCol className="ion-align-self-center">
-	// 				<IonCard color="light" className="ion-padding">
-	// 					<IonCardHeader>
-	// 						<IonCardTitle>Login</IonCardTitle>
-	// 					</IonCardHeader>
-	// 					<IonCardContent>
-	// 						<Input type="email" label="Username o email" reference={usernameBox} />
-	// 						<Input type="password" label="Password" reference={passwordBox} />
-	// 					</IonCardContent>
-	// 				</IonCard>
-	// 			</IonCol>
-	// 		</IonRow>
-	// 	</IonGrid>
-	// );
 };
 
 export default Login;

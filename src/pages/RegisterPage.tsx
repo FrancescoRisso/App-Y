@@ -1,7 +1,7 @@
 /*
 
 description:
-	The login page
+	The registration page
 	
 state:
 	
@@ -12,11 +12,11 @@ context:
 */
 
 import { IonContent, IonHeader, IonPage, IonToolbar, IonTitle } from "@ionic/react";
-import Login from "../components/Login";
+import Register from "../components/Register";
 
-export interface LoginPageProps {}
+export interface RegisterPageProps {}
 
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
 	return (
 		<IonPage>
 			<IonHeader>
@@ -25,10 +25,10 @@ const LoginPage: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent color="success">
-				<Login />
+				<Register />
 			</IonContent>
 		</IonPage>
 	);
 };
 
-export default LoginPage;
+export default RegisterPage;
