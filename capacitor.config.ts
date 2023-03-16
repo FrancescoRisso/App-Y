@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'politoi.app-y.group4',
+  appId: 'polito.appy.group4',
   appName: 'App-Y',
   webDir: 'build',
   bundledWebRuntime: false
