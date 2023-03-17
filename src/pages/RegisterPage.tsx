@@ -11,23 +11,21 @@ context:
 	
 */
 
-import { IonContent, IonHeader, IonPage, IonToolbar, IonTitle } from "@ionic/react";
-import Register from "../components/Register";
+import { IonNav, IonPage } from "@ionic/react";
+import RegisterCommon from "../components/Register_chain/Common/RegisterCommon";
+import RegisterContextProvider from "../components/Register_chain/RegisterContext";
 
 export interface RegisterPageProps {}
 
 const RegisterPage: React.FC = () => {
 	return (
-		<IonPage>
-			<IonHeader>
-				<IonToolbar>
-					<IonTitle>App-Y</IonTitle>
-				</IonToolbar>
-			</IonHeader>
-			<IonContent color="main">
-				<Register />
-			</IonContent>
-		</IonPage>
+		<RegisterContextProvider
+			child={
+				<IonPage>
+					<IonNav root={() => <RegisterCommon />} />
+				</IonPage>
+			}
+		/>
 	);
 };
 
