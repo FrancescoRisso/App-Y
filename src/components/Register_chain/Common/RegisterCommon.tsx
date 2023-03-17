@@ -38,7 +38,6 @@ const Common = () => {
 	const [canProceed, setCanProceed] = useState<boolean>(context.componentAlwaysOk[context.stepNo.val]);
 
 	useEffect(() => {
-		console.debug(`setCanProceed ${context.componentAlwaysOk[context.stepNo.val]} - useEffect`);
 		setCanProceed(context.componentAlwaysOk[context.stepNo.val]);
 	}, [context.stepNo]);
 
@@ -49,7 +48,6 @@ const Common = () => {
 				displayBackButton={context.stepNo.val !== 0}
 				onBackAction={() => {
 					context.stepNo.set(context.stepNo.val - 1);
-					// console.debug("setCanProceed true - header going back");
 					// setCanProceed(true);
 				}}
 			/>
@@ -70,9 +68,6 @@ const Common = () => {
 				nextPageEnabled={canProceed}
 				nextClickAction={() => {
 					// setCanProceed(context.componentAlwaysOk[context.stepNo.val + 1]);
-					// console.debug(
-					// 	`setCanProceed ${context.componentAlwaysOk[context.stepNo.val + 1]} - footer going forward`
-					// );
 					context.stepNo.set(context.stepNo.val + 1);
 				}}
 			/>

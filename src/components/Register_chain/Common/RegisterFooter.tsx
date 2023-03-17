@@ -24,7 +24,6 @@ export interface RegisterFooterProps {
 }
 
 const RegisterFooter = ({ nextPageEnabled, nextClickAction }: RegisterFooterProps) => {
-	console.debug(nextPageEnabled);
 	return (
 		<IonFooter className="main-color ion-text-end">
 			{nextPageEnabled ? (

@@ -11,26 +11,29 @@ context:
 	
 */
 
-import { IonCard, IonCardContent } from "@ionic/react";
+import { IonCol, IonGrid, IonRow } from "@ionic/react";
 import { RegisterComponentProps } from "../../types";
-import { useEffect } from "react";
+import wavingPanda from "../../images/tmp/wavingPanda.png";
+import SpeechBubble from "../General_components/SpeechBubble";
 
 const Welcome = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
-	// useEffect(() => {
-	// 	if (!canProceed) {
-	// 		console.debug("setCanProceed true - welcome page is ok");
-	// 		setCanProceed(true);
-	// 	}
-	// }, [canProceed, setCanProceed]);
-
-	// useEffect(()=>{
-	// 	console.log("Ciao");
-	// }, [])
-
 	return (
-		<IonCard>
-			<IonCardContent>Test</IonCardContent>
-		</IonCard>
+		<IonGrid className="h-100percent">
+			<IonRow className="h-100percent ion-align-items-center">
+				<IonCol>
+					<SpeechBubble
+						content={
+							<>
+								<p>Ciao!</p>
+								<p>Io sono Happy, la mascotte di questa app.</p>
+								<p>Prima di portarti a scoprire l'app, ho bisogno di conoscerti un pochino.</p>
+							</>
+						}
+					/>
+					<img src={wavingPanda} alt="Panda che saluta" />
+				</IonCol>
+			</IonRow>
+		</IonGrid>
 	);
 };
 
