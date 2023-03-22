@@ -15,6 +15,7 @@ context:
 */
 
 import React, { useState } from "react";
+import moment from "moment";
 
 import { RegisterContextStructure, RegisterPageLabels } from "../../../types";
 
@@ -29,9 +30,13 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 	const [name, setName] = useState<string>("");
 	const [surname, setSurname] = useState<string>("");
 	const [step, setStep] = useState<number>(0);
+	const [birthDate, setBirthDate] = useState<moment.Moment>(moment(""));
 
-	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname"];
-	const componentAlwaysOk: boolean[] = [true, false];
+	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "birthdate"];
+	const componentAlwaysOk: boolean[] = [true, false, false];
+
+	// const componentSequence: RegisterPageLabels[] = ["birthdate"];
+	// const componentAlwaysOk: boolean[] = [false];
 
 	return (
 		<RegisterContext.Provider
@@ -43,7 +48,8 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 				componentAlwaysOk,
 
 				name: { val: name, set: setName },
-				surname: { val: surname, set: setSurname }
+				surname: { val: surname, set: setSurname },
+				birthDate: { val: birthDate, set: setBirthDate }
 			}}
 		>
 			{child}

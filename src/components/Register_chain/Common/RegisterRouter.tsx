@@ -14,7 +14,8 @@ context:
 import { RegisterPageLabels } from "../../../types";
 
 import Welcome from "../01-Welcome";
-import NameAndSurname from '../02-NameAndSurname';
+import NameAndSurname from "../02-NameAndSurname";
+import BirthDate from "../04-BirthDate";
 
 export interface RegisterRouterProps {
 	// The string identifier of the page
@@ -32,6 +33,9 @@ const RegisterRouter = ({ pageName, canProceed, setCanProceed }: RegisterRouterP
 
 		case "nameAndSurname":
 			return <NameAndSurname canProceed={canProceed} setCanProceed={setCanProceed} />;
+
+		case "birthdate":
+			return <BirthDate canProceed={canProceed} setCanProceed={setCanProceed} />;
 	}
 };
 
