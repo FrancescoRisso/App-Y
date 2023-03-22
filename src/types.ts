@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import * as moment from "moment";
 
 export interface StateVariable<type> {
 	val: type;
@@ -17,6 +17,7 @@ export interface RegisterContextStructure {
 
 	name: StateVariable<string>;
 	surname: StateVariable<string>;
+	gender: StateVariable<GenderLabels | "">;
 	birthDate: StateVariable<moment.Moment>;
 }
 
@@ -28,4 +29,6 @@ export interface RegisterComponentProps {
 	setCanProceed: (allow: boolean) => void;
 }
 
-export type RegisterPageLabels = "welcome" | "nameAndSurname" | "birthdate";
+export type RegisterPageLabels = "welcome" | "nameAndSurname" | "gender" | "birthdate";
+
+export type GenderLabels = "male" | "female" | "other";

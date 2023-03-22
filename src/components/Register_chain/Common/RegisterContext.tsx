@@ -7,6 +7,8 @@ state:
 	- name: the first name of the user
 	- surname: the last name of the user
 	- step: the number of the login step the user is currently doing
+	- gender: the gender of the user
+	- birthDate: the birth date of the user (as moment() object)
 	
 hooks:
 	
@@ -17,7 +19,7 @@ context:
 import React, { useState } from "react";
 import moment from "moment";
 
-import { RegisterContextStructure, RegisterPageLabels } from "../../../types";
+import { GenderLabels, RegisterContextStructure, RegisterPageLabels } from "../../../types";
 
 export const RegisterContext = React.createContext({} as RegisterContextStructure);
 
@@ -31,11 +33,12 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 	const [surname, setSurname] = useState<string>("");
 	const [step, setStep] = useState<number>(0);
 	const [birthDate, setBirthDate] = useState<moment.Moment>(moment(""));
+	const [gender, setGender] = useState<GenderLabels | "">("");
 
-	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "birthdate"];
-	const componentAlwaysOk: boolean[] = [true, false, false];
+	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "gender", "birthdate"];
+	const componentAlwaysOk: boolean[] = [true, false, false, false];
 
-	// const componentSequence: RegisterPageLabels[] = ["birthdate"];
+	// const componentSequence: RegisterPageLabels[] = ["gender"];
 	// const componentAlwaysOk: boolean[] = [false];
 
 	return (
@@ -49,6 +52,7 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 
 				name: { val: name, set: setName },
 				surname: { val: surname, set: setSurname },
+				gender: { val: gender, set: setGender },
 				birthDate: { val: birthDate, set: setBirthDate }
 			}}
 		>
