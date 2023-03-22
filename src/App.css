@@ -21,3 +21,7 @@
 	color: var(--ion-color-main-contrast);
 }
 
+.mx-10px {
+	margin-left: 10px;
+	margin-right: 10px;
+}

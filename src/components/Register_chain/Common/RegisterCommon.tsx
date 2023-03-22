@@ -4,28 +4,23 @@ description:
 	Renders the common part of the registration
 	
 state:
-	
+	- fwdEnabled: whether the "Next page" button should be enabled
+	- fwdOverride: whether fwdEnabled was set by the page being correct	
+
 hooks:
-	- useEffect(): every time a new step is reached, increment the step counter
+	- useEffect(): every time a new step is reached, update the default fwdEnabled for that page
+		The "every time a new step is reached" means a render is executed, and fwdEnable has the default value
 	
 context:
-	- 
-	
-imported into:
-	- 
-	
-component dependences:
-	- 
-	
-other dependences:
-	- 
+	- RegisterContext
 	
 */
 
 import { IonContent, IonGrid, IonProgressBar } from "@ionic/react";
 
 import { useContext, useState, useEffect } from "react";
-import { RegisterContext } from "../RegisterContext";
+
+import { RegisterContext } from "./RegisterContext";
 import Header from "../../General_components/Header";
 import RegisterFooter from "./RegisterFooter";
 import RegisterRouter from "./RegisterRouter";
@@ -35,11 +30,12 @@ export interface CommonProps {}
 const Common = () => {
 	const context = useContext(RegisterContext);
 
-	const [canProceed, setCanProceed] = useState<boolean>(context.componentAlwaysOk[context.stepNo.val]);
+	const [fwdEnabled, setFwdEnabled] = useState<boolean>(context.componentAlwaysOk[context.stepNo.val]);
+	const [fwdOverride, setFwdOverride] = useState<boolean>(false);
 
 	useEffect(() => {
-		setCanProceed(context.componentAlwaysOk[context.stepNo.val]);
-	}, [context.stepNo]);
+		if (!fwdOverride) setFwdEnabled(context.componentAlwaysOk[context.stepNo.val]);
+	}, [context.stepNo, context.componentAlwaysOk, fwdOverride]);
 
 	return (
 		<>
@@ -48,7 +44,7 @@ const Common = () => {
 				displayBackButton={context.stepNo.val !== 0}
 				onBackAction={() => {
 					context.stepNo.set(context.stepNo.val - 1);
-					// setCanProceed(true);
+					setFwdEnabled(true);
 				}}
 			/>
 
@@ -59,17 +55,21 @@ const Common = () => {
 
 				<RegisterRouter
 					pageName={context.components[context.stepNo.val]}
-					canProceed={canProceed}
-					setCanProceed={setCanProceed}
+					canProceed={fwdEnabled}
+					setCanProceed={(val) => {
+						setFwdOverride(true);
+						setFwdEnabled(val);
+					}}
 				/>
 			</IonContent>
 
 			<RegisterFooter
-				nextPageEnabled={canProceed}
+				nextPageEnabled={fwdEnabled}
 				nextClickAction={() => {
-					// setCanProceed(context.componentAlwaysOk[context.stepNo.val + 1]);
+					setFwdOverride(false);
 					context.stepNo.set(context.stepNo.val + 1);
 				}}
+				isLastPage={context.stepNo.val === context.totSteps - 1}
 			/>
 		</>
 	);

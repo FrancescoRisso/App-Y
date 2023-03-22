@@ -12,6 +12,7 @@ context:
 */
 
 import { RegisterPageLabels } from "../../../types";
+
 import Welcome from "../01-Welcome";
 import NameAndSurname from '../02-NameAndSurname';
 
@@ -27,11 +28,9 @@ export interface RegisterRouterProps {
 const RegisterRouter = ({ pageName, canProceed, setCanProceed }: RegisterRouterProps) => {
 	switch (pageName) {
 		case "welcome":
-			// setCanProceed(true);
 			return <Welcome canProceed={canProceed} setCanProceed={setCanProceed} />;
 
 		case "nameAndSurname":
-			// setCanProceed(false);
 			return <NameAndSurname canProceed={canProceed} setCanProceed={setCanProceed} />;
 	}
 };

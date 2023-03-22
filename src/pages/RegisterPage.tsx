@@ -13,7 +13,7 @@ context:
 
 import { IonNav, IonPage } from "@ionic/react";
 import RegisterCommon from "../components/Register_chain/Common/RegisterCommon";
-import RegisterContextProvider from "../components/Register_chain/RegisterContext";
+import RegisterContextProvider from "../components/Register_chain/Common/RegisterContext";
 
 export interface RegisterPageProps {}
 

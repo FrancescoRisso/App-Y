@@ -12,7 +12,8 @@ context:
 */
 
 import { IonFooter, IonNavLink, IonButton, IonIcon } from "@ionic/react";
-import { arrowForwardOutline } from "ionicons/icons";
+import { arrowForwardOutline, enterOutline } from "ionicons/icons";
+
 import Common from "./RegisterCommon";
 
 export interface RegisterFooterProps {
@@ -21,22 +22,32 @@ export interface RegisterFooterProps {
 
 	// An extra action to be done when the "next" button is pressed
 	nextClickAction: () => void;
+
+	// Whether this is the last page of the registration, so that the button
+	// should display "Registrati" instead of "Avanti"
+	isLastPage?: boolean;
 }
 
-const RegisterFooter = ({ nextPageEnabled, nextClickAction }: RegisterFooterProps) => {
+const RegisterFooter = ({ nextPageEnabled, nextClickAction, isLastPage }: RegisterFooterProps) => {
 	return (
 		<IonFooter className="main-color ion-text-end">
 			{nextPageEnabled ? (
-				<IonNavLink routerDirection="forward" component={() => <Common />}>
-					<IonButton color="main" onClick={nextClickAction}>
-						<IonIcon slot="end" icon={arrowForwardOutline} />
-						Avanti
+				<IonNavLink
+					routerDirection="forward"
+					component={() => {
+						nextClickAction();
+						return <Common />;
+					}}
+				>
+					<IonButton color="main">
+						<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />
+						{isLastPage ? "Registrati" : "Avanti"}
 					</IonButton>
 				</IonNavLink>
 			) : (
 				<IonButton color="main" disabled>
-					<IonIcon slot="end" icon={arrowForwardOutline} />
-					Avanti
+					<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />
+					{isLastPage ? "Registrati" : "Avanti"}
 				</IonButton>
 			)}
 		</IonFooter>

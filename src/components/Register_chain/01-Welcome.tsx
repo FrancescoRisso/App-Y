@@ -1,7 +1,7 @@
 /*
 
 description:
-	Panda welcomes you
+	Happy welcomes you
 	
 state:
 
@@ -12,9 +12,12 @@ context:
 */
 
 import { IonCol, IonGrid, IonRow } from "@ionic/react";
+
 import { RegisterComponentProps } from "../../types";
-import wavingPanda from "../../images/tmp/wavingPanda.png";
+
 import SpeechBubble from "../General_components/SpeechBubble";
+
+import wavingPanda from "../../images/tmp/wavingPanda.png";
 
 const Welcome = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	return (

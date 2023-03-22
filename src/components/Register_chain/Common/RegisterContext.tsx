@@ -1,31 +1,22 @@
 /*
 
 description:
-	
+	Holds all the common values needed for the registration phase
 	
 state:
-	- 
+	- name: the first name of the user
+	- surname: the last name of the user
+	- step: the number of the login step the user is currently doing
 	
 hooks:
-	- 
 	
 context:
-	- 
-	
-imported into:
-	- 
-	
-component dependences:
-	- 
-	
-other dependences:
-	- 
 	
 */
 
-import React from "react";
-import { RegisterContextStructure, RegisterPageLabels } from "../../types";
-import { useState } from "react";
+import React, { useState } from "react";
+
+import { RegisterContextStructure, RegisterPageLabels } from "../../../types";
 
 export const RegisterContext = React.createContext({} as RegisterContextStructure);
 
