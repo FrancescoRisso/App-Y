@@ -45,6 +45,7 @@ const Common = () => {
 				onBackAction={() => {
 					context.stepNo.set(context.stepNo.val - 1);
 					setFwdEnabled(true);
+					setFwdOverride(true);
 				}}
 			/>
 
