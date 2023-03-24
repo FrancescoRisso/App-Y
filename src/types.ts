@@ -19,6 +19,8 @@ export interface RegisterContextStructure {
 	surname: StateVariable<string>;
 	gender: StateVariable<GenderLabels | "">;
 	birthDate: StateVariable<moment.Moment>;
+
+	getGenderString: (male: string, female: string, other: string) => string;
 }
 
 export interface RegisterComponentProps {

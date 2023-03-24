@@ -35,6 +35,19 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 	const [birthDate, setBirthDate] = useState<moment.Moment>(moment(""));
 	const [gender, setGender] = useState<GenderLabels | "">("");
 
+	const getGenderString = (male: string, female: string, other: string) => {
+		switch (gender) {
+			case "male":
+				return male;
+			case "female":
+				return female;
+			case "other":
+				return other;
+			default:
+				return male;
+		}
+	};
+
 	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "gender", "birthdate"];
 	const componentAlwaysOk: boolean[] = [true, false, false, false];
 
@@ -53,7 +66,9 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 				name: { val: name, set: setName },
 				surname: { val: surname, set: setSurname },
 				gender: { val: gender, set: setGender },
-				birthDate: { val: birthDate, set: setBirthDate }
+				birthDate: { val: birthDate, set: setBirthDate },
+
+				getGenderString
 			}}
 		>
 			{child}
