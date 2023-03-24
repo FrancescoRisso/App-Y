@@ -23,10 +23,11 @@ import "./theme/variables.css";
 
 /* Components */
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from './pages/RegisterPage';
+import RegisterPage from "./pages/RegisterPage";
 
 /* My css */
 import "./App.css";
+import PandaDisplayer from "./pages/PandaDisplayer";
 
 setupIonicReact();
 
@@ -40,6 +41,10 @@ const App: React.FC = () => (
 
 				<Route exact path="/login">
 					<LoginPage />
+				</Route>
+
+				<Route exact path="/pandas">
+					<PandaDisplayer />
 				</Route>
 
 				<Route>
