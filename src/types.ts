@@ -21,6 +21,17 @@ export interface RegisterContextStructure {
 	birthDate: StateVariable<moment.Moment>;
 
 	getGenderString: (male: string, female: string, other: string) => string;
+
+	updateValidities: {
+		single: (value: string, canProceed: boolean, setCanProceed: (val: boolean) => void) => void;
+		double: (
+			val1: string,
+			val2: string,
+			mustBeEqual: boolean,
+			canProceed: boolean,
+			setCanProceed: (val: boolean) => void
+		) => void;
+	};
 }
 
 export interface RegisterComponentProps {

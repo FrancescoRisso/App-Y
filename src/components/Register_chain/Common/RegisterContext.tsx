@@ -48,6 +48,24 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 		}
 	};
 
+	const updateValiditySingle = (value: string, canProceed: boolean, setCanProceed: (val: boolean) => void) => {
+		if (value !== "") {
+			if (!canProceed) setCanProceed(true);
+		} else if (canProceed) setCanProceed(false);
+	};
+
+	const updateValidityDouble = (
+		val1: string,
+		val2: string,
+		mustBeEqual: boolean,
+		canProceed: boolean,
+		setCanProceed: (val: boolean) => void
+	) => {
+		if (val1 !== "" && val2 !== "" && (!mustBeEqual || val1 === val2)) {
+			if (!canProceed) setCanProceed(true);
+		} else if (canProceed) setCanProceed(false);
+	};
+
 	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "gender", "birthdate"];
 	const componentAlwaysOk: boolean[] = [true, false, false, false];
 
@@ -68,7 +86,12 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 				gender: { val: gender, set: setGender },
 				birthDate: { val: birthDate, set: setBirthDate },
 
-				getGenderString
+				getGenderString,
+
+				updateValidities: {
+					single: updateValiditySingle,
+					double: updateValidityDouble
+				}
 			}}
 		>
 			{child}

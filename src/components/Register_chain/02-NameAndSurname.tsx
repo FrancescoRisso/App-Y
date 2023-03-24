@@ -12,7 +12,7 @@ context:
 	
 */
 
-import { useContext, useEffect, useCallback } from "react";
+import { useContext, useEffect } from "react";
 import { IonGrid, IonRow, IonCol, IonInput, IonItem } from "@ionic/react";
 
 import { RegisterComponentProps } from "../../types";
@@ -25,28 +25,25 @@ import PandaImg from "../General_components/PandaImg";
 const NameAndSurname = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
 
-	const inputsChanged = useCallback(
-		(name: string, surname: string) => {
-			if (name !== "" && surname !== "") {
-				if (!canProceed) setCanProceed(true);
-			} else if (canProceed) setCanProceed(false);
-		},
-		[canProceed, setCanProceed]
-	);
-
 	const getInputChangeEventListerner = (field: "name" | "surname") => {
 		return (event: React.FormEvent<HTMLIonInputElement>) => {
 			const otherField = field === "name" ? "surname" : "name";
 
 			context[field].set(event.currentTarget.value?.toString() ?? "");
 
-			inputsChanged(context[otherField].val, event.currentTarget.value?.toString() ?? "");
+			context.updateValidities.double(
+				context[otherField].val,
+				event.currentTarget.value?.toString() ?? "",
+				false,
+				canProceed,
+				setCanProceed
+			);
 		};
 	};
 
 	useEffect(() => {
-		inputsChanged(context.name.val, context.surname.val);
-	}, [context.name, context.surname, inputsChanged]);
+		context.updateValidities.double(context.name.val, context.surname.val, false, canProceed, setCanProceed);
+	}, [context.name, context.surname, context.updateValidities, canProceed, setCanProceed]);
 
 	return (
 		<IonGrid className="h-100percent">

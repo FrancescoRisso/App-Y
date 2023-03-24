@@ -24,9 +24,9 @@ other dependences:
 */
 
 import { IonGrid, IonRow, IonCol, IonItem, IonList, IonRadioGroup, IonLabel, IonRadio, IonCard } from "@ionic/react";
-import { useCallback, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
-import { GenderLabels, RegisterComponentProps } from "../../types";
+import { RegisterComponentProps } from "../../types";
 
 import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
@@ -36,15 +36,9 @@ import PandaImg from "../General_components/PandaImg";
 const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
 
-	const inputChanged = useCallback((val: GenderLabels | "") => {
-		if (val !== "") {
-			if (!canProceed) setCanProceed(true);
-		} else if (canProceed) setCanProceed(false);
-	}, [canProceed, setCanProceed]);
-
 	useEffect(() => {
-		inputChanged(context.gender.val);
-	}, [context.gender, inputChanged]);
+		context.updateValidities.single(context.gender.val, canProceed, setCanProceed);
+	}, [context.gender, context.updateValidities, canProceed, setCanProceed]);
 
 	return (
 		<IonGrid className="h-100percent">
@@ -55,7 +49,7 @@ const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 							<IonList className="mx-10px">
 								<IonRadioGroup
 									onIonChange={(event) => {
-										inputChanged(event.detail.value);
+										context.updateValidities.single(event.detail.value, canProceed, setCanProceed);
 										context.gender.set(event.detail.value);
 									}}
 									value={context.gender.val}
