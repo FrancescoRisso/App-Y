@@ -24,18 +24,27 @@ other dependences:
 */
 
 import { IonGrid, IonRow, IonCol, IonItem, IonList, IonRadioGroup, IonLabel, IonRadio, IonCard } from "@ionic/react";
-import { useContext } from "react";
-import moment from "moment";
+import { useCallback, useContext, useEffect } from "react";
 
-import { RegisterComponentProps } from "../../types";
+import { GenderLabels, RegisterComponentProps } from "../../types";
 
 import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
 
-import wavingPanda from "../../images/tmp/wavingPanda.png";
+import PandaImg from "../General_components/PandaImg";
 
 const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
+
+	const inputChanged = useCallback((val: GenderLabels | "") => {
+		if (val !== "") {
+			if (!canProceed) setCanProceed(true);
+		} else if (canProceed) setCanProceed(false);
+	}, [canProceed, setCanProceed]);
+
+	useEffect(() => {
+		inputChanged(context.gender.val);
+	}, [context.gender, inputChanged]);
 
 	return (
 		<IonGrid className="h-100percent">
@@ -46,11 +55,8 @@ const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 							<IonList className="mx-10px">
 								<IonRadioGroup
 									onIonChange={(event) => {
+										inputChanged(event.detail.value);
 										context.gender.set(event.detail.value);
-
-										if (event.detail.value !== "") {
-											if (!canProceed) setCanProceed(true);
-										} else if (canProceed) setCanProceed(false);
 									}}
 									value={context.gender.val}
 								>
@@ -76,7 +82,7 @@ const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 					<br />
 
 					<SpeechBubble content={<p>Come ti identifichi?</p>} />
-					<img src={wavingPanda} alt="Panda che saluta" />
+					<PandaImg type="bamboo" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

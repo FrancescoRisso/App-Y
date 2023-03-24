@@ -21,7 +21,7 @@ import { RegisterComponentProps } from "../../types";
 import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
 
-import wavingPanda from "../../images/tmp/wavingPanda.png";
+import PandaImg from "../General_components/PandaImg";
 
 const BirthDate = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
@@ -44,6 +44,7 @@ const BirthDate = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 										if (!canProceed) setCanProceed(true);
 									} else if (canProceed) setCanProceed(false);
 								}}
+								
 							/>
 						</IonItem>
 					</form>
@@ -51,7 +52,7 @@ const BirthDate = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 					<br />
 
 					<SpeechBubble content={<p>Quando sei nato?</p>} />
-					<img src={wavingPanda} alt="Panda che saluta" />
+					<PandaImg type="computer" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

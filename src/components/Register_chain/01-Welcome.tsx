@@ -16,8 +16,7 @@ import { IonCol, IonGrid, IonRow } from "@ionic/react";
 import { RegisterComponentProps } from "../../types";
 
 import SpeechBubble from "../General_components/SpeechBubble";
-
-import wavingPanda from "../../images/tmp/wavingPanda.png";
+import PandaImg from "../General_components/PandaImg";
 
 const Welcome = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	return (
@@ -33,7 +32,7 @@ const Welcome = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 							</>
 						}
 					/>
-					<img src={wavingPanda} alt="Panda che saluta" />
+					<PandaImg type="waving" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

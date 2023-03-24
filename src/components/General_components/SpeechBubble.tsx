@@ -58,6 +58,7 @@ const SpeechBubble = ({ content }: SpeechBubbleProps) => {
 					width="10%"
 					ref={img}
 					style={{
+						zIndex: 1,
 						position: "fixed",
 						top: pos.y + pos.height - 1,
 						left: pos.x + 0.1 * pos.width

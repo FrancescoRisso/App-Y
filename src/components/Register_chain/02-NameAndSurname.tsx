@@ -12,7 +12,7 @@ context:
 	
 */
 
-import { useContext } from "react";
+import { useContext, useEffect, useCallback } from "react";
 import { IonGrid, IonRow, IonCol, IonInput, IonItem } from "@ionic/react";
 
 import { RegisterComponentProps } from "../../types";
@@ -20,10 +20,19 @@ import { RegisterComponentProps } from "../../types";
 import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
 
-import wavingPanda from "../../images/tmp/wavingPanda.png";
+import PandaImg from "../General_components/PandaImg";
 
 const NameAndSurname = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
+
+	const inputsChanged = useCallback(
+		(name: string, surname: string) => {
+			if (name !== "" && surname !== "") {
+				if (!canProceed) setCanProceed(true);
+			} else if (canProceed) setCanProceed(false);
+		},
+		[canProceed, setCanProceed]
+	);
 
 	const getInputChangeEventListerner = (field: "name" | "surname") => {
 		return (event: React.FormEvent<HTMLIonInputElement>) => {
@@ -31,11 +40,13 @@ const NameAndSurname = ({ canProceed, setCanProceed }: RegisterComponentProps) =
 
 			context[field].set(event.currentTarget.value?.toString() ?? "");
 
-			if (context[otherField].val !== "" && event.currentTarget.value?.toString() !== "") {
-				if (!canProceed) setCanProceed(true);
-			} else if (canProceed) setCanProceed(false);
+			inputsChanged(context[otherField].val, event.currentTarget.value?.toString() ?? "");
 		};
 	};
+
+	useEffect(() => {
+		inputsChanged(context.name.val, context.surname.val);
+	}, [context.name, context.surname, inputsChanged]);
 
 	return (
 		<IonGrid className="h-100percent">
@@ -66,7 +77,7 @@ const NameAndSurname = ({ canProceed, setCanProceed }: RegisterComponentProps) =
 					<br />
 
 					<SpeechBubble content={<p>Innanzitutto, mi serve sapere il tuo nome e cognome</p>} />
-					<img src={wavingPanda} alt="Panda che saluta" />
+					<PandaImg type="skateboard" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>
