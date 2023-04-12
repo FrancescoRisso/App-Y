@@ -31,3 +31,4 @@ yarn-error.log*
 
 # My files
 android_emulator_launch.ps1
+backend/config.json
