@@ -33,7 +33,7 @@ def apiGetAvatar():
 	return getAvatar(db, request)
 
 
-@app.route("/api/getInfo", methods=["GET"])
+@app.route("/api/getInfo", methods=["POST"])
 def apiGetInfo():
 	return getInfo(db, request)
 

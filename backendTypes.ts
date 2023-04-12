@@ -1,11 +1,15 @@
 import { GenderLabels } from "./src/types";
-export type ApiFunction<ParamTypes, ReturnType> = (ParamTypes) => ReturnType;
+
+export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | CommonApiReturns | null>;
 
 export interface ServerServices {
-	getAvatar: (getAvatarParams) => getAvatarReturn | CommonApiReturns;
-	getInfo: (getInfoParams) => getInfoReturn | CommonApiReturns;
+	getAvatar: ApiFunction<getAvatarParams, getAvatarReturn>;
+	getInfo: ApiFunction<getInfoParams, getInfoReturn>;
 }
 
+// --------------------------------------------------------------------
+// all types
+export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo";
 
 // --------------------------------------------------------------------
 // getAvatar
@@ -14,21 +18,19 @@ export interface getAvatarParams {
 }
 
 export type getAvatarReturn =
-	| { type: "default" } // no custom avatar
-	| { type: "custom"; details: AvatarDetails }; // there is a custom avatar
-
+	| { type: "avatar"; isCustom: false } // no custom avatar
+	| { type: "avatar"; isCustom: true; details: AvatarDetails }; // there is a custom avatar
 
 // --------------------------------------------------------------------
 // Avatar details
 export type AvatarDetails = null; // TODO
 
-
 // --------------------------------------------------------------------
 // Common return values
 export type CommonApiReturns =
-	| "err" // Something went wrong on the server
-	| null; // Parameters were not correct
-
+	| { type: "server_error"; cause: string } // Something went wrong on the server
+	| { type: "param_error"; cause: string } // Parameters were not correct
+	| null;
 
 // --------------------------------------------------------------------
 // getInfo
@@ -38,9 +40,12 @@ export interface getInfoParams {
 }
 
 export type getInfoReturn = {
-	Name: string;
-	Surname: string;
-	Sex: GenderLabels;
-	BirthDate: string;
-	Username: string;
+	type: "userInfo";
+	details: {
+		Name: string;
+		Surname: string;
+		Sex: GenderLabels;
+		BirthDate: string;
+		Username: string;
+	};
 };

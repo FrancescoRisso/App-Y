@@ -3,15 +3,21 @@ from hashlib import sha256
 
 from log import log
 
+
 def getInfo(db, request):
-	if "userID" not in request.args:
-		return json.dumps(None)
+	try:
+		userId = request.form.getlist("userID")[0]
+	except Exception:
+		return json.dumps({"type": "param_error", "cause": "Missing userID"})
 
-	if "pwd" not in request.args:
-		return json.dumps(None)
+	log("INFO", f"UserID {userId} requested their information")
 
-	userId = request.args["userID"]
-	pwdHash = sha256(request.args["pwd"].encode("utf-8")).hexdigest()
+	try:
+		pwd = request.form.getlist("pwd")[0]
+	except Exception:
+		return json.dumps({"type": "param_error", "cause": "Missing pwd"})
+
+	pwdHash = sha256(pwd.encode("utf-8")).hexdigest()
 
 	try:
 		result = db.run_query(
@@ -22,13 +28,12 @@ def getInfo(db, request):
 		)
 	except Exception as e:
 		log("ERR", e)
-		return "err"
+		return json.dumps({"type": "server_error", "cause": e})
 
 	try:
 		result = list(list(result)[0])
 	except Exception:
-		log("ERR", f"User ID {userId} is not present in the database, or the password is wrong")
-		return json.dumps(None)
+		return json.dumps({"type": "param_error", "cause": "Invalid userID or password"})
 
 	try:
 		response = dict()
@@ -37,7 +42,7 @@ def getInfo(db, request):
 		response["Sex"] = "other" if not result[2] else ("male" if result[3] else "female")
 		response["Birthdate"] = str(result[4])
 		response["Username"] = result[5]
-		return json.dumps(response)
+		return json.dumps({"type": "userInfo", "details": response})
 	except Exception as e:
 		log("ERR", f"Error in the database read: {e}")
-		return json.dumps(None)
+		return json.dumps({"type": "server_error", "cause": "Error in the database read"})
