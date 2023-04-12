@@ -5,6 +5,7 @@ from log import log as logger
 
 from dbConnection import Database
 from services.getAvatar import getAvatar
+from services.getInfo import getInfo
 
 ##
 #   Disable default flask logger
@@ -30,6 +31,11 @@ app = Flask(__name__)
 @app.route("/api/getAvatar", methods=["GET"])
 def apiGetAvatar():
 	return getAvatar(db, request)
+
+
+@app.route("/api/getInfo", methods=["GET"])
+def apiGetInfo():
+	return getInfo(db, request)
 
 
 if __name__ == "__main__":
