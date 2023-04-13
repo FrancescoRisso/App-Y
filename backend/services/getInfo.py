@@ -5,15 +5,17 @@ from log import log
 
 
 def getInfo(db, request):
+	params = json.loads(request.data)
+
 	try:
-		userId = request.form.getlist("userID")[0]
+		userId = params["userID"]
 	except Exception:
 		return json.dumps({"type": "param_error", "cause": "Missing userID"})
 
 	log("INFO", f"UserID {userId} requested their information")
 
 	try:
-		pwd = request.form.getlist("pwd")[0]
+		pwd = params["pwd"]
 	except Exception:
 		return json.dumps({"type": "param_error", "cause": "Missing pwd"})
 
