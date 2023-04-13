@@ -1,4 +1,10 @@
-import { AllApiTypes, CommonApiReturns, ServerServices, getAvatarReturn, getInfoReturn } from "../backendTypes";
+import {
+	AllApiTypes,
+	ServerServices,
+	getAvatarReturn,
+	getInfoReturn,
+	loginReturn
+} from "../backendTypes";
 
 const fetchUrl = async <type>(
 	url: string,
@@ -27,10 +33,16 @@ const fetchUrl = async <type>(
 
 const API: ServerServices = {
 	getInfo: async ({ userID, pwd }) => {
-		return fetchUrl<getInfoReturn | CommonApiReturns>("/api/getInfo", "POST", "userInfo", { userID, pwd });
+		console.debug(userID, pwd);
+		return fetchUrl<getInfoReturn | null>("/api/getInfo", "POST", "userInfo", { userID, pwd });
 	},
+
 	getAvatar: async ({ userID }) => {
-		return fetchUrl<getAvatarReturn | CommonApiReturns>(`/api/getAvatar?userID=${userID}`, "GET", "avatar");
+		return fetchUrl<getAvatarReturn | null>(`/api/getAvatar?userID=${userID}`, "GET", "avatar");
+	},
+
+	login: async ({ username, pwd }) => {
+		return fetchUrl<loginReturn | null>("/api/login", "POST", "login", { username, pwd });
 	}
 };
 

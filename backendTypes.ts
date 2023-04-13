@@ -1,15 +1,16 @@
 import { GenderLabels } from "./src/types";
 
-export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | CommonApiReturns | null>;
+export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | null>;
 
 export interface ServerServices {
 	getAvatar: ApiFunction<getAvatarParams, getAvatarReturn>;
 	getInfo: ApiFunction<getInfoParams, getInfoReturn>;
+	login: ApiFunction<loginParams, loginReturn>;
 }
 
 // --------------------------------------------------------------------
 // all types
-export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo";
+export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo" | "login";
 
 // --------------------------------------------------------------------
 // getAvatar
@@ -49,3 +50,18 @@ export type getInfoReturn = {
 		Username: string;
 	};
 };
+
+// --------------------------------------------------------------------
+// login
+export interface loginParams {
+	username: string;
+	pwd: string; // In clear
+}
+
+export type loginReturn =
+	| {
+			type: "login";
+			correct: true;
+			userId: number;
+	  } // user-password are correct
+	| { type: "login"; correct: false }; // invalid user and/or password

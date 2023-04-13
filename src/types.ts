@@ -45,3 +45,16 @@ export interface RegisterComponentProps {
 export type RegisterPageLabels = "welcome" | "nameAndSurname" | "gender" | "birthdate";
 
 export type GenderLabels = "male" | "female" | "other";
+
+export type StorageKeys = "userID" | "pwd";
+
+export interface StorageConnection {
+	storeValue: (key: StorageKeys, val: any) => void;
+	getValue: (key: StorageKeys) => any;
+	clearAll: () => void;
+	isOk: boolean;
+}
+
+export interface AppContextStructure {
+	storage: StorageConnection;
+}

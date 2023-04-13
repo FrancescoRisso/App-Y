@@ -19,8 +19,8 @@ export interface InputProps {
 	// the type of input that should go inside
 	type: "password" | "text" | "email" | "date";
 
-	// a reference that will be set to this input to retreive its value
-	reference: React.RefObject<HTMLIonInputElement>;
+	// what to do when the input value changes
+	onInputAction: (e: React.FormEvent<HTMLIonInputElement>) => void;
 
 	// the text that should be inserted as input label
 	label: string;
@@ -28,11 +28,11 @@ export interface InputProps {
 	// If present, displays an error string
 	error?: string;
 
-	// If an action should be done when the input loses focus
-	loseFocusAction?: () => void;
+	// The current content of the input
+	value: string
 }
 
-const Input = ({ type, reference, label, error, loseFocusAction }: InputProps) => {
+const Input = ({ type, onInputAction, label, error, value }: InputProps) => {
 	const inputType = useMemo(() => {
 		switch (type) {
 			case "email":
@@ -49,7 +49,13 @@ const Input = ({ type, reference, label, error, loseFocusAction }: InputProps) =
 	return (
 		<IonItem fill="outline" color="main" className={`${error && "ion-invalid"}`}>
 			<IonLabel position="stacked">{label}</IonLabel>
-			<IonInput ref={reference} type={inputType} onIonBlur={loseFocusAction}></IonInput>
+			<IonInput
+				onInput={(e) => {
+					onInputAction(e);
+				}}
+				type={inputType}
+				value={value}
+			></IonInput>
 			{error && <IonNote slot="error">{error}</IonNote>}
 		</IonItem>
 	);

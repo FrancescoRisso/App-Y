@@ -28,31 +28,43 @@ import RegisterPage from "./pages/RegisterPage";
 /* My css */
 import "./App.css";
 import PandaDisplayer from "./pages/PandaDisplayer";
+import HomePage from "./pages/HomePage";
+import AppContextProvider from "./components/AppContext";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-	<IonApp>
-		<IonReactRouter>
-			<IonRouterOutlet>
-				<Route exact path="/register">
-					<RegisterPage />
-				</Route>
+const App: React.FC = () => {
+	return (
+		<IonApp>
+			<AppContextProvider
+				child={
+					<IonReactRouter>
+						<IonRouterOutlet>
+							<Route exact path="/register">
+								<RegisterPage />
+							</Route>
 
-				<Route exact path="/login">
-					<LoginPage />
-				</Route>
+							<Route exact path="/login">
+								<LoginPage />
+							</Route>
 
-				<Route exact path="/pandas">
-					<PandaDisplayer />
-				</Route>
+							<Route exact path="/pandas">
+								<PandaDisplayer />
+							</Route>
 
-				<Route>
-					<Redirect to="/login" />
-				</Route>
-			</IonRouterOutlet>
-		</IonReactRouter>
-	</IonApp>
-);
+							<Route exact path="/home">
+								<HomePage />
+							</Route>
+
+							<Route>
+								<Redirect to="/login" />
+							</Route>
+						</IonRouterOutlet>
+					</IonReactRouter>
+				}
+			/>
+		</IonApp>
+	);
+};
 
 export default App;
