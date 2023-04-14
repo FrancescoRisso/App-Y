@@ -6,11 +6,12 @@ export interface ServerServices {
 	getAvatar: ApiFunction<getAvatarParams, getAvatarReturn>;
 	getInfo: ApiFunction<getInfoParams, getInfoReturn>;
 	login: ApiFunction<loginParams, loginReturn>;
+	isUsernameTaken: ApiFunction<isUsernameTakenParams, isUsernameTakenReturn>;
 }
 
 // --------------------------------------------------------------------
 // all types
-export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo" | "login";
+export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo" | "login" | "usernameCheck";
 
 // --------------------------------------------------------------------
 // getAvatar
@@ -65,3 +66,33 @@ export type loginReturn =
 			userId: number;
 	  } // user-password are correct
 	| { type: "login"; correct: false }; // invalid user and/or password
+
+// --------------------------------------------------------------------
+// login
+export interface registerParams {
+	name: string;
+	surname: string;
+	sex: GenderLabels;
+	birthdate: string;
+	username: string;
+	pwd: string; // In clear
+}
+
+export type registerReturn =
+	| {
+			type: "register";
+			correct: true;
+			userId: number;
+	  } // username is valid
+	| { type: "register"; correct: false }; // username is already chosen
+
+// --------------------------------------------------------------------
+// isUsernameTaken
+export interface isUsernameTakenParams {
+	username: string;
+}
+
+export type isUsernameTakenReturn = {
+	type: "usernameCheck";
+	isUsed: boolean;
+};

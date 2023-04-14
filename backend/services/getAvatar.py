@@ -10,7 +10,7 @@ def getAvatar(db, request):
 	userId = request.args["userID"]
 
 	try:
-		result = db.run_query("SELECT Is_default FROM avatar WHERE ID=%s", tuple(userId))
+		result = db.run_query("SELECT Is_default FROM avatar WHERE ID=%s", (userId,))
 	except Exception as e:
 		log("ERR", e)
 		return json.dumps({"type": "server_error", "cause": "Error in the database read"})
@@ -20,6 +20,6 @@ def getAvatar(db, request):
 			return json.dumps({"type": "avatar", "isCustom": False})
 	except Exception:
 		log("ERR", f"User ID {userId} is not present in the database")
-		json.dumps(None)
+		return json.dumps({"type": "param_error", "cause": "Invalid userID"})
 
 	return json.dumps({"type": "avatar", "isCustom": True, "details": None})

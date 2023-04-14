@@ -34,6 +34,9 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 	const [step, setStep] = useState<number>(0);
 	const [birthDate, setBirthDate] = useState<moment.Moment>(moment(""));
 	const [gender, setGender] = useState<GenderLabels | "">("");
+	const [password, setPassword] = useState<string>("");
+	const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+	const [username, setUsername] = useState<string>("");
 
 	const getGenderString = (male: string, female: string, other: string) => {
 		switch (gender) {
@@ -61,16 +64,20 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 		canProceed: boolean,
 		setCanProceed: (val: boolean) => void
 	) => {
-		if (val1 !== "" && val2 !== "" && (!mustBeEqual || val1 === val2)) {
+		if (val1 !== "" && val2 !== "" && (!mustBeEqual || val1 === val2) && (!mustBeEqual || val1 !== "")) {
 			if (!canProceed) setCanProceed(true);
 		} else if (canProceed) setCanProceed(false);
 	};
 
-	const componentSequence: RegisterPageLabels[] = ["welcome", "nameAndSurname", "gender", "birthdate"];
-	const componentAlwaysOk: boolean[] = [true, false, false, false];
-
-	// const componentSequence: RegisterPageLabels[] = ["gender"];
-	// const componentAlwaysOk: boolean[] = [false];
+	const componentSequence: RegisterPageLabels[] = [
+		"welcome",
+		"nameAndSurname",
+		"gender",
+		"birthdate",
+		"password",
+		"username"
+	];
+	const componentAlwaysOk: boolean[] = [true, false, false, false, false, false];
 
 	return (
 		<RegisterContext.Provider
@@ -85,6 +92,9 @@ const RegisterContextProvider = ({ child }: RegisterContextProps) => {
 				surname: { val: surname, set: setSurname },
 				gender: { val: gender, set: setGender },
 				birthDate: { val: birthDate, set: setBirthDate },
+				password: { val: password, set: setPassword },
+				passwordConfirm: { val: passwordConfirm, set: setPasswordConfirm },
+				username: { val: username, set: setUsername },
 
 				getGenderString,
 

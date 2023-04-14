@@ -7,6 +7,7 @@ from dbConnection import Database
 from services.getAvatar import getAvatar
 from services.getInfo import getInfo
 from services.login import login
+from services.isUsernameTaken import isUsernameTaken
 
 ##
 #   Disable default flask logger
@@ -54,6 +55,12 @@ def apiGetInfo():
 def apiLogin():
 	refreshDbConnection()
 	return login(db, request)
+
+
+@app.route("/api/isUsernameTaken", methods=["GET"])
+def apiIsUsernameTaken():
+	refreshDbConnection()
+	return isUsernameTaken(db, request)
 
 
 if __name__ == "__main__":

@@ -32,18 +32,27 @@ const RegisterFooter = ({ nextPageEnabled, nextClickAction, isLastPage }: Regist
 	return (
 		<IonFooter className="main-color ion-text-end">
 			{nextPageEnabled ? (
-				<IonNavLink
-					routerDirection="forward"
-					component={() => {
-						nextClickAction();
-						return <Common />;
-					}}
-				>
-					<IonButton color="main">
-						<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />
-						{isLastPage ? "Registrati" : "Avanti"}
+				isLastPage ? (
+					<IonButton color="main" onClick={async () => {
+						
+					}}>
+						<IonIcon slot="end" icon={enterOutline} />
+						Registrati
 					</IonButton>
-				</IonNavLink>
+				) : (
+					<IonNavLink
+						routerDirection="forward"
+						component={() => {
+							nextClickAction();
+							return <Common />;
+						}}
+					>
+						<IonButton color="main">
+							<IonIcon slot="end" icon={arrowForwardOutline} />
+							Avanti
+						</IonButton>
+					</IonNavLink>
+				)
 			) : (
 				<IonButton color="main" disabled>
 					<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />

@@ -17,6 +17,8 @@ import Welcome from "../01-Welcome";
 import NameAndSurname from "../02-NameAndSurname";
 import Gender from "../03-Gender";
 import BirthDate from "../04-BirthDate";
+import Password from "../05-Password";
+import Username from "../06-Username";
 
 export interface RegisterRouterProps {
 	// The string identifier of the page
@@ -40,6 +42,12 @@ const RegisterRouter = ({ pageName, canProceed, setCanProceed }: RegisterRouterP
 
 		case "gender":
 			return <Gender canProceed={canProceed} setCanProceed={setCanProceed} />;
+
+		case "password":
+			return <Password canProceed={canProceed} setCanProceed={setCanProceed} />;
+
+		case "username":
+			return <Username canProceed={canProceed} setCanProceed={setCanProceed} />;
 	}
 };
 

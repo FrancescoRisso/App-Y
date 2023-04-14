@@ -3,6 +3,7 @@ import {
 	ServerServices,
 	getAvatarReturn,
 	getInfoReturn,
+	isUsernameTakenReturn,
 	loginReturn
 } from "../backendTypes";
 
@@ -43,6 +44,14 @@ const API: ServerServices = {
 
 	login: async ({ username, pwd }) => {
 		return fetchUrl<loginReturn | null>("/api/login", "POST", "login", { username, pwd });
+	},
+
+	isUsernameTaken: async ({ username }) => {
+		return fetchUrl<isUsernameTakenReturn | null>(
+			`/api/isUsernameTaken?username=${username}`,
+			"GET",
+			"usernameCheck"
+		);
 	}
 };
 

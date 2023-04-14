@@ -19,6 +19,9 @@ export interface RegisterContextStructure {
 	surname: StateVariable<string>;
 	gender: StateVariable<GenderLabels | "">;
 	birthDate: StateVariable<moment.Moment>;
+	password: StateVariable<string>;
+	passwordConfirm: StateVariable<string>;
+	username: StateVariable<string>;
 
 	getGenderString: (male: string, female: string, other: string) => string;
 
@@ -42,9 +45,13 @@ export interface RegisterComponentProps {
 	setCanProceed: (allow: boolean) => void;
 }
 
-export type RegisterPageLabels = "welcome" | "nameAndSurname" | "gender" | "birthdate";
+export type RegisterPageLabels = "welcome" | "nameAndSurname" | "gender" | "birthdate" | "password" | "username";
 
 export type GenderLabels = "male" | "female" | "other";
+
+export type HomePageSvgsNames = "test";
+
+export type ClickableSvgProps = { onClickAction?: Function };
 
 export type StorageKeys = "userID" | "pwd";
 
