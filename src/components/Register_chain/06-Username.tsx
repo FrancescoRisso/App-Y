@@ -13,7 +13,7 @@ context:
 */
 
 import { useContext, useEffect, useState } from "react";
-import { IonGrid, IonRow, IonCol, IonInput, IonItem, IonText, IonIcon } from "@ionic/react";
+import { IonGrid, IonRow, IonCol, IonInput, IonItem } from "@ionic/react";
 
 import { RegisterComponentProps } from "../../types";
 

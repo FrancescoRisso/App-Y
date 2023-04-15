@@ -13,7 +13,7 @@ context:
 */
 
 import { useContext, useEffect } from "react";
-import { IonGrid, IonRow, IonCol, IonInput, IonItem, IonText, IonIcon } from "@ionic/react";
+import { IonGrid, IonRow, IonCol, IonInput, IonItem } from "@ionic/react";
 
 import { RegisterComponentProps } from "../../types";
 
@@ -21,7 +21,6 @@ import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
 
 import PandaImg from "../General_components/PandaImg";
-import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import ValidityTooltip from "../General_components/ValidityTooltip";
 
 const Password = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
