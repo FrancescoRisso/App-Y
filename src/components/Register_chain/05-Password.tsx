@@ -13,7 +13,7 @@ context:
 */
 
 import { useContext, useEffect } from "react";
-import { IonGrid, IonRow, IonCol, IonInput, IonItem } from "@ionic/react";
+import { IonGrid, IonRow, IonCol, IonInput, IonItem, IonText, IonIcon } from "@ionic/react";
 
 import { RegisterComponentProps } from "../../types";
 
@@ -21,6 +21,8 @@ import SpeechBubble from "../General_components/SpeechBubble";
 import { RegisterContext } from "./Common/RegisterContext";
 
 import PandaImg from "../General_components/PandaImg";
+import { checkmarkOutline, closeOutline } from "ionicons/icons";
+import ValidityTooltip from "../General_components/ValidityTooltip";
 
 const Password = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
@@ -77,6 +79,12 @@ const Password = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 						</IonItem>
 					</form>
 
+					<ValidityTooltip
+						isPresent={context.password.val !== "" && context.passwordConfirm.val !== ""}
+						isValid={context.password.val === context.passwordConfirm.val}
+						validMessage="Le password coincidono"
+						errorMessage="Le password non coincidono"
+					/>
 					<br />
 
 					<SpeechBubble content={<p>Scegli una password sicura per proteggere il tuo account</p>} />
