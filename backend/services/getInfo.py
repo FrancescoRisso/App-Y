@@ -30,7 +30,7 @@ def getInfo(db, request):
 		)
 	except Exception as e:
 		log("ERR", e)
-		return json.dumps({"type": "server_error", "cause": e})
+		return json.dumps({"type": "server_error", "cause": str(e)})
 
 	try:
 		result = list(list(result)[0])

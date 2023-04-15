@@ -15,8 +15,6 @@ def isUsernameTaken(db, request):
 		log("ERR", e)
 		return json.dumps({"type": "server_error", "cause": "Error in the database read"})
 
-	print(result)
-
 	if list(list(result)[0])[0] > 0:
 		return json.dumps({"type": "usernameCheck", "isUsed": True})
 
