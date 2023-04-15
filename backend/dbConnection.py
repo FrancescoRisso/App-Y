@@ -1,4 +1,4 @@
-import pymysql
+import mysql.connector
 
 
 class Database:
@@ -17,56 +17,36 @@ class Database:
 		self.close_connection()
 
 	def __open_connection(self):
-		"""Connect to MySQL Database."""
-		try:
-			if self.__conn is None:
-				self.__conn = pymysql.connect(
-					host=self.__host, port=self.__port, user=self.__username, passwd=self.__password, db=self.__dbname,
-				)
-		except pymysql.MySQLError as sqle:
-			raise pymysql.MySQLError(f"Failed to connect to the database due to: {sqle}")
-		except Exception as e:
-			raise Exception(f"An exception occured due to: {e}")
+		self.__conn = mysql.connector.connect(
+			host=self.__host, database=self.__dbname, user=self.__username, password=self.__password, port=self.__port
+		)
+		if not self.__conn.is_connected():
+			self.__conn = None
+			raise Exception("Error while connecting to the database")
 
 	@property
 	def db_connection_status(self):
 		"""Returns the connection status"""
-		return True if self.__conn is not None else False
+		return True if (self.__conn is not None and self.__conn.is_connected()) else False
 
 	def close_connection(self):
-		"""Close the DB connection."""
-		try:
-			if self.__conn is not None:
-				print("Here", self.__conn)
-				self.__conn.close()
-				self.__conn = None
-		except Exception as e:
-			raise Exception(f"Failed to close the database connection due to: {e}")
+		if self.__conn is not None:
+			self.__conn.close()
+			self.__conn = None
 
 	def run_query(self, query, params=None):
 		"""Execute SQL query."""
-		try:
-			if not query or not isinstance(query, str):
-				raise Exception()
+		if not query or not isinstance(query, str):
+			raise Exception()
 
-			if params is not None and not isinstance(params, tuple):
-				print(type(params))
-				raise Exception()
+		if params is not None and not isinstance(params, tuple):
+			raise Exception()
 
-			if not self.__conn:
-				self.__open_connection()
+		if not self.__conn:
+			self.__open_connection()
 
-			with self.__conn.cursor() as cursor:
-				cursor.execute(query, params)
-				if "SELECT" in query.upper():
-					result = cursor.fetchall()
-				else:
-					self.__conn.commit()
-					result = f"{cursor.rowcount} row(s) affected."
-				cursor.close()
-
-				return result
-		except pymysql.MySQLError as sqle:
-			raise pymysql.MySQLError(f"Failed to execute query due to: {sqle}")
-		except Exception as e:
-			raise Exception(f"An exception occured due to: {e}")
+		with self.__conn.cursor() as cursor:
+			cursor.execute(query, params)
+			if not query.startswith("SELECT"):
+				self.__conn.commit()
+			return cursor.fetchall()
