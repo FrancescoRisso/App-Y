@@ -96,7 +96,6 @@ const Login = () => {
 								onClick={async () => {
 									const login = await API.login({ username, pwd });
 									if (login?.correct) {
-										console.debug(login);
 										await appContext.storage.storeValue("userID", login.userId);
 										await appContext.storage.storeValue("pwd", pwd);
 										goToMainPage.current?.click();

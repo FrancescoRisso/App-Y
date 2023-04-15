@@ -35,7 +35,6 @@ const fetchUrl = async <type>(
 
 const API: ServerServices = {
 	getInfo: async ({ userID, pwd }) => {
-		console.debug(userID, pwd);
 		return fetchUrl<getInfoReturn | null>("/api/getInfo", "POST", "userInfo", { userID, pwd });
 	},
 
