@@ -23,7 +23,7 @@ import { RegisterContext } from "./Common/RegisterContext";
 import PandaImg from "../General_components/PandaImg";
 import API from "../../api";
 
-import { closeOutline, checkmarkOutline } from "ionicons/icons";
+import ValidityTooltip from "../General_components/ValidityTooltip";
 
 const Username = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 	const context = useContext(RegisterContext);
@@ -56,16 +56,12 @@ const Username = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 							}}
 						/>
 					</IonItem>
-					<IonText className="mx-10px">
-						{isValid === null ? <></> : <IonIcon icon={isValid ? checkmarkOutline : closeOutline} />}
-						<small>
-							{isValid === null
-								? ""
-								: isValid
-								? "Sembra che questo username sia ancora libero"
-								: "Mi spiace, questo username è già usato"}
-						</small>
-					</IonText>
+					<ValidityTooltip
+						isValid={isValid ?? true}
+						isPresent={isValid !== null}
+						errorMessage="Mi spiace, questo username è già usato"
+						validMessage="Sembra che questo username sia ancora libero"
+					/>
 
 					<br />
 
