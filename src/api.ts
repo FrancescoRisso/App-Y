@@ -4,7 +4,8 @@ import {
 	getAvatarReturn,
 	getInfoReturn,
 	isUsernameTakenReturn,
-	loginReturn
+	loginReturn,
+	registerReturn
 } from "../backendTypes";
 
 const fetchUrl = async <type>(
@@ -52,6 +53,17 @@ const API: ServerServices = {
 			"GET",
 			"usernameCheck"
 		);
+	},
+
+	register: async ({ name, surname, sex, birthdate, username, pwd }) => {
+		return fetchUrl<registerReturn | null>("/api/register", "POST", "register", {
+			username,
+			pwd,
+			sex,
+			name,
+			surname,
+			birthdate
+		});
 	}
 };
 

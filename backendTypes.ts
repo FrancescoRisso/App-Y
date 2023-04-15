@@ -7,11 +7,19 @@ export interface ServerServices {
 	getInfo: ApiFunction<getInfoParams, getInfoReturn>;
 	login: ApiFunction<loginParams, loginReturn>;
 	isUsernameTaken: ApiFunction<isUsernameTakenParams, isUsernameTakenReturn>;
+	register: ApiFunction<registerParams, registerReturn>;
 }
 
 // --------------------------------------------------------------------
 // all types
-export type AllApiTypes = "avatar" | "server_error" | "param_error" | "userInfo" | "login" | "usernameCheck";
+export type AllApiTypes =
+	| "avatar"
+	| "server_error"
+	| "param_error"
+	| "userInfo"
+	| "login"
+	| "usernameCheck"
+	| "register";
 
 // --------------------------------------------------------------------
 // getAvatar
