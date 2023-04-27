@@ -30,3 +30,7 @@
 	display: block;
 	margin: 0 auto;
 }
+
+.round-speechbubble {
+	border-radius: 25px;
+}

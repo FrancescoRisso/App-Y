@@ -48,7 +48,7 @@ const SpeechBubble = ({ content }: SpeechBubbleProps) => {
 
 	return (
 		<>
-			<IonCard ref={card}>
+			<IonCard ref={card} className="round-speechbubble">
 				<IonCardContent>{content}</IonCardContent>
 			</IonCard>
 			{pos && (
