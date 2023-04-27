@@ -30,6 +30,7 @@ import "./App.css";
 import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
+import PersonalInfoPage from "./pages/PersonalInfoPage";
 
 setupIonicReact();
 
@@ -54,6 +55,10 @@ const App: React.FC = () => {
 
 							<Route exact path="/home">
 								<HomePage />
+							</Route>
+
+							<Route exact path="/personalInfoPage">
+								<PersonalInfoPage />
 							</Route>
 
 							<Route>

@@ -1,4 +1,4 @@
-import { GenderLabels } from "./src/types";
+import { GenderLabels, avatarSpecs } from "./src/types";
 
 export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | null>;
 
@@ -29,11 +29,8 @@ export interface getAvatarParams {
 
 export type getAvatarReturn =
 	| { type: "avatar"; isCustom: false } // no custom avatar
-	| { type: "avatar"; isCustom: true; details: AvatarDetails }; // there is a custom avatar
+	| { type: "avatar"; isCustom: true; details: avatarSpecs }; // there is a custom avatar
 
-// --------------------------------------------------------------------
-// Avatar details
-export type AvatarDetails = null; // TODO
 
 // --------------------------------------------------------------------
 // Common return values
@@ -55,7 +52,7 @@ export type getInfoReturn = {
 		Name: string;
 		Surname: string;
 		Sex: GenderLabels;
-		BirthDate: string;
+		Birthdate: string;
 		Username: string;
 	};
 };

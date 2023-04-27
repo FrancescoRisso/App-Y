@@ -6,6 +6,14 @@
 	width: 90%;
 }
 
+.w-90-percent {
+	width: 90%;
+}
+
+.w-100-percent {
+	width: 100%;
+}
+
 .ion-color-light .not-green {
 	background-color: white;
 }
@@ -14,6 +22,19 @@
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+.center-horizontally {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.center {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .main-color {
@@ -31,6 +52,83 @@
 	margin: 0 auto;
 }
 
+.h-30-percent {
+	height: 30%;
+}
+
+.h-40-percent {
+	height: 40%;
+}
+
+.h-60-percent {
+	height: 60%;
+}
+
+.h-70-percent {
+	height: 70%;
+}
+
+.h-100-percent {
+	height: 100%;
+}
+
+.no-margin-vertical {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.no-padding-bottom {
+	padding-bottom: 0;
+}
+
+.align-bottom {
+	position: absolute;
+	bottom: 0;
+}
+
+.fill-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+.flex-col-reverse {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.flex-fixed {
+	flex: 0 1 auto;
+}
+
+.flex-fill {
+	flex: 1 1 auto;
+}
+
+.white-bg {
+	background-color: white;
+}
+
+.circular-avatar {
+	border-radius: 50%;
+}
+
 .round-speechbubble {
 	border-radius: 25px;
 }
+
+.pos-bottomleft {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.pos-relative {
+	position: relative;
+}
+
+.bigger-icon {
+	font-size: x-large;
+}
+
+

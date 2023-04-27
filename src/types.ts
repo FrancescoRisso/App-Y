@@ -62,6 +62,19 @@ export interface StorageConnection {
 	isOk: boolean;
 }
 
+export interface avatarSpecs {}
+export interface userSpecs {
+	name: string;
+	surname: string;
+	gender: GenderLabels | "";
+	birthDate: moment.Moment;
+	username: string;
+}
+
 export interface AppContextStructure {
 	storage: StorageConnection;
+	storedValues: {
+		userDetails: StateVariable<"notLoaded" | userSpecs>;
+		userAvatar: StateVariable<"notLoaded" | "default" | avatarSpecs>;
+	};
 }

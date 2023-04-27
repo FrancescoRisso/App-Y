@@ -11,9 +11,9 @@ context:
 	
 */
 
-import React from "react";
+import React, { useState } from "react";
 
-import { AppContextStructure } from "../types";
+import { AppContextStructure, avatarSpecs, userSpecs } from "../types";
 import useStorage from "../hooks/useStorage";
 
 export const AppContext = React.createContext({} as AppContextStructure);
@@ -26,10 +26,17 @@ export interface AppContextProps {
 const AppContextProvider = ({ child }: AppContextProps) => {
 	const storage = useStorage();
 
+	const [userDetails, setUserDetails] = useState<userSpecs | "notLoaded">("notLoaded");
+	const [avatar, setAvatar] = useState<avatarSpecs>("notLoaded");
+
 	return (
 		<AppContext.Provider
 			value={{
-				storage
+				storage,
+				storedValues: {
+					userDetails: { val: userDetails, set: setUserDetails },
+					userAvatar: { val: avatar, set: setAvatar }
+				}
 			}}
 		>
 			{child}
