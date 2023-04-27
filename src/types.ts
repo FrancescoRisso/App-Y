@@ -77,4 +77,8 @@ export interface AppContextStructure {
 		userDetails: StateVariable<"notLoaded" | userSpecs>;
 		userAvatar: StateVariable<"notLoaded" | "default" | avatarSpecs>;
 	};
+	loaders: {
+		loadAvatar: () => void;
+		loadUserDetails: () => void;
+	};
 }
