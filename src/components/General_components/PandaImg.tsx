@@ -36,9 +36,11 @@ import surprised from "../../images/pandas/surprised.svg";
 
 export interface PandaImgProps {
 	type: "waving" | "bamboo" | "cantSee" | "computer" | "confused" | "relaxed" | "skateboard" | "smiley" | "surprised";
+	width?: string | number;
+	height?: string | number;
 }
 
-const PandaImg = ({ type }: PandaImgProps) => {
+const PandaImg = ({ type, width, height }: PandaImgProps) => {
 	let img;
 
 	switch (type) {
@@ -72,10 +74,15 @@ const PandaImg = ({ type }: PandaImgProps) => {
 	}
 
 	return (
-		<IonGrid>
-			<IonRow className="ion-justify-content-center">
-				<IonCol>
-					<img src={img} alt="Panda che saluta" className="icon-center-vertically" width="80%" />
+		<IonGrid className="h-100-percent">
+			<IonRow className="h-100-percent ion-justify-content-center">
+				<IonCol className="h-100-percent">
+					<img
+						src={img}
+						alt="Panda che saluta"
+						className="icon-center-vertically"
+						style={{ width, height }}
+					/>
 				</IonCol>
 			</IonRow>
 		</IonGrid>

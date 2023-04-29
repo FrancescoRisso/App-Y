@@ -76,7 +76,7 @@ const Gender = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 					<br />
 
 					<SpeechBubble content={<p>Come ti identifichi?</p>} />
-					<PandaImg type="bamboo" />
+					<PandaImg width="80%" type="bamboo" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

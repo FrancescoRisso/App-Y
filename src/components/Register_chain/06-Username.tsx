@@ -69,7 +69,7 @@ const Username = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 						content={<p>Come ultima cosa, scegli uno username che ti identifichi univocamente nell'app</p>}
 					/>
 					<div className="ion-margin-top ion-padding" />
-					<PandaImg type="relaxed" />
+					<PandaImg width="80%" type="relaxed" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

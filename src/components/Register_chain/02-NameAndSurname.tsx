@@ -74,7 +74,7 @@ const NameAndSurname = ({ canProceed, setCanProceed }: RegisterComponentProps) =
 					<br />
 
 					<SpeechBubble content={<p>Innanzitutto, mi serve sapere il tuo nome e cognome</p>} />
-					<PandaImg type="skateboard" />
+					<PandaImg width="80%" type="skateboard" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

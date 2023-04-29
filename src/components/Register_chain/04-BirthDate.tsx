@@ -57,7 +57,7 @@ const BirthDate = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 					<br />
 
 					<SpeechBubble content={<p>Quando sei nat{context.getGenderString("o", "a", "*")}?</p>} />
-					<PandaImg type="smiley" />
+					<PandaImg width="80%" type="smiley" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

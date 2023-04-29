@@ -32,7 +32,7 @@ const Welcome = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 							</>
 						}
 					/>
-					<PandaImg type="waving" />
+					<PandaImg width="80%" type="waving" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>

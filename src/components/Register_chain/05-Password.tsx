@@ -87,7 +87,7 @@ const Password = ({ canProceed, setCanProceed }: RegisterComponentProps) => {
 					<br />
 
 					<SpeechBubble content={<p>Scegli una password sicura per proteggere il tuo account</p>} />
-					<PandaImg type="computer" />
+					<PandaImg width="80%" type="computer" />
 				</IonCol>
 			</IonRow>
 		</IonGrid>
