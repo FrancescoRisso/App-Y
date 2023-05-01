@@ -11,7 +11,7 @@ context:
 	
 */
 
-import { IonFooter, IonNavLink, IonButton, IonIcon, IonAlert } from "@ionic/react";
+import { IonFooter, IonNavLink, IonButton, IonIcon, IonAlert, IonToolbar } from "@ionic/react";
 import { arrowForwardOutline, enterOutline } from "ionicons/icons";
 
 import Common from "./RegisterCommon";
@@ -42,61 +42,63 @@ const RegisterFooter = ({ nextPageEnabled, nextClickAction, isLastPage }: Regist
 	const [usernameInvalid, setUsernameInvalid] = useState<boolean>(false);
 
 	return (
-		<IonFooter className="main-color ion-text-end">
-			<Link to="/home" className="ion-hide" ref={goToMainPage} />
-			<IonAlert
-				isOpen={usernameInvalid}
-				message="L'username scelto è già in uso"
-				buttons={["OK"]}
-				onDidDismiss={() => setUsernameInvalid(false)}
-			></IonAlert>
+		<IonFooter className="ion-text-end">
+			<IonToolbar color="main-light">
+				<Link to="/home" className="ion-hide" ref={goToMainPage} />
+				<IonAlert
+					isOpen={usernameInvalid}
+					message="L'username scelto è già in uso"
+					buttons={["OK"]}
+					onDidDismiss={() => setUsernameInvalid(false)}
+				></IonAlert>
 
-			{nextPageEnabled ? (
-				isLastPage ? (
-					<IonButton
-						color="main"
-						onClick={async () => {
-							const res = await API.register({
-								username: registerContext.username.val,
-								pwd: registerContext.password.val,
-								birthdate: registerContext.birthDate.val.format("YYYY-MM-GG"),
-								name: registerContext.name.val,
-								surname: registerContext.surname.val,
-								sex: registerContext.gender.val === "" ? "other" : registerContext.gender.val
-							});
+				{nextPageEnabled ? (
+					isLastPage ? (
+						<IonButton
+							color="main"
+							onClick={async () => {
+								const res = await API.register({
+									username: registerContext.username.val,
+									pwd: registerContext.password.val,
+									birthdate: registerContext.birthDate.val.format("YYYY-MM-GG"),
+									name: registerContext.name.val,
+									surname: registerContext.surname.val,
+									sex: registerContext.gender.val === "" ? "other" : registerContext.gender.val
+								});
 
-							if (res?.correct) {
-								await appContext.storage.storeValue("userID", res.userId);
-								await appContext.storage.storeValue("pwd", registerContext.password.val);
-								goToMainPage.current?.click();
-							} else {
-								setUsernameInvalid(true);
-							}
-						}}
-					>
-						<IonIcon slot="end" icon={enterOutline} />
-						Registrati
-					</IonButton>
-				) : (
-					<IonNavLink
-						routerDirection="forward"
-						component={() => {
-							nextClickAction();
-							return <Common />;
-						}}
-					>
-						<IonButton color="main">
-							<IonIcon slot="end" icon={arrowForwardOutline} />
-							Avanti
+								if (res?.correct) {
+									await appContext.storage.storeValue("userID", res.userId);
+									await appContext.storage.storeValue("pwd", registerContext.password.val);
+									goToMainPage.current?.click();
+								} else {
+									setUsernameInvalid(true);
+								}
+							}}
+						>
+							<IonIcon slot="end" icon={enterOutline} />
+							Registrati
 						</IonButton>
-					</IonNavLink>
-				)
-			) : (
-				<IonButton color="main" disabled>
-					<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />
-					{isLastPage ? "Registrati" : "Avanti"}
-				</IonButton>
-			)}
+					) : (
+						<IonNavLink
+							routerDirection="forward"
+							component={() => {
+								nextClickAction();
+								return <Common />;
+							}}
+						>
+							<IonButton color="main">
+								<IonIcon slot="end" icon={arrowForwardOutline} />
+								Avanti
+							</IonButton>
+						</IonNavLink>
+					)
+				) : (
+					<IonButton color="main" disabled>
+						<IonIcon slot="end" icon={isLastPage ? enterOutline : arrowForwardOutline} />
+						{isLastPage ? "Registrati" : "Avanti"}
+					</IonButton>
+				)}
+			</IonToolbar>
 		</IonFooter>
 	);
 };

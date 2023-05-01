@@ -42,6 +42,11 @@
 	color: var(--ion-color-main-contrast);
 }
 
+.main-light-color {
+	background-color: var(--ion-color-main-light);
+	color: var(--ion-color-main-light-contrast);
+}
+
 .mx-10px {
 	margin-left: 10px;
 	margin-right: 10px;
@@ -50,6 +55,14 @@
 .icon-center-vertically {
 	display: block;
 	margin: 0 auto;
+}
+
+.h-10-percent {
+	height: 10%;
+}
+
+.h-5-percent {
+	height: 5%;
 }
 
 .h-30-percent {
@@ -66,6 +79,14 @@
 
 .h-70-percent {
 	height: 70%;
+}
+
+.h-90-percent {
+	height: 90%;
+}
+
+.h-95-percent {
+	height: 95%;
 }
 
 .h-100-percent {
@@ -131,4 +152,12 @@
 	font-size: x-large;
 }
 
+.justify-content-vertically {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 
+.max-h-20-percent {
+	max-height: 20%;
+}

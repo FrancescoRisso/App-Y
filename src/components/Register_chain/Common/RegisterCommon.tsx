@@ -49,19 +49,21 @@ const Common = () => {
 				}}
 			/>
 
-			<IonContent color="main">
-				<IonGrid className="ion-margin-top ion-margin-bottom w-90percent">
-					<IonProgressBar value={(context.stepNo.val + 1) / (context.totSteps + 1)} color="light" />
+			<IonContent color="main-light">
+				<IonGrid className="h-5-percent w-90percent">
+					<IonProgressBar value={(context.stepNo.val + 1) / (context.totSteps + 1)} color="light" className="center-vertically" />
 				</IonGrid>
 
-				<RegisterRouter
-					pageName={context.components[context.stepNo.val]}
-					canProceed={fwdEnabled}
-					setCanProceed={(val) => {
-						setFwdOverride(true);
-						setFwdEnabled(val);
-					}}
-				/>
+				<div className="h-95-percent">
+					<RegisterRouter
+						pageName={context.components[context.stepNo.val]}
+						canProceed={fwdEnabled}
+						setCanProceed={(val) => {
+							setFwdOverride(true);
+							setFwdEnabled(val);
+						}}
+					/>
+				</div>
 			</IonContent>
 
 			<RegisterFooter

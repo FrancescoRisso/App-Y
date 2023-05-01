@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
@@ -31,6 +31,8 @@ import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
 import PersonalInfoPage from "./pages/PersonalInfoPage";
+import PageTemplate from "./pages/PageTemplate";
+import Header from "./components/General_components/Header";
 
 setupIonicReact();
 
@@ -46,24 +48,22 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/login">
-								<LoginPage />
+								<PageTemplate header="App-Y" pageContent={<LoginPage />} />
 							</Route>
 
 							<Route exact path="/pandas">
-								<PandaDisplayer />
+								<PageTemplate header="Panda!" pageContent={<PandaDisplayer />} />
 							</Route>
 
 							<Route exact path="/home">
-								<HomePage />
+								<PageTemplate header="App-Y" pageContent={<HomePage />} />
 							</Route>
 
 							<Route exact path="/personalInfoPage">
-								<PersonalInfoPage />
+								<PageTemplate header="Il tuo profilo" pageContent={<PersonalInfoPage />} />
 							</Route>
 
-							<Route>
-								<Redirect to="/login" />
-							</Route>
+							<Route>{/* <Redirect to="/login" /> */}</Route>
 						</IonRouterOutlet>
 					</IonReactRouter>
 				}
