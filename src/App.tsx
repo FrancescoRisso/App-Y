@@ -51,7 +51,7 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/pandas">
-								<PageTemplate header="Panda!" pageContent={<PandaDisplayer />} />
+								<PageTemplate header="Panda!" pageContent={<PandaDisplayer />} prevPage="/home" />
 							</Route>
 
 							<Route exact path="/home">
@@ -59,7 +59,11 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/personalInfoPage">
-								<PageTemplate header="Il tuo profilo" pageContent={<PersonalInfoPage />} />
+								<PageTemplate
+									header="Il tuo profilo"
+									pageContent={<PersonalInfoPage />}
+									prevPage="/home"
+								/>
 							</Route>
 
 							<Route>{/* <Redirect to="/login" /> */}</Route>
