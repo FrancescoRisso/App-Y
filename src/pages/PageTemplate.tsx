@@ -34,7 +34,7 @@ import {
 	IonTitle,
 	IonToolbar
 } from "@ionic/react";
-import { arrowBackOutline, logOutOutline, trendingDown } from "ionicons/icons";
+import { arrowBackOutline, logOutOutline } from "ionicons/icons";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
