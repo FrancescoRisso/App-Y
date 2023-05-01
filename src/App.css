@@ -158,6 +158,28 @@
 	justify-content: space-between;
 }
 
-.max-h-20-percent {
-	max-height: 20%;
+.max-h-18-percent {
+	max-height: 18%;
+}
+
+#homepage-avatar-bar {
+	width: 28%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#homepage-avatar {
+	width: 85%;
+	z-index: -5;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.ios-no-vertical-margin.ios {
+	margin-top: 0;
+	margin-bottom: 0;
 }

@@ -61,7 +61,8 @@ const PersonalInfoPage = () => {
 						<div className="max-90-percent center">
 							<Avatar
 								isDefault={appContext.storedValues.userAvatar.val === "default"}
-								editLink="/editAvatar"
+								link="/editAvatar"
+								editAvatarText
 							/>
 						</div>
 					</div>

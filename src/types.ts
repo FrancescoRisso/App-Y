@@ -82,3 +82,5 @@ export interface AppContextStructure {
 		loadUserDetails: () => void;
 	};
 }
+
+export type svgLinks = "friends" | "challenge" | "diary" | "goals" | "trend" | "tips";

@@ -30,31 +30,26 @@ import { Link } from "react-router-dom";
 
 export interface AvatarProps {
 	isDefault: boolean;
-	editLink?: string;
+	link?: string;
+	editAvatarText?: boolean;
 }
 
-const Avatar = ({ isDefault, editLink }: AvatarProps) => {
+const Avatar = ({ isDefault, link, editAvatarText }: AvatarProps) => {
 	const linkRef = useRef<HTMLAnchorElement>(null);
 
 	return (
 		<div>
-			{editLink && <Link to={editLink} ref={linkRef} />}
+			{link && <Link to={link} ref={linkRef} />}
 			<img
 				src={defaultAvatar}
 				className={`white-bg circular-avatar center-horizontally ${!isDefault && "ion-hide"}`}
 				alt=""
 				onClick={() => {
-					if (editLink && linkRef.current) linkRef.current.click();
+					if (link && linkRef.current) linkRef.current.click();
 				}}
 			/>
-			{!isDefault && (
-				<img
-					src={TBD}
-					className={`white-bg circular-avatar center-horizontally`}
-					alt=""
-				/>
-			)}
-			{editLink && <p className="no-margin-vertical ion-text-center">Modifica l'avatar</p>}
+			{!isDefault && <img src={TBD} className={`white-bg circular-avatar center-horizontally`} alt="" />}
+			{editAvatarText && <p className="no-margin-vertical ion-text-center">Modifica l'avatar</p>}
 		</div>
 	);
 };

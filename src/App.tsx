@@ -32,7 +32,6 @@ import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
 import PersonalInfoPage from "./pages/PersonalInfoPage";
 import PageTemplate from "./pages/PageTemplate";
-import Header from "./components/General_components/Header";
 
 setupIonicReact();
 
