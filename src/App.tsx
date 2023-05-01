@@ -27,6 +27,8 @@ import RegisterPage from "./pages/RegisterPage";
 
 /* My css */
 import "./App.css";
+import "./cssUtils/heightPercentageClasses.css";
+
 import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
