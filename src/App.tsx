@@ -62,6 +62,7 @@ const App: React.FC = () => {
 							<Route exact path="/personalInfoPage">
 								<PageTemplate
 									header="Il tuo profilo"
+									withLogout
 									pageContent={<PersonalInfoPage />}
 									prevPage="/home"
 								/>

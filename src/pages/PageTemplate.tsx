@@ -34,19 +34,25 @@ import {
 	IonTitle,
 	IonToolbar
 } from "@ionic/react";
-import { arrowBackOutline } from "ionicons/icons";
-import { useCallback, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { arrowBackOutline, logOutOutline, trendingDown } from "ionicons/icons";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { AppContext } from "../components/AppContext";
 
 export interface PageTemplateProps {
 	pageContent: JSX.Element;
 	header: string | JSX.Element;
 	footer?: JSX.Element;
 	prevPage?: string;
+	withLogout?: boolean;
 }
 
-const PageTemplate = ({ pageContent, header, footer, prevPage }: PageTemplateProps) => {
+const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout }: PageTemplateProps) => {
+	const [redirect, setRedirect] = useState<boolean>(false);
+
 	const prevPageRef = useRef<HTMLAnchorElement>(null);
+
+	const context = useContext(AppContext);
 
 	const goToPrevPage = useCallback(() => {
 		prevPageRef.current?.click();
@@ -63,6 +69,8 @@ const PageTemplate = ({ pageContent, header, footer, prevPage }: PageTemplatePro
 		};
 	}, [goToPrevPage, prevPage]);
 
+	if (redirect) return <Redirect to="/" />;
+
 	return (
 		<IonPage>
 			<IonHeader>
@@ -77,6 +85,18 @@ const PageTemplate = ({ pageContent, header, footer, prevPage }: PageTemplatePro
 								}}
 							>
 								<IonIcon slot="start" icon={arrowBackOutline} />
+							</IonButton>
+						</IonButtons>
+					)}
+					{withLogout && (
+						<IonButtons slot="end">
+							<IonButton
+								onClick={async () => {
+									await context.storage.clearAll();
+									setRedirect(true);
+								}}
+							>
+								<IonIcon slot="start" icon={logOutOutline} />
 							</IonButton>
 						</IonButtons>
 					)}
