@@ -32,6 +32,7 @@ import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
 import PersonalInfoPage from "./pages/PersonalInfoPage";
 import PageTemplate from "./pages/PageTemplate";
+import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 
 setupIonicReact();
 
@@ -66,7 +67,9 @@ const App: React.FC = () => {
 								/>
 							</Route>
 
-							<Route>{/* <Redirect to="/login" /> */}</Route>
+							<Route>
+								<GenericRouteRedirector />
+							</Route>
 						</IonRouterOutlet>
 					</IonReactRouter>
 				}
