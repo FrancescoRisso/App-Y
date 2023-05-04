@@ -35,6 +35,7 @@ import AppContextProvider from "./components/AppContext";
 import PersonalInfoPage from "./pages/PersonalInfoPage";
 import PageTemplate from "./pages/PageTemplate";
 import GenericRouteRedirector from "./pages/GenericRouteRedirector";
+import TipsPage from "./pages/TipsPage";
 
 setupIonicReact();
 
@@ -68,6 +69,10 @@ const App: React.FC = () => {
 									pageContent={<PersonalInfoPage />}
 									prevPage="/home"
 								/>
+							</Route>
+
+							<Route exact path="/tips">
+								<PageTemplate header="Tips" pageContent={<TipsPage />} prevPage="/home" />
 							</Route>
 
 							<Route>

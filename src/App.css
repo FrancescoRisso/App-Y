@@ -147,3 +147,16 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
+.no-vertical-margin {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.no-caps {
+	text-transform: none;
+}
+
+.button-font-larger {
+	font-size: 2.4vh;
+}

@@ -84,3 +84,13 @@ export interface AppContextStructure {
 }
 
 export type svgLinks = "friends" | "challenge" | "diary" | "goals" | "trend" | "tips";
+
+export type tipsCategories =
+	| "sport"
+	| "health"
+	| "money"
+	| "education"
+	| "timeManag"
+	| "relationships"
+	| "travel"
+	| "freeTime";
