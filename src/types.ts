@@ -81,6 +81,7 @@ export interface AppContextStructure {
 		loadAvatar: () => void;
 		loadUserDetails: () => void;
 	};
+	clearUserData: () => void;
 }
 
 export type svgLinks = "friends" | "challenge" | "diary" | "goals" | "trend" | "tips";

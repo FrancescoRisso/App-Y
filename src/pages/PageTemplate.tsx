@@ -93,6 +93,7 @@ const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout }: Pag
 							<IonButton
 								onClick={async () => {
 									await context.storage.clearAll();
+									context.clearUserData();
 									setRedirect(true);
 								}}
 							>

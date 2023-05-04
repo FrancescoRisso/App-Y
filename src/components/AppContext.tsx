@@ -31,6 +31,11 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 	const [userDetails, setUserDetails] = useState<userSpecs | "notLoaded">("notLoaded");
 	const [avatar, setAvatar] = useState<avatarSpecs>("notLoaded");
 
+	const clearUserData = useCallback(() => {
+		setUserDetails("notLoaded");
+		setAvatar("notLoaded");
+	}, []);
+
 	const updateAvatar = useCallback(async () => {
 		if (avatar === "notLoaded" && storage.isOk) {
 			const avatar = await API.getAvatar({ userID: await storage.getValue("userID") });
@@ -72,7 +77,8 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 				loaders: {
 					loadAvatar: updateAvatar,
 					loadUserDetails: updateUserDetails
-				}
+				},
+				clearUserData
 			}}
 		>
 			{child}
