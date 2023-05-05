@@ -160,3 +160,20 @@
 .button-font-larger {
 	font-size: 2.4vh;
 }
+
+.round-speechbubble-wrapper::after {
+	content: " ";
+	display: block;
+	position: relative;
+	top: -11px;
+	left: 40px;
+	width: 36px;
+	height: 64px;
+	background-size: 100% 100%;
+	background-image: url("./images/tmp/talkingLabel.png");
+}
+
+.hidden {
+	visibility: hidden;
+	position: absolute;
+}
