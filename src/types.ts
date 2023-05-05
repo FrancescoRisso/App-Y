@@ -82,6 +82,8 @@ export interface AppContextStructure {
 		loadUserDetails: () => void;
 	};
 	clearUserData: () => void;
+	getGenderString: (male: string, female: string, other: string) => string;
+	getGenderTerminations: () => string; // equivalent to getGenderString("o", "a", "*")
 }
 
 export type svgLinks = "friends" | "challenge" | "diary" | "goals" | "trend" | "tips";

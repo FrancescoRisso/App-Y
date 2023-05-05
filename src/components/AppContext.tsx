@@ -66,6 +66,21 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		}
 	}, [storage, userDetails]);
 
+	const getGenderString = (male: string, female: string, other: string) => {
+		if (userDetails !== "notLoaded")
+			switch (userDetails.gender) {
+				case "male":
+					return male;
+				case "female":
+					return female;
+				case "other":
+					return other;
+				default:
+					return male;
+			}
+		return other;
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -78,7 +93,9 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 					loadAvatar: updateAvatar,
 					loadUserDetails: updateUserDetails
 				},
-				clearUserData
+				clearUserData,
+				getGenderString,
+				getGenderTerminations: () => getGenderString("o", "a", "*")
 			}}
 		>
 			{child}
