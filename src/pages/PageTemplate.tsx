@@ -31,6 +31,7 @@ import {
 	IonHeader,
 	IonIcon,
 	IonPage,
+	IonSpinner,
 	IonTitle,
 	IonToolbar
 } from "@ionic/react";
@@ -45,9 +46,10 @@ export interface PageTemplateProps {
 	footer?: JSX.Element;
 	prevPage?: string;
 	withLogout?: boolean;
+	loading?: boolean;
 }
 
-const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout }: PageTemplateProps) => {
+const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout, loading }: PageTemplateProps) => {
 	const [redirect, setRedirect] = useState<boolean>(false);
 
 	const prevPageRef = useRef<HTMLAnchorElement>(null);
@@ -103,7 +105,15 @@ const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout }: Pag
 					)}
 				</IonToolbar>
 			</IonHeader>
-			<IonContent color="main-light">{pageContent}</IonContent>
+			<IonContent color="main-light">
+				{loading ? (
+					<div className="center-vertically ion-text-center">
+						<IonSpinner />
+					</div>
+				) : (
+					pageContent
+				)}
+			</IonContent>
 			{footer && (
 				<IonFooter>
 					<IonToolbar color="main-light">{footer}</IonToolbar>

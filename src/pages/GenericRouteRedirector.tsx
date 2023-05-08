@@ -26,7 +26,6 @@ other dependences:
 import { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import PageTemplate from "./PageTemplate";
-import { IonSpinner } from "@ionic/react";
 import { AppContext } from "../components/AppContext";
 
 export interface GenericRouteRedirectorProps {}
@@ -48,16 +47,7 @@ const GenericRouteRedirector = () => {
 
 	if (redirectTo) return <Redirect to={redirectTo} />;
 
-	return (
-		<PageTemplate
-			header="Sto caricando..."
-			pageContent={
-				<div className="center-vertically ion-text-center">
-					<IonSpinner />
-				</div>
-			}
-		/>
-	);
+	return <PageTemplate header="Sto caricando..." pageContent={<></>} loading />;
 };
 
 export default GenericRouteRedirector;
