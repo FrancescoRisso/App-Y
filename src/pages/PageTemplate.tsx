@@ -39,6 +39,7 @@ import { arrowBackOutline, logOutOutline } from "ionicons/icons";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
+import { appColors } from "../types";
 
 export interface PageTemplateProps {
 	pageContent: JSX.Element;
@@ -47,9 +48,20 @@ export interface PageTemplateProps {
 	prevPage?: string;
 	withLogout?: boolean;
 	loading?: boolean;
+	backgroundColor: appColors;
+	headerColor: appColors;
 }
 
-const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout, loading }: PageTemplateProps) => {
+const PageTemplate = ({
+	pageContent,
+	header,
+	footer,
+	prevPage,
+	withLogout,
+	loading,
+	backgroundColor,
+	headerColor
+}: PageTemplateProps) => {
 	const [redirect, setRedirect] = useState<boolean>(false);
 
 	const prevPageRef = useRef<HTMLAnchorElement>(null);
@@ -76,7 +88,7 @@ const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout, loadi
 	return (
 		<IonPage>
 			<IonHeader>
-				<IonToolbar>
+				<IonToolbar color={headerColor}>
 					{typeof header === "string" ? <IonTitle>{header}</IonTitle> : header}
 					{prevPage && (
 						<IonButtons slot="start">
@@ -105,7 +117,7 @@ const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout, loadi
 					)}
 				</IonToolbar>
 			</IonHeader>
-			<IonContent color="main-light">
+			<IonContent color={backgroundColor}>
 				{loading ? (
 					<div className="center-vertically ion-text-center">
 						<IonSpinner />
@@ -116,7 +128,7 @@ const PageTemplate = ({ pageContent, header, footer, prevPage, withLogout, loadi
 			</IonContent>
 			{footer && (
 				<IonFooter>
-					<IonToolbar color="main-light">{footer}</IonToolbar>
+					<IonToolbar color={backgroundColor}>{footer}</IonToolbar>
 				</IonFooter>
 			)}
 		</IonPage>

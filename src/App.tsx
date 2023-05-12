@@ -37,6 +37,7 @@ import PageTemplate from "./pages/PageTemplate";
 import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 import TipsPage from "./pages/TipsPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
+import DiaryPageManagement from "./pages/DiaryPageManagement";
 
 setupIonicReact();
 
@@ -52,19 +53,37 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/login">
-								<PageTemplate header="App-Y" pageContent={<LoginPage />} />
+								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
+									header="App-Y"
+									pageContent={<LoginPage />}
+								/>
 							</Route>
 
 							<Route exact path="/pandas">
-								<PageTemplate header="Panda!" pageContent={<PandaDisplayer />} prevPage="/home" />
+								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
+									header="Panda!"
+									pageContent={<PandaDisplayer />}
+									prevPage="/home"
+								/>
 							</Route>
 
 							<Route exact path="/home">
-								<PageTemplate header="App-Y" pageContent={<HomePage />} />
+								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
+									header="App-Y"
+									pageContent={<HomePage />}
+								/>
 							</Route>
 
 							<Route exact path="/personalInfoPage">
 								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
 									header="Il tuo profilo"
 									withLogout
 									pageContent={<PersonalInfoPage />}
@@ -73,11 +92,27 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/tips">
-								<PageTemplate header="Tips" pageContent={<TipsPage />} prevPage="/home" />
+								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
+									header="Tips"
+									pageContent={<TipsPage />}
+									prevPage="/home"
+								/>
 							</Route>
 
 							<Route exact path="/challenge">
-								<PageTemplate header="Challenge" pageContent={<ChallengeListPage />} prevPage="/home" />
+								<PageTemplate
+									backgroundColor="white"
+									headerColor="violet"
+									header="Challenge"
+									pageContent={<ChallengeListPage />}
+									prevPage="/home"
+								/>
+							</Route>
+
+							<Route exact path="/diary">
+								<DiaryPageManagement />
 							</Route>
 
 							<Route>
