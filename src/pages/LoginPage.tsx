@@ -25,7 +25,6 @@ import {
 
 import { Link } from "react-router-dom";
 import API from "../api";
-import Button from "../components/General_components/Button";
 import Input from "../components/General_components/Input";
 import { useRef, useState, useContext } from "react";
 import { AppContext } from "../components/AppContext";
@@ -111,7 +110,7 @@ const LoginPage: React.FC = () => {
 					<IonRow>
 						<IonCol>
 							<Link to="/register">
-								<Button text="Registrati" />
+								<IonButton>Registrati</IonButton>
 							</Link>
 						</IonCol>
 					</IonRow>
