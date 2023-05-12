@@ -25,8 +25,8 @@ other dependences:
 
 import { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router";
-import PageTemplate from "./PageTemplate";
 import { AppContext } from "../components/AppContext";
+import LoadingPage from "./LoadingPage";
 
 export interface GenericRouteRedirectorProps {}
 
@@ -47,7 +47,7 @@ const GenericRouteRedirector = () => {
 
 	if (redirectTo) return <Redirect to={redirectTo} />;
 
-	return <PageTemplate header="Sto caricando..." pageContent={<></>} loading />;
+	return <LoadingPage prevPage="/home" />;
 };
 
 export default GenericRouteRedirector;
