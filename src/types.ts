@@ -53,7 +53,7 @@ export type HomePageSvgsNames = "test";
 
 export type ClickableSvgProps = { onClickAction?: Function };
 
-export type StorageKeys = "userID" | "pwd";
+export type StorageKeys = "userID" | "pwd" | "diaryMode";
 
 export interface StorageConnection {
 	storeValue: (key: StorageKeys, val: any) => void;
@@ -97,3 +97,5 @@ export type tipsCategories =
 	| "relationships"
 	| "travel"
 	| "freeTime";
+
+export type appColors = "violet" | "white" | "night";
