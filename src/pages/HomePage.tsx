@@ -16,7 +16,6 @@ context:
 
 import { IonGrid, IonCol, IonRow, IonCard, IonCardContent, IonButton } from "@ionic/react";
 import HomePageNavigation from "../components/HomePageSvgs/HomePageNavigation";
-import PandaImg from "../components/General_components/PandaImg";
 import Avatar from "../components/General_components/Avatar";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -38,9 +37,6 @@ const HomePage = () => {
 	return (
 		<IonGrid className="h-100-percent justify-content-vertically">
 			<Link to="/PersonalInfoPage" ref={linkToUserDetails} />
-			<IonRow className="max-h-18-percent">
-				<PandaImg height="100%" type="waving" />
-			</IonRow>
 			<IonRow>
 				<IonCol>
 					<HomePageNavigation />
