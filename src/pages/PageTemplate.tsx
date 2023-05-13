@@ -43,7 +43,7 @@ import { appColors } from "../types";
 
 export interface PageTemplateProps {
 	pageContent: JSX.Element;
-	header: string | JSX.Element;
+	header?: string | JSX.Element;
 	footer?: JSX.Element;
 	prevPage?: string;
 	withLogout?: boolean;
@@ -87,36 +87,38 @@ const PageTemplate = ({
 
 	return (
 		<IonPage>
-			<IonHeader>
-				<IonToolbar color={headerColor}>
-					{typeof header === "string" ? <IonTitle>{header}</IonTitle> : header}
-					{prevPage && (
-						<IonButtons slot="start">
-							<Link to={prevPage} ref={prevPageRef} />
-							<IonButton
-								onClick={() => {
-									prevPageRef.current?.click();
-								}}
-							>
-								<IonIcon slot="start" icon={arrowBackOutline} />
-							</IonButton>
-						</IonButtons>
-					)}
-					{withLogout && (
-						<IonButtons slot="end">
-							<IonButton
-								onClick={async () => {
-									await context.storage.clearAll();
-									context.clearUserData();
-									setRedirect(true);
-								}}
-							>
-								<IonIcon slot="start" icon={logOutOutline} />
-							</IonButton>
-						</IonButtons>
-					)}
-				</IonToolbar>
-			</IonHeader>
+			{header && (
+				<IonHeader>
+					<IonToolbar color={headerColor}>
+						{typeof header === "string" ? <IonTitle>{header}</IonTitle> : header}
+						{prevPage && (
+							<IonButtons slot="start">
+								<Link to={prevPage} ref={prevPageRef} />
+								<IonButton
+									onClick={() => {
+										prevPageRef.current?.click();
+									}}
+								>
+									<IonIcon slot="start" icon={arrowBackOutline} />
+								</IonButton>
+							</IonButtons>
+						)}
+						{withLogout && (
+							<IonButtons slot="end">
+								<IonButton
+									onClick={async () => {
+										await context.storage.clearAll();
+										context.clearUserData();
+										setRedirect(true);
+									}}
+								>
+									<IonIcon slot="start" icon={logOutOutline} />
+								</IonButton>
+							</IonButtons>
+						)}
+					</IonToolbar>
+				</IonHeader>
+			)}
 			<IonContent color={backgroundColor}>
 				{loading ? (
 					<div className="center-vertically ion-text-center">
