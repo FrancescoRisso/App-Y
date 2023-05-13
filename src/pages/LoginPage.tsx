@@ -11,23 +11,15 @@ context:
 	
 */
 
-import {
-	IonAlert,
-	IonButton,
-	IonCard,
-	IonCardContent,
-	IonCardHeader,
-	IonCardTitle,
-	IonCol,
-	IonGrid,
-	IonRow
-} from "@ionic/react";
+import { IonAlert } from "@ionic/react";
 
-import { Link } from "react-router-dom";
-import API from "../api";
 import Input from "../components/General_components/Input";
 import { useRef, useState, useContext } from "react";
 import { AppContext } from "../components/AppContext";
+import TopPageTongue from "../components/General_components/TopPageTongue";
+import Button from "../components/General_components/Button";
+import API from "../api";
+import { Link } from "react-router-dom";
 
 export interface LoginPageProps {}
 
@@ -41,7 +33,8 @@ const LoginPage: React.FC = () => {
 	const appContext = useContext(AppContext);
 
 	return (
-		<IonCard color="light" className="ion-padding center-vertically">
+		<>
+			<Link to="/home" className="ion-hide" ref={goToMainPage} />
 			<IonAlert
 				isOpen={wrongInfo}
 				message="Username e/o password errati"
@@ -49,74 +42,58 @@ const LoginPage: React.FC = () => {
 				onDidDismiss={() => setWrongInfo(false)}
 			></IonAlert>
 
-			<IonCardHeader>
-				<IonCardTitle>Login</IonCardTitle>
-			</IonCardHeader>
-			<IonCardContent>
-				<Link to="/home" className="ion-hide" ref={goToMainPage} />
-				<IonGrid className="ion-text-center">
-					<form>
-						<IonRow>
-							<IonCol>
-								<Input
-									type="text"
-									label="Username"
-									onInputAction={(e) => {
-										setUsername(String(e.currentTarget.value) ?? "");
-									}}
-									value={username}
-								/>
-							</IonCol>
-						</IonRow>
+			<TopPageTongue color="violet" text="APP - Y" panda="waving" height="40vh" />
 
-						<IonRow>
-							<IonCol>
-								<Input
-									type="password"
-									label="Password"
-									onInputAction={(e) => {
-										setPwd(String(e.currentTarget.value) ?? "");
-									}}
-									value={pwd}
-								/>
-							</IonCol>
-						</IonRow>
-					</form>
-					<br />
+			<form
+				className="ion-padding-top ion-padding-bottom h-30-percent justify-content-vertically-space-outside"
+				onSubmit={() => {}}
+			>
+				<Input
+					type="text"
+					label="Username"
+					value={username}
+					onInputAction={(e) => {
+						setUsername(e.currentTarget.value?.toString() ?? "");
+					}}
+				/>
 
-					<IonRow>
-						<IonCol>
-							<IonButton
-								color="main"
-								disabled={username === "" || pwd === ""}
-								onClick={async () => {
-									const login = await API.login({ username, pwd });
-									if (login?.correct) {
-										await appContext.storage.storeValue("userID", login.userId);
-										await appContext.storage.storeValue("pwd", pwd);
-										goToMainPage.current?.click();
-									} else setWrongInfo(true);
-								}}
-							>
-								Login
-							</IonButton>
-						</IonCol>
-					</IonRow>
-
-					<IonRow>
-						<IonCol>oppure</IonCol>
-					</IonRow>
-
-					<IonRow>
-						<IonCol>
-							<Link to="/register">
-								<IonButton>Registrati</IonButton>
-							</Link>
-						</IonCol>
-					</IonRow>
-				</IonGrid>
-			</IonCardContent>
-		</IonCard>
+				<br />
+				<div>
+					<Input
+						type="password"
+						label="Password"
+						value={pwd}
+						onInputAction={(e) => {
+							setPwd(e.currentTarget.value?.toString() ?? "");
+						}}
+					/>
+					<p
+						className="ion-text-center underlined mb-1 mt-2 grey-text"
+						onClick={() => {
+							console.debug("Pwd dimenticata? Ti attacchi");
+						}}
+					>
+						Password dimenticata?
+					</p>
+				</div>
+			</form>
+			<div className="h-25-percent justify-content-vertically-space-outside">
+				<Button
+					color="violet"
+					text="Login"
+					disabled={username === "" || pwd === ""}
+					action={async () => {
+						const login = await API.login({ username, pwd });
+						if (login?.correct) {
+							await appContext.storage.storeValue("userID", login.userId);
+							await appContext.storage.storeValue("pwd", pwd);
+							goToMainPage.current?.click();
+						} else setWrongInfo(true);
+					}}
+				/>
+				<Button color="night" text="Registrati" link="/register" />
+			</div>
+		</>
 	);
 };
 
