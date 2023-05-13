@@ -12,8 +12,7 @@ context:
 	
 */
 
-import { IonInput, IonItem, IonLabel, IonNote } from "@ionic/react";
-import { useMemo } from "react";
+import { IonInput, IonItem, IonNote } from "@ionic/react";
 
 export interface InputProps {
 	// the type of input that should go inside
@@ -29,32 +28,26 @@ export interface InputProps {
 	error?: string;
 
 	// The current content of the input
-	value: string
+	value: string;
 }
 
 const Input = ({ type, onInputAction, label, error, value }: InputProps) => {
-	const inputType = useMemo(() => {
-		switch (type) {
-			case "email":
-				return "email";
-			case "password":
-				return "password";
-			case "date":
-				return "date";
-			default:
-				return "text";
-		}
-	}, [type]);
-
 	return (
-		<IonItem fill="outline" color="main" className={`${error && "ion-invalid"}`}>
-			<IonLabel position="stacked">{label}</IonLabel>
+		<IonItem
+			color="grey"
+			shape="round"
+			className={`pill font-size-app item-horizontal-margin pill-height-normal ${error && "ion-invalid"}`}
+			lines="none"
+		>
+			{/* <IonLabel position="stacked">{label}</IonLabel> */}
 			<IonInput
 				onInput={(e) => {
 					onInputAction(e);
 				}}
-				type={inputType}
+				type={type}
 				value={value}
+				placeholder={label}
+				className="pill-height-normal ion-margin-start"
 			></IonInput>
 			{error && <IonNote slot="error">{error}</IonNote>}
 		</IonItem>
