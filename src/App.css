@@ -122,6 +122,12 @@
 	justify-content: space-between;
 }
 
+.justify-content-vertically-space-outside {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
 .max-h-18-percent {
 	max-height: 18%;
 }
@@ -176,4 +182,30 @@
 .hidden {
 	visibility: hidden;
 	position: absolute;
+}
+
+.font-title {
+	font-size: 4.5vh;
+	font-weight: bold;
+}
+
+.item-horizontal-margin {
+	margin-left: 6%;
+	margin-right: 6%;
+}
+
+.font-size-app {
+	font-size: 20px;
+}
+
+.pill {
+	border-radius: 30px;
+}
+
+.pill-height-normal {
+	height: var(--pill-height-normal);
+}
+
+.underlined {
+	text-decoration: underline;
 }
