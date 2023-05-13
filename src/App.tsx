@@ -28,6 +28,7 @@ import RegisterPage from "./pages/RegisterPage";
 /* My css */
 import "./App.css";
 import "./cssUtils/heightPercentageClasses.css";
+import "./cssUtils/bootstrapMarginPadding.css";
 
 import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
@@ -56,7 +57,6 @@ const App: React.FC = () => {
 								<PageTemplate
 									backgroundColor="white"
 									headerColor="violet"
-									header="App-Y"
 									pageContent={<LoginPage />}
 								/>
 							</Route>
