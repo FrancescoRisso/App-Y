@@ -33,9 +33,10 @@ import relaxed from "../../images/pandas/relaxed.svg";
 import skateboard from "../../images/pandas/skateboard.svg";
 import smiley from "../../images/pandas/smiley.svg";
 import surprised from "../../images/pandas/surprised.svg";
+import { pandaTypes } from "../../types";
 
 export interface PandaImgProps {
-	type: "waving" | "bamboo" | "cantSee" | "computer" | "confused" | "relaxed" | "skateboard" | "smiley" | "surprised";
+	type: pandaTypes;
 	width?: string | number;
 	height?: string | number;
 }

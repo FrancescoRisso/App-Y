@@ -98,4 +98,15 @@ export type tipsCategories =
 	| "travel"
 	| "freeTime";
 
-export type appColors = "violet" | "white" | "night";
+export type appColors = "violet" | "white" | "night" | "grey";
+
+export type pandaTypes =
+	| "waving"
+	| "bamboo"
+	| "cantSee"
+	| "computer"
+	| "confused"
+	| "relaxed"
+	| "skateboard"
+	| "smiley"
+	| "surprised";
