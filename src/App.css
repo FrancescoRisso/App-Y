@@ -198,8 +198,12 @@
 	font-size: 20px;
 }
 
+.font-size-bigger {
+	font-size: 25px;
+}
+
 .pill {
-	border-radius: 30px;
+	border-radius: 64px;
 }
 
 .pill-height-normal {
@@ -208,4 +212,8 @@
 
 .underlined {
 	text-decoration: underline;
+}
+
+.grey-text {
+	color: var(--ion-color-grey-shade);
 }
