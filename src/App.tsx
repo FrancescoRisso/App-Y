@@ -29,6 +29,7 @@ import RegisterPage from "./pages/RegisterPage";
 import "./App.css";
 import "./cssUtils/heightPercentageClasses.css";
 import "./cssUtils/bootstrapMarginPadding.css";
+import "./fonts/fonts.css";
 
 import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
