@@ -3,6 +3,10 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
+	--ion-font-family: "Montserrat", "Verdana";
+
+	--pill-height-normal: 67px;
+
 	/** primary **/
 	--ion-color-primary: #3880ff;
 	--ion-color-primary-rgb: 56, 128, 255;
@@ -83,10 +87,10 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-light-tint: #f5f6f9;
 
 	/* our color */
-	--ion-color-violet: #720FF1;
-	--ion-color-violet-rgb: 114,15,241;
+	--ion-color-violet: #720ff1;
+	--ion-color-violet-rgb: 114, 15, 241;
 	--ion-color-violet-contrast: #ffffff;
-	--ion-color-violet-contrast-rgb: 255,255,255;
+	--ion-color-violet-contrast-rgb: 255, 255, 255;
 	--ion-color-violet-shade: #640dd4;
 	--ion-color-violet-tint: #8027f2;
 
@@ -97,12 +101,19 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-white-shade: #e0e0e0;
 	--ion-color-white-tint: #ffffff;
 
-	--ion-color-night: #310B62;
-	--ion-color-night-rgb: 49,11,98;
+	--ion-color-night: #310b62;
+	--ion-color-night-rgb: 49, 11, 98;
 	--ion-color-night-contrast: #ffffff;
-	--ion-color-night-contrast-rgb: 255,255,255;
+	--ion-color-night-contrast-rgb: 255, 255, 255;
 	--ion-color-night-shade: #2b0a56;
 	--ion-color-night-tint: #462372;
+
+	--ion-color-grey: #ebebeb;
+	--ion-color-grey-rgb: 235, 235, 235;
+	--ion-color-grey-contrast: #000000;
+	--ion-color-grey-contrast-rgb: 0, 0, 0;
+	--ion-color-grey-shade: #cfcfcf;
+	--ion-color-grey-tint: #ededed;
 }
 
 .ion-color-white {
@@ -130,6 +141,15 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-contrast-rgb: var(--ion-color-night-contrast-rgb);
 	--ion-color-shade: var(--ion-color-night-shade);
 	--ion-color-tint: var(--ion-color-night-tint);
+}
+
+.ion-color-grey {
+	--ion-color-base: var(--ion-color-grey);
+	--ion-color-base-rgb: var(--ion-color-grey-rgb);
+	--ion-color-contrast: var(--ion-color-grey-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-grey-contrast-rgb);
+	--ion-color-shade: var(--ion-color-grey-shade);
+	--ion-color-tint: var(--ion-color-grey-tint);
 }
 
 /*
