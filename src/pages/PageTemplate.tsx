@@ -42,18 +42,9 @@ export interface PageTemplateProps {
 		logout?: boolean;
 		text: string;
 	};
-	infiniteScroll?: boolean;
 }
 
-const PageTemplate = ({
-	pageContent,
-	footer,
-	prevPage,
-	loading,
-	backgroundColor,
-	header,
-	infiniteScroll
-}: PageTemplateProps) => {
+const PageTemplate = ({ pageContent, footer, prevPage, loading, backgroundColor, header }: PageTemplateProps) => {
 	return (
 		<IonPage>
 			<IonContent color={backgroundColor}>
@@ -68,7 +59,7 @@ const PageTemplate = ({
 						text={header.text}
 					/>
 				)}
-				<div style={{ height: infiniteScroll ? "auto" : header ? `calc(100% - ${header.height})` : "100%" }}>
+				<div style={{ height: header ? `calc(100% - ${header.height})` : "100%" }}>
 					{loading ? (
 						<div className="center-vertically ion-text-center">
 							<IonSpinner />
