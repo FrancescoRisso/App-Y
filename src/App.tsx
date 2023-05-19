@@ -160,7 +160,12 @@ const App: React.FC = () => {
 							</Route>
 
 							<Route exact path="/diary">
-								<DiaryPageManagement />
+								<PageTemplate
+									backgroundColor="white"
+									header={{ color: "white", height: "25vw", text: "", type: "rectangle" }}
+									pageContent={<DiaryPageManagement />}
+									prevPage="/home"
+								/>
 							</Route>
 
 							<Route>
