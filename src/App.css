@@ -217,3 +217,11 @@
 .grey-text {
 	color: var(--ion-color-grey-shade);
 }
+
+.back-icon-in-tongue{
+	position: absolute;
+	top: 5vw;
+	left: 5vw;
+	width: 15vw;
+	height: 15vw;
+}

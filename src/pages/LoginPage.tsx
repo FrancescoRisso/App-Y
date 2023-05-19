@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
 				onDidDismiss={() => setWrongInfo(false)}
 			></IonAlert>
 
-			<TopPageTongue color="violet" text="APP - Y" panda="waving" height="40vh" />
+			<TopPageTongue color="violet" text="APP - Y" panda="waving" height="40vh" type="tongue" />
 
 			<form
 				className="ion-padding-top ion-padding-bottom h-30-percent justify-content-vertically-space-outside"
