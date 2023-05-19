@@ -23,110 +23,60 @@ other dependences:
 	
 */
 
-import {
-	IonButton,
-	IonButtons,
-	IonContent,
-	IonFooter,
-	IonHeader,
-	IonIcon,
-	IonPage,
-	IonSpinner,
-	IonTitle,
-	IonToolbar
-} from "@ionic/react";
-import { arrowBackOutline, logOutOutline } from "ionicons/icons";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { AppContext } from "../components/AppContext";
-import { appColors } from "../types";
+import { IonContent, IonFooter, IonPage, IonSpinner, IonToolbar } from "@ionic/react";
+import { appColors, pandaTypes } from "../types";
+import TopPageTongue, { tongueTypes } from "../components/General_components/TopPageTongue";
 
 export interface PageTemplateProps {
 	pageContent: JSX.Element;
-	header?: string | JSX.Element;
 	footer?: JSX.Element;
 	prevPage?: string;
-	withLogout?: boolean;
 	loading?: boolean;
 	backgroundColor: appColors;
-	headerColor: appColors;
+	header?: {
+		type: tongueTypes;
+		color: appColors;
+		height: number | string;
+		width?: number | string;
+		panda?: pandaTypes;
+		logout?: boolean;
+		text: string;
+	};
+	infiniteScroll?: boolean;
 }
 
 const PageTemplate = ({
 	pageContent,
-	header,
 	footer,
 	prevPage,
-	withLogout,
 	loading,
 	backgroundColor,
-	headerColor
+	header,
+	infiniteScroll
 }: PageTemplateProps) => {
-	const [redirect, setRedirect] = useState<boolean>(false);
-
-	const prevPageRef = useRef<HTMLAnchorElement>(null);
-
-	const context = useContext(AppContext);
-
-	const goToPrevPage = useCallback(() => {
-		prevPageRef.current?.click();
-	}, [prevPageRef]);
-
-	useEffect(() => {
-		if (prevPage) {
-			window.removeEventListener("ionBackButton", goToPrevPage);
-			window.addEventListener("ionBackButton", goToPrevPage);
-		}
-
-		return () => {
-			window.removeEventListener("ionBackButton", goToPrevPage);
-		};
-	}, [goToPrevPage, prevPage]);
-
-	if (redirect) return <Redirect to="/" />;
-
 	return (
 		<IonPage>
-			{header && (
-				<IonHeader>
-					<IonToolbar color={headerColor}>
-						{typeof header === "string" ? <IonTitle>{header}</IonTitle> : header}
-						{prevPage && (
-							<IonButtons slot="start">
-								<Link to={prevPage} ref={prevPageRef} />
-								<IonButton
-									onClick={() => {
-										prevPageRef.current?.click();
-									}}
-								>
-									<IonIcon slot="start" icon={arrowBackOutline} />
-								</IonButton>
-							</IonButtons>
-						)}
-						{withLogout && (
-							<IonButtons slot="end">
-								<IonButton
-									onClick={async () => {
-										await context.storage.clearAll();
-										context.clearUserData();
-										setRedirect(true);
-									}}
-								>
-									<IonIcon slot="start" icon={logOutOutline} />
-								</IonButton>
-							</IonButtons>
-						)}
-					</IonToolbar>
-				</IonHeader>
-			)}
 			<IonContent color={backgroundColor}>
-				{loading ? (
-					<div className="center-vertically ion-text-center">
-						<IonSpinner />
-					</div>
-				) : (
-					pageContent
+				{header && (
+					<TopPageTongue
+						type={header.type}
+						color={header.color ?? "violet"}
+						height={header.height}
+						width={header.width}
+						panda={header.panda}
+						prevPage={prevPage}
+						text={header.text}
+					/>
 				)}
+				<div style={{ height: infiniteScroll ? "auto" : header ? `calc(100% - ${header.height})` : "100%" }}>
+					{loading ? (
+						<div className="center-vertically ion-text-center">
+							<IonSpinner />
+						</div>
+					) : (
+						pageContent
+					)}
+				</div>
 			</IonContent>
 			{footer && (
 				<IonFooter>

@@ -218,10 +218,20 @@
 	color: var(--ion-color-grey-shade);
 }
 
-.back-icon-in-tongue{
+.back-icon-in-tongue {
 	position: absolute;
 	top: 5vw;
 	left: 5vw;
 	width: 15vw;
 	height: 15vw;
+	z-index: 1;
+}
+
+.logout-icon-in-tongue {
+	position: absolute;
+	top: 5vw;
+	right: 5vw;
+	width: 15vw;
+	height: 15vw;
+	z-index: 1;
 }

@@ -40,7 +40,7 @@ import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 import TipsPage from "./pages/TipsPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
 import DiaryPageManagement from "./pages/DiaryPageManagement";
-import { isTipCategory } from "./types";
+import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
 
 setupIonicReact();
@@ -59,7 +59,13 @@ const App: React.FC = () => {
 							<Route exact path="/login">
 								<PageTemplate
 									backgroundColor="white"
-									headerColor="violet"
+									header={{
+										color: "violet",
+										text: "APP - Y",
+										panda: "waving",
+										height: "40vh",
+										type: "tongue"
+									}}
 									pageContent={<LoginPage />}
 								/>
 							</Route>
@@ -67,8 +73,12 @@ const App: React.FC = () => {
 							<Route exact path="/pandas">
 								<PageTemplate
 									backgroundColor="white"
-									headerColor="violet"
-									header="Panda!"
+									header={{
+										text: "Panda!",
+										color: "violet",
+										type: "tongue",
+										height: "24vh"
+									}}
 									pageContent={<PandaDisplayer />}
 									prevPage="/home"
 								/>
@@ -77,8 +87,7 @@ const App: React.FC = () => {
 							<Route exact path="/home">
 								<PageTemplate
 									backgroundColor="white"
-									headerColor="violet"
-									header="App-Y"
+									// header="App-Y"
 									pageContent={<HomePage />}
 								/>
 							</Route>
@@ -86,9 +95,8 @@ const App: React.FC = () => {
 							<Route exact path="/personalInfoPage">
 								<PageTemplate
 									backgroundColor="white"
-									headerColor="violet"
-									header="Il tuo profilo"
-									withLogout
+									// header="Il tuo profilo"
+									// withLogout
 									pageContent={<PersonalInfoPage />}
 									prevPage="/home"
 								/>
@@ -97,8 +105,12 @@ const App: React.FC = () => {
 							<Route exact path="/tips">
 								<PageTemplate
 									backgroundColor="violet"
-									headerColor="violet"
-									header="Tips"
+									header={{
+										text: "Tips",
+										color: "violet",
+										type: "rectangle",
+										height: "12vh"
+									}}
 									pageContent={<TipsPage />}
 									prevPage="/home"
 								/>
@@ -107,29 +119,41 @@ const App: React.FC = () => {
 							<Route
 								exact
 								path="/tipsCategory/:category"
-								render={({ match }) => (
-									<PageTemplate
-										backgroundColor="white"
-										headerColor="violet"
-										pageContent={
-											<TipsCategoryPage
-												category={
-													isTipCategory(match.params.category)
-														? match.params.category
-														: "sport"
-												}
-											/>
-										}
-										prevPage="/home"
-									/>
-								)}
+								render={({ match }) => {
+									const category: tipsCategories = isTipCategory(match.params.category)
+										? match.params.category
+										: "sport";
+
+									return (
+										<PageTemplate
+											backgroundColor="white"
+											header={{
+												color: "violet",
+												type: "cloud-center",
+												text: tipCategoryName(category),
+												height: "83vw",
+												width: "100%"
+											}}
+											pageContent={
+												<TipsCategoryPage
+													category={
+														isTipCategory(match.params.category)
+															? match.params.category
+															: "sport"
+													}
+												/>
+											}
+											prevPage="/tips"
+										/>
+									);
+								}}
 							/>
 
 							<Route exact path="/challenge">
 								<PageTemplate
 									backgroundColor="white"
-									headerColor="violet"
-									header="Challenge"
+									// headerColor="violet"
+									// header="Challenge"
 									pageContent={<ChallengeListPage />}
 									prevPage="/home"
 								/>

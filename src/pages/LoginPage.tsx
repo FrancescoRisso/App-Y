@@ -16,7 +16,6 @@ import { IonAlert } from "@ionic/react";
 import Input from "../components/General_components/Input";
 import { useRef, useState, useContext } from "react";
 import { AppContext } from "../components/AppContext";
-import TopPageTongue from "../components/General_components/TopPageTongue";
 import Button from "../components/General_components/Button";
 import API from "../api";
 import { Link } from "react-router-dom";
@@ -41,9 +40,7 @@ const LoginPage: React.FC = () => {
 				buttons={["OK"]}
 				onDidDismiss={() => setWrongInfo(false)}
 			></IonAlert>
-
-			<TopPageTongue color="violet" text="APP - Y" panda="waving" height="40vh" type="tongue" />
-
+			
 			<form
 				className="ion-padding-top ion-padding-bottom h-30-percent justify-content-vertically-space-outside"
 				onSubmit={() => {}}

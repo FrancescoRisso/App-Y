@@ -23,12 +23,13 @@ other dependences:
 	
 */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { appColors, pandaTypes } from "../../types";
 import PandaImg from "./PandaImg";
 import { Redirect } from "react-router";
 import { IonIcon } from "@ionic/react";
-import { arrowBackCircleOutline } from "ionicons/icons";
+import { arrowBackCircleOutline, logOutOutline } from "ionicons/icons";
+import { AppContext } from "../AppContext";
 
 export interface TopPageTongueProps {
 	text?: string;
@@ -36,17 +37,22 @@ export interface TopPageTongueProps {
 	color: appColors;
 	height?: number | string;
 	width?: number | string;
-	type: "tongue" | "cloud-center";
+	type: tongueTypes;
 	prevPage?: string;
+	logout?: boolean;
 }
 
-const TopPageTongue = ({ text, panda, color, height, type, width, prevPage }: TopPageTongueProps) => {
-	const radius = useMemo(() => "61px", []);
+export type tongueTypes = "tongue" | "cloud-center" | "rectangle";
+
+const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logout }: TopPageTongueProps) => {
+	const radius = useMemo(() => (type === "tongue" ? "61px" : 0), [type]);
 
 	const [redirect, setRedirect] = useState<boolean>(false);
 	const [svgHeight, setSvgHeight] = useState<number>(0);
 
 	const svgRef = useRef<SVGSVGElement>(null);
+
+	const context = useContext(AppContext);
 
 	const updateHeight = useCallback(() => {
 		const h = svgRef.current?.getBoundingClientRect().height ?? 0;
@@ -68,20 +74,32 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage }: To
 						}}
 					/>
 				)}
+				{logout && (
+					<IonIcon
+						className="logout-icon-in-tongue"
+						icon={logOutOutline}
+						onClick={async () => {
+							await context.storage.clearAll();
+							context.clearUserData();
+							setRedirect(true);
+						}}
+					/>
+				)}
 				<div className="center-vertically">
-					{text && <h1 className="ion-text-center no-vertical-margin font-title">{text}</h1>}
-					<br />
+					{text && <h1 className="ion-text-center mx-3 no-vertical-margin font-title">{text}</h1>}
+					{text && panda && <br />}
 					{panda && <PandaImg type={panda} width="50%" />}
 				</div>
 			</div>
 		),
-		[panda, text, prevPage]
+		[panda, text, prevPage, context, logout]
 	);
 
 	if (redirect && prevPage) return <Redirect to={prevPage} />;
 
 	switch (type) {
 		case "tongue":
+		case "rectangle":
 			return (
 				<div
 					style={{
@@ -104,6 +122,9 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage }: To
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 390 325"
+						preserveAspectRatio="none"
+						// width="390"
+						// height="325"
 						fill="none"
 						style={{
 							height: height ?? "auto",

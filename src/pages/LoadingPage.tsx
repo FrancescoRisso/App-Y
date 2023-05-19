@@ -33,10 +33,15 @@ const LoadingPage = ({ prevPage }: LoadingPageProps) => {
 	return (
 		<PageTemplate
 			prevPage={prevPage}
-			header="Sto caricando..."
+			header={{
+				text: "Sto caricando...",
+				type: "tongue",
+				color: "violet",
+				width: "100%",
+				height: "24vh"
+			}}
 			pageContent={<></>}
 			loading
-			headerColor="violet"
 			backgroundColor="white"
 		/>
 	);
