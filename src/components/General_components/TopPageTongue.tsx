@@ -49,10 +49,9 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage }: To
 	const svgRef = useRef<SVGSVGElement>(null);
 
 	const updateHeight = useCallback(() => {
-		console.debug("Here");
 		const h = svgRef.current?.getBoundingClientRect().height ?? 0;
 		if (h !== 0) setSvgHeight(h);
-		else setTimeout(updateHeight, 1);
+		else if (svgRef.current) setTimeout(updateHeight, 1);
 	}, []);
 
 	useEffect(updateHeight, [svgRef.current?.getBoundingClientRect(), updateHeight]);
