@@ -73,12 +73,7 @@ const App: React.FC = () => {
 							<Route exact path="/pandas">
 								<PageTemplate
 									backgroundColor="white"
-									header={{
-										text: "Panda!",
-										color: "violet",
-										type: "tongue",
-										height: "24vh"
-									}}
+									header={{ text: "Panda!", color: "violet", type: "tongue", height: "24vh" }}
 									pageContent={<PandaDisplayer />}
 									prevPage="/home"
 								/>
@@ -105,12 +100,7 @@ const App: React.FC = () => {
 							<Route exact path="/tips">
 								<PageTemplate
 									backgroundColor="violet"
-									header={{
-										text: "Tips",
-										color: "violet",
-										type: "rectangle",
-										height: "12vh"
-									}}
+									header={{ text: "Tips", color: "violet", type: "rectangle", height: "12vh" }}
 									pageContent={<TipsPage />}
 									prevPage="/home"
 								/>
