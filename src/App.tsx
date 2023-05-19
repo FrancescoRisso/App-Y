@@ -40,6 +40,8 @@ import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 import TipsPage from "./pages/TipsPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
 import DiaryPageManagement from "./pages/DiaryPageManagement";
+import { isTipCategory } from "./types";
+import TipsCategoryPage from "./pages/TipsCategoryPage";
 
 setupIonicReact();
 
@@ -101,6 +103,27 @@ const App: React.FC = () => {
 									prevPage="/home"
 								/>
 							</Route>
+
+							<Route
+								exact
+								path="/tipsCategory/:category"
+								render={({ match }) => (
+									<PageTemplate
+										backgroundColor="white"
+										headerColor="violet"
+										pageContent={
+											<TipsCategoryPage
+												category={
+													isTipCategory(match.params.category)
+														? match.params.category
+														: "sport"
+												}
+											/>
+										}
+										prevPage="/home"
+									/>
+								)}
+							/>
 
 							<Route exact path="/challenge">
 								<PageTemplate
