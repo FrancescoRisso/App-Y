@@ -54,6 +54,8 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 
 	const context = useContext(AppContext);
 
+	const iconColor = useMemo(() => (["violet", "night"].includes(color) ? "white" : "violet"), [color]);
+
 	const updateHeight = useCallback(() => {
 		const h = svgRef.current?.getBoundingClientRect().height ?? 0;
 		if (h !== 0) setSvgHeight(h);
@@ -67,6 +69,7 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 			<div className="h-100-percent">
 				{prevPage && (
 					<IonIcon
+						color={iconColor}
 						className="back-icon-in-tongue"
 						icon={arrowBackCircleOutline}
 						onClick={() => {
@@ -76,6 +79,7 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 				)}
 				{logout && (
 					<IonIcon
+						color={iconColor}
 						className="logout-icon-in-tongue"
 						icon={logOutOutline}
 						onClick={async () => {
@@ -92,7 +96,7 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 				</div>
 			</div>
 		),
-		[panda, text, prevPage, context, logout]
+		[panda, text, prevPage, context, logout, iconColor]
 	);
 
 	if (redirect && prevPage) return <Redirect to={prevPage} />;
