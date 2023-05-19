@@ -79,6 +79,7 @@ const LoginPage: React.FC = () => {
 			</form>
 			<div className="h-25-percent justify-content-vertically-space-outside">
 				<Button
+					fontSize="bigger"
 					color="violet"
 					text="Login"
 					disabled={username === "" || pwd === ""}
@@ -91,7 +92,7 @@ const LoginPage: React.FC = () => {
 						} else setWrongInfo(true);
 					}}
 				/>
-				<Button color="night" text="Registrati" link="/register" />
+				<Button fontSize="bigger" color="night" text="Registrati" link="/register" />
 			</div>
 		</>
 	);
