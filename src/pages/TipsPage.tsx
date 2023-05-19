@@ -25,7 +25,7 @@ other dependences:
 
 import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
 import PandaImg from "../components/General_components/PandaImg";
-import { tipsCategories } from "../types";
+import { tipCategoryName, tipsCategories, tipsCategoriesList } from "../types";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
@@ -33,16 +33,7 @@ export interface TipsPageProps {}
 
 const TipsPage = () => {
 	const categories = useMemo<[string, tipsCategories][]>(
-		() => [
-			["Sport", "sport"],
-			["Salute", "health"],
-			["Gestione del denaro", "money"],
-			["Gestione del tempo", "timeManag"],
-			["Istruzione", "education"],
-			["Relazioni", "relationships"],
-			["Viaggi", "travel"],
-			["Tempo libero", "freeTime"]
-		],
+		() => tipsCategoriesList.map((cat) => [tipCategoryName(cat), cat]),
 		[]
 	);
 

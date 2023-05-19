@@ -88,15 +88,35 @@ export interface AppContextStructure {
 
 export type svgLinks = "friends" | "challenge" | "diary" | "goals" | "trend" | "tips";
 
-export type tipsCategories =
-	| "sport"
-	| "health"
-	| "money"
-	| "education"
-	| "timeManag"
-	| "relationships"
-	| "travel"
-	| "freeTime";
+export const tipsCategoriesList = [
+	"sport",
+	"health",
+	"money",
+	"education",
+	"timeManag",
+	"relationships",
+	"travel",
+	"freeTime"
+] as const;
+
+export type tipsCategories = (typeof tipsCategoriesList)[number];
+
+export const isTipCategory = (s: string): s is tipsCategories => {
+	return (tipsCategoriesList as unknown as string[]).includes(s);
+};
+
+export const tipCategoryName = (s: tipsCategories) => {
+	return {
+		sport: "Sport",
+		health: "Salute",
+		money: "Gestione del denaro",
+		timeManag: "Gestione del tempo",
+		education: "Istruzione",
+		relationships: "Relazioni",
+		travel: "Viaggi",
+		freeTime: "Tempo libero"
+	}[s];
+};
 
 export type appColors = "violet" | "white" | "night" | "grey";
 
