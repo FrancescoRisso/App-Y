@@ -23,11 +23,11 @@ other dependences:
 	
 */
 
-import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
+import { IonCol, IonGrid, IonRow } from "@ionic/react";
 import PandaImg from "../components/General_components/PandaImg";
 import { tipCategoryName, tipsCategories, tipsCategoriesList } from "../types";
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
+import Button from "../components/General_components/Button";
 
 export interface TipsPageProps {}
 
@@ -57,14 +57,13 @@ const TipsPage = () => {
 							<IonRow className="h-20-percent" key={index}>
 								{row.map(([name, link], colIndex) => (
 									<IonCol size="5" push={"1"} className="h-100-percent" key={link}>
-										<Link to={`/tipsCategory/${link}`}>
-											<IonButton
-												color="main"
-												className="no-caps w-100-percent ion-text-wrap h-100-percent h-100-percent button-font-larger"
-											>
-												{name}
-											</IonButton>
-										</Link>
+										<Button
+											color="white"
+											text={name}
+											link={`/tipsCategory/${link}`}
+											fontSize="app"
+											noMargin
+										/>
 									</IonCol>
 								))}
 							</IonRow>

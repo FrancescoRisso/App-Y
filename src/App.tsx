@@ -96,7 +96,7 @@ const App: React.FC = () => {
 
 							<Route exact path="/tips">
 								<PageTemplate
-									backgroundColor="white"
+									backgroundColor="violet"
 									headerColor="violet"
 									header="Tips"
 									pageContent={<TipsPage />}
