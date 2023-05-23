@@ -237,7 +237,7 @@
 }
 
 .day-night-toggle {
-	zoom: 3;
+	zoom: 2.5;
 
 	--handle-background: var(--ion-color-violet);
 	--handle-background-checked: var(--ion-color-white);
