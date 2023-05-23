@@ -23,10 +23,12 @@ other dependences:
 	
 */
 
-import { createRef, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { AppContext } from "../components/AppContext";
 import LoadingPage from "./LoadingPage";
-import { CreateAnimation, IonButton } from "@ionic/react";
+import DiaryDay from "../components/Diary/DiaryDay";
+import PageTemplate from "./PageTemplate";
+import DiaryNight from "../components/Diary/DiaryNight";
 
 export interface DiaryPageManagementProps {}
 
@@ -34,7 +36,6 @@ const DiaryPageManagement = () => {
 	const [pageType, setPageType] = useState<"morning" | "evening" | null>(null);
 
 	const context = useContext(AppContext);
-	const animation: React.RefObject<CreateAnimation> = createRef();
 
 	useEffect(() => {
 		const f = async () => {
@@ -48,33 +49,39 @@ const DiaryPageManagement = () => {
 		f();
 	}, [context.storage]);
 
-	switch (pageType) {
-		case "evening":
-		case "morning":
-			return (
-				<>
-					<CreateAnimation
-						duration={1000}
-						ref={animation}
-						keyframes={[
-							{ offset: 0, color: "white" },
-							{ offset: 0.5, transform: "translateX(100px)", color: "black" },
-							{ offset: 1, transform: "translateX(200px)", color: "white" }
-						]}
-					>
-						<IonButton
-							onClick={() => {
-								animation.current!.animation.play();
-							}}
-						>
-							Ciao
-						</IonButton>
-					</CreateAnimation>
-				</>
-			);
-		case null:
-			return <LoadingPage prevPage="/home" />;
-	}
+	const animationDuration = useMemo(() => 1000, []);
+	const sunMoonDistance = useMemo(() => "38vw", []);
+
+	const color = useMemo(() => (pageType === "morning" ? "white" : "night"), [pageType]);
+
+	if (pageType === null) return <LoadingPage prevPage="/home" />;
+
+	return (
+		<PageTemplate
+			backgroundColor={color}
+			header={{ color, height: "25vw", text: "", type: "rectangle" }}
+			pageContent={
+				pageType === "morning" ? (
+					<DiaryDay
+						switchTime={async () => {
+							setPageType("evening");
+						}}
+						animationDuration={animationDuration}
+						sunMoonDistance={sunMoonDistance}
+					/>
+				) : (
+					<DiaryNight
+						switchTime={async () => {
+							setPageType("morning");
+						}}
+						animationDuration={animationDuration}
+						sunMoonDistance={sunMoonDistance}
+					/>
+				)
+			}
+			prevPage="/home"
+		/>
+	);
 };
 
 export default DiaryPageManagement;
