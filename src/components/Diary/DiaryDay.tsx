@@ -64,6 +64,7 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 
 			<ImageAndSwitch
 				animating={animating}
+				time="day"
 				pandaSunMoon={
 					<PandaSunMoon
 						type="day"
