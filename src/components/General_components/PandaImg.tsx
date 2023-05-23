@@ -39,9 +39,10 @@ export interface PandaImgProps {
 	type: pandaTypes;
 	width?: string | number;
 	height?: string | number;
+	centerVertically?: boolean;
 }
 
-const PandaImg = ({ type, width, height }: PandaImgProps) => {
+const PandaImg = ({ type, width, height, centerVertically }: PandaImgProps) => {
 	let img;
 
 	switch (type) {
@@ -75,7 +76,7 @@ const PandaImg = ({ type, width, height }: PandaImgProps) => {
 	}
 
 	return (
-		<IonGrid className="h-100-percent">
+		<IonGrid className={`h-100-percent ${centerVertically && "ion-align-items-center"}`}>
 			<IonRow className="h-100-percent ion-justify-content-center">
 				<IonCol className="h-100-percent">
 					<img
