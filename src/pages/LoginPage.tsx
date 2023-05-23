@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
 			></IonAlert>
 			
 			<form
-				className="ion-padding-top ion-padding-bottom h-30-percent justify-content-vertically-space-outside"
+				className="ion-padding-top ion-padding-bottom h-55-percent justify-content-vertically-space-outside"
 				onSubmit={() => {}}
 			>
 				<Input
@@ -74,7 +74,7 @@ const LoginPage: React.FC = () => {
 					</p>
 				</div>
 			</form>
-			<div className="h-25-percent justify-content-vertically-space-outside">
+			<div className="h-45-percent justify-content-vertically-space-outside">
 				<Button
 					fontSize="bigger"
 					color="violet"
