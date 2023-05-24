@@ -27,7 +27,7 @@ const Button = ({ text, action, color, disabled, link, fontSize, noMargin }: But
 	if (redirect && link) return <Redirect to={link} />;
 
 	return (
-		<span className={`${!noMargin && "item-horizontal-margin"}`}>
+		<div className={`${!noMargin && "item-horizontal-margin"}`}>
 			<IonButton
 				color={color}
 				shape="round"
@@ -40,7 +40,7 @@ const Button = ({ text, action, color, disabled, link, fontSize, noMargin }: But
 			>
 				{text}
 			</IonButton>
-		</span>
+		</div>
 	);
 };
 
