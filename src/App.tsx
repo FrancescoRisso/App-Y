@@ -28,6 +28,7 @@ import RegisterPage from "./pages/RegisterPage";
 /* My css */
 import "./App.css";
 import "./cssUtils/heightPercentageClasses.css";
+import "./cssUtils/widthPercentageClasses.css";
 import "./cssUtils/bootstrapMarginPadding.css";
 import "./fonts/fonts.css";
 
