@@ -51,7 +51,7 @@ const BackgroundColorAnimation = ({
 				style={{
 					height: "100vh",
 					width: "100vw",
-					position: "absolute",
+					position: "fixed",
 					top: 0,
 					left: 0,
 					backgroundColor: initialColor
