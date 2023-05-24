@@ -25,9 +25,11 @@ other dependences:
 
 import { CreateAnimation } from "@ionic/react";
 import PandaSunMoon from "./PandaSunMoon";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useContext, useEffect, useState } from "react";
 import BackgroundColorAnimation from "./BackgroundColorAnimation";
 import ImageAndSwitch from "./ImageAndSwitch";
+import OneToFiveSelector from "./OneToFiveSelector";
+import { AppContext } from "../AppContext";
 
 export interface DiaryNightProps {
 	switchTime: () => void;
@@ -36,6 +38,8 @@ export interface DiaryNightProps {
 }
 
 const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNightProps) => {
+	const context = useContext(AppContext);
+
 	const backgroundColorChange: React.RefObject<CreateAnimation> = createRef();
 
 	const [animating, setAnimating] = useState<boolean>(false);
@@ -50,6 +54,9 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 		};
 		f();
 	}, [animating, backgroundColorChange, setAnimating, switchTime]);
+
+	const [sleepVal, setSleepVal] = useState<number>(0);
+	const [motivation, setMotivation] = useState<number>(0);
 
 	return (
 		<>
@@ -77,6 +84,15 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 					setAnimating(true);
 				}}
 			/>
+
+			<OneToFiveSelector setValue={setSleepVal} title="Come hai dormito?" value={sleepVal} />
+			<OneToFiveSelector
+				setValue={setMotivation}
+				title={`Quanto ti senti motivat${context.getGenderTerminations()}?`}
+				value={motivation}
+			/>
+
+			
 		</>
 	);
 };
