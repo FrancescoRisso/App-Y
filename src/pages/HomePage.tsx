@@ -49,7 +49,7 @@ const HomePage = () => {
 						<CircularProgressbar
 							value={0.67}
 							maxValue={1}
-							styles={{ path: { stroke: "var(--ion-color-main)" } }}
+							styles={{ path: { stroke: "var(--ion-color-violet)" } }}
 						/>
 						<span id="homepage-avatar">
 							<Avatar
