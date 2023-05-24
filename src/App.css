@@ -255,3 +255,7 @@
 	--color-checked: var(--ion-color-violet);
 	--border-width: 3.5vw;
 }
+
+.text-violet {
+	color: var(--ion-color-violet);
+}

@@ -58,7 +58,7 @@ const TipsPage = () => {
 								{row.map(([name, link], colIndex) => (
 									<IonCol size="5" push={"1"} className="h-100-percent" key={link}>
 										<Button
-											color="white"
+											color="white-violet-text"
 											text={name}
 											link={`/tipsCategory/${link}`}
 											fontSize="app"

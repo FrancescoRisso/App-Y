@@ -48,8 +48,8 @@ const ImageAndSwitch = ({ animating, startAnimating, pandaSunMoon, time }: Image
 							onIonChange={startAnimating}
 							checked={(time === "night" && !animating) || (animating && time === "day")}
 						/>
-						<p className="my-0 font-title">Routine</p>
-						<p className="my-0 font-title">{time === "day" ? "mattutina" : "serale"}</p>
+						<p className={`my-0 font-title ${time === "day" && "text-violet"}`}>Routine</p>
+						<p className={`my-0 font-title ${time === "day" && "text-violet"}`}>{time === "day" ? "mattutina" : "serale"}</p>
 					</div>
 				</IonCol>
 			</IonRow>

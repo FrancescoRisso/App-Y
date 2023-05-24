@@ -118,7 +118,7 @@ export const tipCategoryName = (s: tipsCategories) => {
 	}[s];
 };
 
-export type appColors = "violet" | "white" | "night" | "grey";
+export type appColors = "violet" | "white" | "night" | "grey" | "white-violet-text";
 
 export type pandaTypes =
 	| "waving"
