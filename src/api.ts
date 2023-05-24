@@ -1,6 +1,7 @@
 import {
 	AllApiTypes,
 	ServerServices,
+	getActivitiesReturn,
 	getAvatarReturn,
 	getInfoReturn,
 	isUsernameTakenReturn,
@@ -63,6 +64,10 @@ const API: ServerServices = {
 			surname,
 			birthdate
 		});
+	},
+
+	getActivities: async ({ userID }) => {
+		return fetchUrl<getActivitiesReturn | null>(`/api/getActivities?userID=${userID}`, "GET", "activitiesSelected");
 	}
 };
 

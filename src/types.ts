@@ -76,10 +76,12 @@ export interface AppContextStructure {
 	storedValues: {
 		userDetails: StateVariable<"notLoaded" | userSpecs>;
 		userAvatar: StateVariable<"notLoaded" | "default" | avatarSpecs>;
+		activities: StateVariable<"notLoaded" | "notSelected" | diaryActivities[]>;
 	};
 	loaders: {
 		loadAvatar: () => void;
 		loadUserDetails: () => void;
+		loadActivities: () => void;
 	};
 	clearUserData: () => void;
 	getGenderString: (male: string, female: string, other: string) => string;

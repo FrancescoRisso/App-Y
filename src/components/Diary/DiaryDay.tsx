@@ -32,6 +32,7 @@ import OneToFiveSelector from "./OneToFiveSelector";
 import { AppContext } from "../AppContext";
 import ActivitesDisplay from "./ActivitesDisplay";
 import { diaryActivities, diaryActivitiesList } from "../../types";
+import Button from "../General_components/Button";
 
 export interface DiaryNightProps {
 	switchTime: () => void;
@@ -47,6 +48,10 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 	const [animating, setAnimating] = useState<boolean>(false);
 
 	useEffect(() => {
+		context.loaders.loadActivities();
+	}, [context]);
+
+	useEffect(() => {
 		const f = async () => {
 			if (animating) {
 				await backgroundColorChange.current?.animation.play();
@@ -56,6 +61,13 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 		};
 		f();
 	}, [animating, backgroundColorChange, setAnimating, switchTime]);
+
+	const [selectedActivities, setSelectedActivities] = useState<diaryActivities[]>([]);
+
+	useEffect(() => {
+		if (typeof context.storedValues.activities.val !== "string")
+			setSelectedActivities(context.storedValues.activities.val);
+	}, [context.storedValues]);
 
 	const [sleepVal, setSleepVal] = useState<number>(0);
 	const [motivation, setMotivation] = useState<number>(0);
@@ -98,6 +110,20 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 				activities={diaryActivitiesList as unknown as diaryActivities[]}
 				mainColor="violet"
 				title="Scegli delle attività per oggi:"
+				disabled={context.storedValues.activities.val !== "notSelected"}
+				selected={selectedActivities}
+				setSelected={setSelectedActivities}
+			/>
+
+			<Button
+				color="violet"
+				fontSize="app"
+				text="Conferma routine mattutina"
+				action={() => {
+					// Send to server today's activities
+					context.storedValues.activities.set(selectedActivities);
+				}}
+				disabled={context.storedValues.activities.val !== "notSelected"}
 			/>
 		</>
 	);

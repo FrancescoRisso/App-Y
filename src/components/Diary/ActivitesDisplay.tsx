@@ -34,15 +34,16 @@ export interface ActivitesDisplayProps {
 	disabled?: boolean;
 	mainColor: appColors;
 	title: string;
+	selected: diaryActivities[];
+	setSelected: (act: diaryActivities[]) => void;
 }
 
-const ActivitesDisplay = ({ activities, disabled, mainColor, title }: ActivitesDisplayProps) => {
+const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, setSelected }: ActivitesDisplayProps) => {
 	const context = useContext(AppContext);
 
 	const numCols = useMemo(() => 3, []);
 	const numRows = useMemo(() => Math.floor((1.0 * activities.length) / numCols), [activities, numCols]);
 
-	const [selected, setSelected] = useState<diaryActivities[]>([]);
 	const addToSelected = useCallback(
 		(activity: diaryActivities) => setSelected([...selected, activity]),
 		[selected, setSelected]

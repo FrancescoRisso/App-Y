@@ -13,7 +13,7 @@ context:
 
 import React, { useCallback, useState } from "react";
 
-import { AppContextStructure, avatarSpecs, userSpecs } from "../types";
+import { AppContextStructure, avatarSpecs, diaryActivities, userSpecs } from "../types";
 import useStorage from "../hooks/useStorage";
 import API from "../api";
 import moment from "moment";
@@ -30,6 +30,7 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 
 	const [userDetails, setUserDetails] = useState<userSpecs | "notLoaded">("notLoaded");
 	const [avatar, setAvatar] = useState<avatarSpecs>("notLoaded");
+	const [activities, setActivities] = useState<"notLoaded" | "notSelected" | diaryActivities[]>("notLoaded");
 
 	const clearUserData = useCallback(() => {
 		setUserDetails("notLoaded");
@@ -66,6 +67,14 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		}
 	}, [storage, userDetails]);
 
+	const loadActivities = useCallback(async () => {
+		if (activities === "notLoaded" && storage.isOk) {
+			const val = await API.getActivities({ userID: await storage.getValue("userID") });
+
+			if (val) setActivities(val.activities);
+		}
+	}, [storage, activities]);
+
 	const getGenderString = (male: string, female: string, other: string) => {
 		if (userDetails !== "notLoaded")
 			switch (userDetails.gender) {
@@ -87,11 +96,13 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 				storage,
 				storedValues: {
 					userDetails: { val: userDetails, set: setUserDetails },
-					userAvatar: { val: avatar, set: setAvatar }
+					userAvatar: { val: avatar, set: setAvatar },
+					activities: { val: activities, set: setActivities }
 				},
 				loaders: {
 					loadAvatar: updateAvatar,
-					loadUserDetails: updateUserDetails
+					loadUserDetails: updateUserDetails,
+					loadActivities: loadActivities
 				},
 				clearUserData,
 				getGenderString,
