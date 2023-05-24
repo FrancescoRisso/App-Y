@@ -130,3 +130,26 @@ export type pandaTypes =
 	| "skateboard"
 	| "smiley"
 	| "surprised";
+
+export const diaryActivitiesList = [
+	"love",
+	"friends",
+	"music",
+	"nature",
+	"meditation",
+	"selfcare",
+	"draw",
+	"alone",
+	"timeManag",
+	"pet",
+	"study",
+	"sport",
+	"work",
+	"play",
+	"explore",
+	"cinema",
+	"creativity",
+	"relax"
+] as const;
+
+export type diaryActivities = (typeof diaryActivitiesList)[number];

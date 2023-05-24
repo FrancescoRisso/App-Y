@@ -30,6 +30,8 @@ import BackgroundColorAnimation from "./BackgroundColorAnimation";
 import ImageAndSwitch from "./ImageAndSwitch";
 import OneToFiveSelector from "./OneToFiveSelector";
 import { AppContext } from "../AppContext";
+import ActivitesDisplay from "./ActivitesDisplay";
+import { diaryActivities, diaryActivitiesList } from "../../types";
 
 export interface DiaryNightProps {
 	switchTime: () => void;
@@ -92,7 +94,11 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 				value={motivation}
 			/>
 
-			
+			<ActivitesDisplay
+				activities={diaryActivitiesList as unknown as diaryActivities[]}
+				mainColor="violet"
+				title="Scegli delle attività per oggi:"
+			/>
 		</>
 	);
 };
