@@ -34,13 +34,13 @@ export interface ImageAndSwitchProps {
 
 const ImageAndSwitch = ({ animating, startAnimating, pandaSunMoon, time }: ImageAndSwitchProps) => {
 	return (
-		<IonGrid className="h-100-percent ion-align-items-center">
-			<IonRow className="h-55-percent">
+		<IonGrid className="h-85-percent ion-align-items-center">
+			<IonRow className="h-60-percent">
 				<IonCol className="h-100-percent">
 					<div className="center-vertically">{pandaSunMoon}</div>
 				</IonCol>
 			</IonRow>
-			<IonRow className="h-45-percent">
+			<IonRow className="h-40-percent">
 				<IonCol>
 					<div className="ion-text-center">
 						<IonToggle
