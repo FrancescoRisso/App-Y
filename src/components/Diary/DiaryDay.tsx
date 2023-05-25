@@ -100,11 +100,12 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 				}}
 			/>
 
-			<OneToFiveSelector setValue={setSleepVal} title="Come hai dormito?" value={sleepVal} />
+			<OneToFiveSelector setValue={setSleepVal} title="Come hai dormito?" value={sleepVal} color="day" />
 			<OneToFiveSelector
 				setValue={setMotivation}
 				title={`Quanto ti senti motivat${context.getGenderTerminations()}?`}
 				value={motivation}
+				color="day"
 			/>
 
 			<ActivitesDisplay
