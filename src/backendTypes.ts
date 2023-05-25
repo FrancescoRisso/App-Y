@@ -1,4 +1,4 @@
-import { GenderLabels, avatarSpecs, diaryActivities } from "./types";
+import { GenderLabels, avatarSpecs, diaryActivities, graphFields } from "./types";
 
 export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | null>;
 
@@ -10,6 +10,7 @@ export interface ServerServices {
 	register: ApiFunction<registerParams, registerReturn>;
 	getActivities: ApiFunction<Id, getActivitiesReturn>;
 	setActivities: ApiFunction<IdPwdActivities, doneReturn>;
+	getScores: ApiFunction<Id, getScoresReturn>;
 }
 
 // --------------------------------------------------------------------
@@ -23,7 +24,8 @@ export type AllApiTypes =
 	| "usernameCheck"
 	| "register"
 	| "activitiesSelected"
-	| "done";
+	| "done"
+	| "scores";
 
 export interface Id {
 	userID: string;
@@ -104,3 +106,5 @@ export type getActivitiesReturn = { type: "activitiesSelected"; activities: diar
 export type doneReturn = { type: "done" };
 
 export type IdPwdActivities = { userID: string; activities: diaryActivities[] };
+
+export type getScoresReturn = { type: "scores"; scores: "none" | Record<graphFields, number> };

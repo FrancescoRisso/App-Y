@@ -5,6 +5,7 @@ import {
 	getActivitiesReturn,
 	getAvatarReturn,
 	getInfoReturn,
+	getScoresReturn,
 	isUsernameTakenReturn,
 	loginReturn,
 	registerReturn
@@ -73,6 +74,10 @@ const API: ServerServices = {
 
 	setActivities: async ({ userID, activities }) => {
 		return fetchUrl<doneReturn | null>("/api/setActivities", "POST", "done", { userID, activities });
+	},
+
+	getScores: async ({ userID }) => {
+		return fetchUrl<getScoresReturn | null>(`/api/getScores?userID=${userID}`, "GET", "scores");
 	}
 };
 
