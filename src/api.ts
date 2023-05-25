@@ -1,13 +1,14 @@
 import {
 	AllApiTypes,
 	ServerServices,
+	doneReturn,
 	getActivitiesReturn,
 	getAvatarReturn,
 	getInfoReturn,
 	isUsernameTakenReturn,
 	loginReturn,
 	registerReturn
-} from "../backendTypes";
+} from "./backendTypes";
 
 const fetchUrl = async <type>(
 	url: string,
@@ -68,6 +69,10 @@ const API: ServerServices = {
 
 	getActivities: async ({ userID }) => {
 		return fetchUrl<getActivitiesReturn | null>(`/api/getActivities?userID=${userID}`, "GET", "activitiesSelected");
+	},
+
+	setActivities: async ({ userID, activities }) => {
+		return fetchUrl<doneReturn | null>("/api/setActivities", "POST", "done", { userID, activities });
 	}
 };
 

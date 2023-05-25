@@ -33,6 +33,7 @@ import { AppContext } from "../AppContext";
 import ActivitesDisplay from "./ActivitesDisplay";
 import { diaryActivities, diaryActivitiesList } from "../../types";
 import Button from "../General_components/Button";
+import API from "../../api";
 
 export interface DiaryNightProps {
 	switchTime: () => void;
@@ -118,9 +119,16 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 			<Button
 				color="violet"
 				fontSize="app"
-				text="Conferma routine mattutina"
-				action={() => {
-					// Send to server today's activities
+				text={
+					context.storedValues.activities.val === "notSelected"
+						? "Conferma attività per oggi"
+						: "Attività per oggi confermate"
+				}
+				action={async () => {
+					API.setActivities({
+						userID: await context.storage.getValue("userID"),
+						activities: selectedActivities
+					});
 					context.storedValues.activities.set(selectedActivities);
 				}}
 				disabled={context.storedValues.activities.val !== "notSelected"}

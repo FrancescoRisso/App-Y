@@ -10,6 +10,7 @@ from services.login import login
 from services.isUsernameTaken import isUsernameTaken
 from services.register import register
 from services.dailyActivities import dailyActivities
+from services.setActivities import setActivities
 
 ##
 #   Disable default flask logger
@@ -75,6 +76,12 @@ def apiRegister():
 def apiDailyAcrivities():
 	refreshDbConnection()
 	return dailyActivities(db, request)
+
+
+@app.route("/api/setActivities", methods=["POST"])
+def apiSetActivities():
+	refreshDbConnection()
+	return setActivities(db, request)
 
 
 if __name__ == "__main__":

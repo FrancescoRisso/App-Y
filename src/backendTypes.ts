@@ -1,4 +1,4 @@
-import { GenderLabels, avatarSpecs, diaryActivities } from "./src/types";
+import { GenderLabels, avatarSpecs, diaryActivities } from "./types";
 
 export type ApiFunction<Params, Return> = (args: Params) => Promise<Return | null>;
 
@@ -9,6 +9,7 @@ export interface ServerServices {
 	isUsernameTaken: ApiFunction<username, isUsernameTakenReturn>;
 	register: ApiFunction<registerParams, registerReturn>;
 	getActivities: ApiFunction<Id, getActivitiesReturn>;
+	setActivities: ApiFunction<IdPwdActivities, doneReturn>;
 }
 
 // --------------------------------------------------------------------
@@ -21,7 +22,8 @@ export type AllApiTypes =
 	| "login"
 	| "usernameCheck"
 	| "register"
-	| "activitiesSelected";
+	| "activitiesSelected"
+	| "done";
 
 export interface Id {
 	userID: string;
@@ -98,3 +100,7 @@ export type isUsernameTakenReturn = {
 };
 
 export type getActivitiesReturn = { type: "activitiesSelected"; activities: diaryActivities[] | "notSelected" };
+
+export type doneReturn = { type: "done" };
+
+export type IdPwdActivities = { userID: string; activities: diaryActivities[] };
