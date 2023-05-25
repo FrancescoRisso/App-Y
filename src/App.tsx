@@ -35,11 +35,9 @@ import "./fonts/fonts.css";
 import PandaDisplayer from "./pages/PandaDisplayer";
 import HomePage from "./pages/HomePage";
 import AppContextProvider from "./components/AppContext";
-import PersonalInfoPage from "./pages/PersonalInfoPage";
 import PageTemplate from "./pages/PageTemplate";
 import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 import TipsPage from "./pages/TipsPage";
-import ChallengeListPage from "./pages/ChallengeListPage";
 import DiaryPageManagement from "./pages/DiaryPageManagement";
 import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
@@ -103,6 +101,21 @@ const App: React.FC = () => {
 									backgroundColor="violet"
 									header={{ text: "Tips", color: "violet", type: "rectangle", height: "12vh" }}
 									pageContent={<TipsPage />}
+									prevPage="/home"
+								/>
+							</Route>
+
+							<Route exact path="/trend">
+								<PageTemplate
+									backgroundColor="white"
+									header={{
+										text: "Trend",
+										color: "violet",
+										type: "cloud-left",
+										height: "55vw",
+										width: "100vw"
+									}}
+									pageContent={<></>}
 									prevPage="/home"
 								/>
 							</Route>
