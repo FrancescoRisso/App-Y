@@ -111,7 +111,11 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 			<ActivitesDisplay
 				activities={diaryActivitiesList as unknown as diaryActivities[]}
 				mainColor="violet"
-				title="Scegli delle attività per oggi:"
+				title={
+					typeof context.storedValues.activities.val === "string"
+						? "Scegli che attività vuoi fare oggi:"
+						: "Hai deciso che oggi vuoi fare:"
+				}
 				disabled={context.storedValues.activities.val !== "notSelected"}
 				selected={selectedActivities}
 				setSelected={setSelectedActivities}
@@ -134,6 +138,7 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 				}}
 				disabled={context.storedValues.activities.val !== "notSelected"}
 			/>
+			<div className="py-2" />
 		</>
 	);
 };
