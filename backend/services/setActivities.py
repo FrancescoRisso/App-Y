@@ -28,5 +28,5 @@ def setActivities(db, request):
 			log("ERR", e)
 			return json.dumps({"type": "server_error", "cause": str(e)})
 
-	log("INFO", f"UserID {result} selected activities for today")
+	log("INFO", f"UserID {userId} set activities for today")
 	return json.dumps({"type": "done"})

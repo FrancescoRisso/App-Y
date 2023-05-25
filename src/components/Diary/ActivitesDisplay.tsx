@@ -42,7 +42,7 @@ const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, se
 	const context = useContext(AppContext);
 
 	const numCols = useMemo(() => 3, []);
-	const numRows = useMemo(() => Math.floor((1.0 * activities.length) / numCols), [activities, numCols]);
+	const numRows = useMemo(() => Math.ceil((1.0 * activities.length) / numCols), [activities, numCols]);
 
 	const addToSelected = useCallback(
 		(activity: diaryActivities) => setSelected([...selected, activity]),
@@ -54,6 +54,7 @@ const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, se
 	);
 
 	const [popupVisible, setPopupVisible] = useState<boolean>(false);
+	console.debug(numRows)
 
 	return (
 		<>
