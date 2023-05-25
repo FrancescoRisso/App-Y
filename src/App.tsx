@@ -88,7 +88,7 @@ const App: React.FC = () => {
 								/>
 							</Route>
 
-							<Route exact path="/personalInfoPage">
+							{/* <Route exact path="/personalInfoPage">
 								<PageTemplate
 									backgroundColor="white"
 									// header="Il tuo profilo"
@@ -96,7 +96,7 @@ const App: React.FC = () => {
 									pageContent={<PersonalInfoPage />}
 									prevPage="/home"
 								/>
-							</Route>
+							</Route> */}
 
 							<Route exact path="/tips">
 								<PageTemplate
@@ -140,7 +140,7 @@ const App: React.FC = () => {
 								}}
 							/>
 
-							<Route exact path="/challenge">
+							{/* <Route exact path="/challenge">
 								<PageTemplate
 									backgroundColor="white"
 									// headerColor="violet"
@@ -148,12 +148,12 @@ const App: React.FC = () => {
 									pageContent={<ChallengeListPage />}
 									prevPage="/home"
 								/>
-							</Route>
+							</Route> */}
 
 							<Route exact path="/diary">
 								<DiaryPageManagement />
 							</Route>
-							
+
 							<Route>
 								<GenericRouteRedirector />
 							</Route>
