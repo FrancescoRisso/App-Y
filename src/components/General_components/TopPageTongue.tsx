@@ -162,7 +162,7 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 
 		case "cloud-left":
 			return (
-				<div style={{ color: `var(--ion-color-${color}-contrast)` }}>
+				<div style={{ color: `var(--ion-color-${color}-contrast)`, height: height ?? "auto" }}>
 					{/* Same as the file cloudsCenter.svg, but with custom styling and colors */}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
