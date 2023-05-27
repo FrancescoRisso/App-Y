@@ -77,11 +77,13 @@ export interface AppContextStructure {
 		userDetails: StateVariable<"notLoaded" | userSpecs>;
 		userAvatar: StateVariable<"notLoaded" | "default" | avatarSpecs>;
 		activities: StateVariable<"notLoaded" | "notSelected" | diaryActivities[]>;
+		userScores: StateVariable<"none" | "notLoaded" | Record<graphFields, number>>;
 	};
 	loaders: {
 		loadAvatar: () => void;
 		loadUserDetails: () => void;
 		loadActivities: () => void;
+		loadScores: () => void;
 	};
 	clearUserData: () => void;
 	getGenderString: (male: string, female: string, other: string) => string;
@@ -156,5 +158,24 @@ export const diaryActivitiesList = [
 
 export type diaryActivities = (typeof diaryActivitiesList)[number];
 
-export const graphFieldsList = ["passion", "organization", "relationships", "career", "health", "selfcare"] as const;
+export const graphFieldsList = ["relationships", "health", "career", "organization", "passion", "selfcare"] as const;
 export type graphFields = (typeof graphFieldsList)[number];
+
+export type graphDataSetDetails = {
+	values: number[];
+	name: string;
+	pointRadius: number;
+	color: string;
+	strokeWidth: string | number;
+	fillOpacity: number;
+};
+
+export type graphDataSetDetailsOptionals = Partial<graphDataSetDetails> &
+	Pick<graphDataSetDetails, "values"> &
+	Pick<graphDataSetDetails, "name">;
+
+export type allGraphOptions = {
+	strokeColor: string;
+	fontSize: string | number;
+	numTicks: number;
+};

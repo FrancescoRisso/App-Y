@@ -18,7 +18,7 @@ import {
 } from "ionicons/icons";
 import meditating from "./images/diary/meditation.svg";
 import pet from "./images/diary/pet.svg";
-import { diaryActivities } from "./types";
+import { diaryActivities, graphFields } from './types';
 
 export const activityIcons: Record<diaryActivities, string> = {
 	alone: personOutline,
@@ -61,3 +61,12 @@ export const activityNames: Record<diaryActivities, string> = {
 	timeManag: "Gestione del tempo",
 	work: "Lavoro"
 };
+
+export const graphFieldsNames: Record<graphFields, string> = {
+	career: "Carriera",
+	health: "Salute",
+	organization: "Organizzazione",
+	passion: "Passioni",
+	relationships: "Relazioni",
+	selfcare: "Self care"
+}

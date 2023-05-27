@@ -27,7 +27,7 @@ import PandaImg from "../General_components/PandaImg";
 
 import sun from "../../images/diary/sun.png";
 import moon from "../../images/diary/moon.png";
-import { createRef, useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo } from "react";
 import { CreateAnimation } from "@ionic/react";
 
 export interface PandaSunMoonProps {

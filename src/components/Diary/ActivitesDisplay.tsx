@@ -54,7 +54,6 @@ const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, se
 	);
 
 	const [popupVisible, setPopupVisible] = useState<boolean>(false);
-	console.debug(numRows)
 
 	return (
 		<>

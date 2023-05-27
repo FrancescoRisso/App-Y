@@ -41,6 +41,7 @@ import TipsPage from "./pages/TipsPage";
 import DiaryPageManagement from "./pages/DiaryPageManagement";
 import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
+import TrendPage from "./pages/TrendPage";
 
 setupIonicReact();
 
@@ -115,7 +116,7 @@ const App: React.FC = () => {
 										height: "55vw",
 										width: "100vw"
 									}}
-									pageContent={<></>}
+									pageContent={<TrendPage />}
 									prevPage="/home"
 								/>
 							</Route>
