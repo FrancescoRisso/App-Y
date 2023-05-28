@@ -82,7 +82,13 @@ const App: React.FC = () => {
 							<Route exact path="/home">
 								<PageTemplate
 									backgroundColor="white"
-									// header="App-Y"
+									header={{
+										text: "App-Y",
+										color: "violet",
+										height: "40vw",
+										type: "cloud-right",
+										width: "100vw"
+									}}
 									pageContent={<HomePage />}
 								/>
 							</Route>

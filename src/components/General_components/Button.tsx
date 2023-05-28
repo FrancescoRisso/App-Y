@@ -31,7 +31,7 @@ const Button = ({ text, action, color, disabled, link, fontSize, noMargin }: But
 			<IonButton
 				color={color}
 				shape="round"
-				className={`no-caps w-100-percent font-size-${fontSize} pill-height-normal ion-text-wrap`}
+				className={`no-caps w-100-percent font-size-${fontSize} pill-height-normal ion-text-wrap with-shadow rounded`}
 				onClick={() => {
 					action && action();
 					link && setRedirect(true);

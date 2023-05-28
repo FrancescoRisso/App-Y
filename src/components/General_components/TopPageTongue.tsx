@@ -42,7 +42,7 @@ export interface TopPageTongueProps {
 	logout?: boolean;
 }
 
-export type tongueTypes = "tongue" | "cloud-center" | "rectangle" | "cloud-left";
+export type tongueTypes = "tongue" | "cloud-center" | "rectangle" | "cloud-left" | "cloud-right";
 
 const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logout }: TopPageTongueProps) => {
 	const radius = useMemo(() => (type === "tongue" ? "61px" : 0), [type]);
@@ -187,6 +187,52 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 							cy="81.4111"
 							rx="197.817"
 							ry="115.411"
+							fill={`var(--ion-color-${color})`}
+						/>
+					</svg>
+
+					<div
+						style={{
+							position: "absolute",
+							top: 0,
+							height: svgHeight,
+							width: "100%"
+						}}
+					>
+						<div className="center-vertically h-100-percent">{content}</div>
+					</div>
+				</div>
+			);
+
+		case "cloud-right":
+			return (
+				<div style={{ color: `var(--ion-color-${color}-contrast)`, height: height ?? "auto" }}>
+					{/* Same as the file cloudsCenter.svg, but with custom styling and colors */}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 390 208"
+						preserveAspectRatio="none"
+						fill="none"
+						style={{
+							height: height ?? "auto",
+							width: width ?? "auto"
+						}}
+						ref={svgRef}
+					>
+						<ellipse
+							cx="97.9172"
+							cy="-24.7055"
+							rx="281.004"
+							ry="219.818"
+							transform="rotate(25.6821 97.9172 -24.7055)"
+							fill={`var(--ion-color-${color})`}
+						/>
+						<ellipse
+							cx="398.865"
+							cy="-3.62839"
+							rx="247.101"
+							ry="193.481"
+							transform="rotate(25.6821 398.865 -3.62839)"
 							fill={`var(--ion-color-${color})`}
 						/>
 					</svg>
