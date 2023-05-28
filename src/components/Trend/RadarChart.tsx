@@ -97,7 +97,7 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 			setSvgW(graphRef.current.getBoundingClientRect().width);
 			setSvgH(graphRef.current.getBoundingClientRect().height);
 		} else forceUpdate();
-	}, [graphRef, state]);
+	}, [graphRef, state, forceUpdate]);
 
 	return (
 		<svg preserveAspectRatio="xMidYMid meet" viewBox={`0 0 ${size} ${size}`} ref={graphRef}>
