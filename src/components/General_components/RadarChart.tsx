@@ -23,7 +23,7 @@ other dependences:
 	
 */
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { allGraphOptions, graphDataSetDetails, graphDataSetDetailsOptionals } from "../../types";
 
 export interface RadarChartProps {
@@ -87,15 +87,17 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 	const [svgW, setSvgW] = useState<number>(1);
 	const [svgH, setSvgH] = useState<number>(1);
 
+	const [state, updateState] = useState<Object>();
+	const forceUpdate = useCallback(() => updateState({}), []);
+
 	useEffect(() => {
 		if (graphRef.current !== null && graphRef.current.getBoundingClientRect().width !== 0) {
-			console.debug(graphRef.current.getBoundingClientRect());
 			setSvgX(graphRef.current.getBoundingClientRect().left);
 			setSvgY(graphRef.current.getBoundingClientRect().top);
 			setSvgW(graphRef.current.getBoundingClientRect().width);
 			setSvgH(graphRef.current.getBoundingClientRect().height);
-		}
-	}, [graphRef]);
+		} else forceUpdate();
+	}, [graphRef, state]);
 
 	return (
 		<svg preserveAspectRatio="xMidYMid meet" viewBox={`0 0 ${size} ${size}`} ref={graphRef}>
@@ -133,7 +135,7 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 						dataSetUser
 					);
 					return (
-						<g key={index} id="data">
+						<g key={index} id={`data-${dataSet.name}`}>
 							{labels.map((name, id) => (
 								<circle
 									id={`point-${name}-${dataSet.name}`}
