@@ -195,11 +195,15 @@
 }
 
 .font-size-app {
-	font-size: 20px;
+	font-size: 20px !important;
 }
 
 .font-size-bigger {
-	font-size: 25px;
+	font-size: 25px !important;
+}
+
+.font-size-even-bigger {
+	font-size: 30px !important;
 }
 
 .pill {
@@ -261,7 +265,7 @@
 
 .diary-radio-night {
 	--color: var(--ion-color-grey);
-	--color-checked: var(--ion-color-violet)
+	--color-checked: var(--ion-color-violet);
 }
 
 .text-violet {
@@ -287,4 +291,16 @@
 .break-word {
 	word-wrap: break-word;
 	hyphens: auto;
+}
+
+.pos-relative {
+	position: relative;
+}
+
+ion-card {
+	border-radius: 30px;
+}
+
+.with-shadow {
+	box-shadow: 0px 4.17555px 4.17555px rgba(0, 0, 0, 0.25);
 }
