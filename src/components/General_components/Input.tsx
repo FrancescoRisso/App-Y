@@ -12,14 +12,15 @@ context:
 	
 */
 
-import { IonInput, IonItem, IonNote } from "@ionic/react";
+import { IonInput, IonItem, IonSelect, IonSelectOption } from "@ionic/react";
+import { useState } from "react";
 
 export interface InputProps {
 	// the type of input that should go inside
 	type: "password" | "text" | "email" | "date";
 
 	// what to do when the input value changes
-	onInputAction: (e: React.FormEvent<HTMLIonInputElement>) => void;
+	onInputAction: (val: string) => void;
 
 	// the text that should be inserted as input label
 	label: string;
@@ -29,28 +30,48 @@ export interface InputProps {
 
 	// The current content of the input
 	value: string;
+
+	options?: { val: string; name: string }[];
 }
 
-const Input = ({ type, onInputAction, label, error, value }: InputProps) => {
+const Input = ({ type, onInputAction, label, error, value, options }: InputProps) => {
 	return (
-		<IonItem
-			color="grey"
-			shape="round"
-			className={`pill font-size-app item-horizontal-margin pill-height-normal ${error && "ion-invalid"}`}
-			lines="none"
-		>
-			{/* <IonLabel position="stacked">{label}</IonLabel> */}
-			<IonInput
-				onInput={(e) => {
-					onInputAction(e);
-				}}
-				type={type}
-				value={value}
-				placeholder={label}
-				className="pill-height-normal ion-margin-start"
-			></IonInput>
-			{error && <IonNote slot="error">{error}</IonNote>}
-		</IonItem>
+		<div>
+			<IonItem
+				color="grey"
+				shape="round"
+				className={`pill font-size-app item-horizontal-margin pill-height-normal ${error && "ion-invalid"}`}
+				lines="none"
+			>
+				{options ? (
+					<IonSelect
+						className="pill-height-normal ion-margin-start w-90-percent"
+						value={value}
+						placeholder={label}
+						onIonChange={(e) => {
+							onInputAction(e.detail.value);
+						}}
+					>
+						{options.map(({ val, name }) => (
+							<IonSelectOption key={val} value={val}>
+								{name}
+							</IonSelectOption>
+						))}
+					</IonSelect>
+				) : (
+					<IonInput
+						onInput={(e) => {
+							onInputAction(e.currentTarget.value?.toString() ?? "");
+						}}
+						type={type}
+						value={value}
+						placeholder={label}
+						className="pill-height-normal ion-margin-start"
+					></IonInput>
+				)}
+			</IonItem>
+			{error && <p className="font-size-app my-0 px-5 dark-grey-text">{error}</p>}
+		</div>
 	);
 };
 

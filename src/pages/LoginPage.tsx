@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
 				buttons={["OK"]}
 				onDidDismiss={() => setWrongInfo(false)}
 			></IonAlert>
-			
+
 			<form
 				className="ion-padding-top ion-padding-bottom h-55-percent justify-content-vertically-space-outside"
 				onSubmit={() => {}}
@@ -49,8 +49,8 @@ const LoginPage: React.FC = () => {
 					type="text"
 					label="Username"
 					value={username}
-					onInputAction={(e) => {
-						setUsername(e.currentTarget.value?.toString() ?? "");
+					onInputAction={(val) => {
+						setUsername(val);
 					}}
 				/>
 
@@ -60,8 +60,8 @@ const LoginPage: React.FC = () => {
 						type="password"
 						label="Password"
 						value={pwd}
-						onInputAction={(e) => {
-							setPwd(e.currentTarget.value?.toString() ?? "");
+						onInputAction={(val) => {
+							setPwd(val);
 						}}
 					/>
 					<p
