@@ -65,7 +65,6 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 
 	const allLines: graphDataSetDetailsOptionals[] = useMemo(
 		() => [
-			...data,
 			...Array.from({ length: settings.numTicks }, (x, i) => i + 1).map((tick): graphDataSetDetailsOptionals => {
 				return {
 					values: Array(labels.length).fill(tick / settings.numTicks),
@@ -75,7 +74,8 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 					strokeWidth: strokeWidth,
 					fillOpacity: 0
 				};
-			})
+			}),
+			...data
 		],
 		[data, settings, strokeWidth, labels]
 	);
@@ -141,7 +141,7 @@ const RadarChart = ({ data, labels, options }: RadarChartProps) => {
 									id={`point-${name}-${dataSet.name}`}
 									key={id}
 									r={dataSet.pointRadius}
-									color={dataSet.color}
+									fill={dataSet.color}
 									cx={center}
 									cy={center}
 									transform={`rotate(-${id * baseAngle} 50 50) translate(0, ${
