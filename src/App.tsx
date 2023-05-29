@@ -53,7 +53,18 @@ const App: React.FC = () => {
 					<IonReactRouter>
 						<IonRouterOutlet>
 							<Route exact path="/register">
-								<RegisterPage />
+								<PageTemplate
+									backgroundColor="white"
+									header={{
+										color: "white",
+										text: "Registrati",
+										height: "16vh",
+										type: "rectangle",
+										alignTextBottom: true
+									}}
+									prevPage="/login"
+									pageContent={<RegisterPage />}
+								/>
 							</Route>
 
 							<Route exact path="/login">
