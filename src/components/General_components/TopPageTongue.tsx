@@ -107,7 +107,7 @@ const TopPageTongue = ({
 				</div>
 			</div>
 		),
-		[panda, text, prevPage, context, logout, iconColor]
+		[panda, text, prevPage, context, logout, iconColor, alignTextBottom]
 	);
 
 	if (redirect && prevPage) return <Redirect to={prevPage} />;
