@@ -66,6 +66,10 @@
 	padding-bottom: 0;
 }
 
+*:has(> .align-bottom) {
+	position: relative;
+}
+
 .align-bottom {
 	position: absolute;
 	bottom: 0;
@@ -220,6 +224,10 @@
 
 .grey-text {
 	color: var(--ion-color-grey-shade);
+}
+
+.dark-grey-text {
+	color: var(--ion-color-medium-shade);
 }
 
 .back-icon-in-tongue {

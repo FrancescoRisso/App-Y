@@ -40,11 +40,22 @@ export interface TopPageTongueProps {
 	type: tongueTypes;
 	prevPage?: string;
 	logout?: boolean;
+	alignTextBottom?: boolean;
 }
 
 export type tongueTypes = "tongue" | "cloud-center" | "rectangle" | "cloud-left" | "cloud-right";
 
-const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logout }: TopPageTongueProps) => {
+const TopPageTongue = ({
+	text,
+	panda,
+	color,
+	height,
+	type,
+	width,
+	prevPage,
+	logout,
+	alignTextBottom
+}: TopPageTongueProps) => {
 	const radius = useMemo(() => (type === "tongue" ? "61px" : 0), [type]);
 
 	const [redirect, setRedirect] = useState<boolean>(false);
@@ -89,7 +100,7 @@ const TopPageTongue = ({ text, panda, color, height, type, width, prevPage, logo
 						}}
 					/>
 				)}
-				<div className="center-vertically">
+				<div className={`${alignTextBottom ? "align-bottom w-100-percent" : "center-vertically"}`}>
 					{text && <h1 className="ion-text-center mx-3 no-vertical-margin font-title">{text}</h1>}
 					{text && panda && <br />}
 					{panda && <PandaImg type={panda} width="50%" />}

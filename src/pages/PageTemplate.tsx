@@ -41,6 +41,7 @@ export interface PageTemplateProps {
 		panda?: pandaTypes;
 		logout?: boolean;
 		text: string;
+		alignTextBottom?: boolean;
 	};
 }
 
@@ -57,6 +58,7 @@ const PageTemplate = ({ pageContent, footer, prevPage, loading, backgroundColor,
 						panda={header.panda}
 						prevPage={prevPage}
 						text={header.text}
+						alignTextBottom={header.alignTextBottom}
 					/>
 				)}
 				<div style={{ height: header ? `calc(100% - ${header.height})` : "100%" }}>
