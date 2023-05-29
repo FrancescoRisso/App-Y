@@ -13,7 +13,6 @@ context:
 */
 
 import { IonInput, IonItem, IonSelect, IonSelectOption } from "@ionic/react";
-import { useState } from "react";
 
 export interface InputProps {
 	// the type of input that should go inside
