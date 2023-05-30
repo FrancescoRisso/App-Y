@@ -25,7 +25,7 @@ other dependences:
 
 import { IonCard, IonCardContent, IonCheckbox, IonCol, IonGrid, IonRow } from "@ionic/react";
 import { useCallback, useMemo, useState, useEffect } from "react";
-import { graphFields, graphFieldsList } from "../../types";
+import { SurveyItemProps, graphFields, graphFieldsList } from "../../types";
 
 import champagne from "../../images/survey/champagne.png";
 import chips from "../../images/survey/chips.png";
@@ -38,19 +38,13 @@ import strawberry from "../../images/survey/strawberry.png";
 
 import { getGraphFieldsZeroValues } from "../../util";
 
-export interface ShoppingListProps {
-	updateMinScores: (update: Record<graphFields, number>) => void;
-	updateMaxScores: (update: Record<graphFields, number>) => void;
-	updateScores: (update: Record<graphFields, number>) => void;
-}
-
 interface shoppingItem {
 	name: "champagne" | "chips" | "coke" | "donut" | "lattuce" | "pasta" | "steak" | "strawberry";
 	icon: string;
 	values: Record<graphFields, number>;
 }
 
-const ShoppingList = ({ updateMaxScores, updateMinScores, updateScores }: ShoppingListProps) => {
+const ShoppingList = ({ updateMaxScores, updateMinScores, updateScores }: SurveyItemProps) => {
 	const options: shoppingItem[] = useMemo(
 		() => [
 			{

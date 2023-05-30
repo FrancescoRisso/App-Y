@@ -181,3 +181,9 @@ export type allGraphOptions = {
 };
 
 export type surveyPages = "mirror" | "hobbies" | "deadline" | "alone?" | "shoppingList" | "likeWhatYouDo" | "work";
+
+export interface SurveyItemProps {
+	updateMinScores: (update: Record<graphFields, number>) => void;
+	updateMaxScores: (update: Record<graphFields, number>) => void;
+	updateScores: (update: Record<graphFields, number>) => void;
+}
