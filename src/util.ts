@@ -18,7 +18,7 @@ import {
 } from "ionicons/icons";
 import meditating from "./images/diary/meditation.svg";
 import pet from "./images/diary/pet.svg";
-import { diaryActivities, graphFields } from './types';
+import { diaryActivities, graphFields } from "./types";
 
 export const activityIcons: Record<diaryActivities, string> = {
 	alone: personOutline,
@@ -69,4 +69,15 @@ export const graphFieldsNames: Record<graphFields, string> = {
 	passion: "Passioni",
 	relationships: "Relazioni",
 	selfcare: "Self care"
-}
+};
+
+export const getGraphFieldsZeroValues = () => {
+	return {
+		career: 0,
+		health: 0,
+		organization: 0,
+		passion: 0,
+		relationships: 0,
+		selfcare: 0
+	};
+};

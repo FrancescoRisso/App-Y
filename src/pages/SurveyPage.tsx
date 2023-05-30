@@ -1,8 +1,9 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { graphFields, surveyPages } from "../types";
 import { Redirect } from "react-router";
 import Button from "../components/General_components/Button";
 import SurveyRouter from "../components/Survey/SurveyRouter";
+import { getGraphFieldsZeroValues } from "../util";
 /*
 
 description:
@@ -77,20 +78,11 @@ const SurveyPage = () => {
 		}
 	}, [page]);
 
-	const zeros = useMemo((): Record<graphFields, number> => {
-		return {
-			career: 0,
-			health: 0,
-			organization: 0,
-			passion: 0,
-			relationships: 0,
-			selfcare: 0
-		};
-	}, []);
+	const [minScores, setMinScores] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
+	const [maxScores, setMaxScores] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
+	const [totScore, setTotScore] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
 
-	const [minScores, setMinScores] = useState<Record<graphFields, number>>(JSON.parse(JSON.stringify(zeros)));
-	const [maxScores, setMaxScores] = useState<Record<graphFields, number>>(JSON.parse(JSON.stringify(zeros)));
-	const [scores, setScores] = useState<Record<graphFields, number>>(JSON.parse(JSON.stringify(zeros)));
+	const [questionScore, setQuestionScore] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
 
 	const updateScores = useCallback(
 		(curVal: Record<graphFields, number>, setVal: (val: Record<graphFields, number>) => void) => {
@@ -123,7 +115,7 @@ const SurveyPage = () => {
 				page={page}
 				updateMaxScores={updateScores(maxScores, setMaxScores)}
 				updateMinScores={updateScores(minScores, setMinScores)}
-				updateScores={updateScores(scores, setScores)}
+				updateScores={setQuestionScore}
 			/>
 
 			<Button
@@ -131,6 +123,8 @@ const SurveyPage = () => {
 				fontSize="app"
 				text="Avanti"
 				action={() => {
+					updateScores(totScore, setTotScore)(questionScore);
+					setQuestionScore(getGraphFieldsZeroValues());
 					setPage(nextPage);
 				}}
 			/>

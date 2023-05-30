@@ -325,3 +325,19 @@ ion-card {
 .bold {
 	font-weight: bold;
 }
+
+.big-checkbox {
+	--size: 30px;
+}
+
+.violet-checkbox {
+	--border-color-checked: transparent;
+
+	--background: var(--ion-color-grey);
+	--background-checked: var(--ion-color-violet);
+
+	--border-color: black;
+	--border-width: 0.5px;
+
+	--checkmark-width: 0;
+}

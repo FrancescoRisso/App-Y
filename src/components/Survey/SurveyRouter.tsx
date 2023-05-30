@@ -40,7 +40,17 @@ const SurveyRouter = ({ page, updateMaxScores, updateMinScores, updateScores }: 
 		case "hobbies":
 		case "likeWhatYouDo":
 		case "mirror":
+			return <></>;
+
 		case "shoppingList":
+			return (
+				<ShoppingList
+					updateMaxScores={updateMaxScores}
+					updateMinScores={updateMinScores}
+					updateScores={updateScores}
+				/>
+			);
+
 		case "work":
 		default:
 			return <></>;
