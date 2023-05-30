@@ -42,6 +42,7 @@ import DiaryPageManagement from "./pages/DiaryPageManagement";
 import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
 import TrendPage from "./pages/TrendPage";
+import SurveyPage from "./pages/SurveyPage";
 
 setupIonicReact();
 
@@ -180,6 +181,15 @@ const App: React.FC = () => {
 									prevPage="/home"
 								/>
 							</Route> */}
+
+							<Route exact path="/survey">
+								<PageTemplate
+									backgroundColor="violet"
+									header={{ color: "violet", height: "25vw", text: "", type: "rectangle" }}
+									pageContent={<SurveyPage />}
+									prevPage="/home"
+								/>
+							</Route>
 
 							<Route exact path="/diary">
 								<DiaryPageManagement />

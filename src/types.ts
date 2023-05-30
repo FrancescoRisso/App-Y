@@ -179,3 +179,5 @@ export type allGraphOptions = {
 	fontSize: string | number;
 	numTicks: number;
 };
+
+export type surveyPages = "mirror" | "hobbies" | "deadline" | "alone?" | "shoppingList" | "likeWhatYouDo" | "work";

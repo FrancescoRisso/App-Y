@@ -71,7 +71,7 @@ const HomePage = () => {
 				</IonCard>
 				<div className="w-100-percent ion-text-center mt-4">
 					<div className="mx-as-card">
-						<Button color="night" fontSize="app" text="Survey settimanale" noMargin />
+						<Button color="night" fontSize="app" text="Survey settimanale" noMargin link="/survey" />
 					</div>
 				</div>
 			</IonRow>
