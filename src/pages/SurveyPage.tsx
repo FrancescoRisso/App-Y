@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { graphFields, surveyPages } from "../types";
 import { Redirect } from "react-router";
 import Button from "../components/General_components/Button";
