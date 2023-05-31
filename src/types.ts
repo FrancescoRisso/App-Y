@@ -180,7 +180,20 @@ export type allGraphOptions = {
 	numTicks: number;
 };
 
-export type surveyPages = "mirror" | "hobbies" | "deadline" | "alone?" | "shoppingList" | "likeWhatYouDo" | "work";
+const surveyPagesListConst = [
+	"mirror",
+	"hobbies",
+	"deadline",
+	"alone?",
+	"shoppingList",
+	"likeWhatYouDo",
+	"work"
+] as const;
+export type surveyPages = (typeof surveyPagesListConst)[number];
+export const surveyPagesList: surveyPages[] = [...surveyPagesListConst];
+export const isSurveyPages = (s: string): s is surveyPages => {
+	return surveyPagesList.includes(s as surveyPages);
+};
 
 export interface SurveyItemProps {
 	updateMinScores: (update: Record<graphFields, number>) => void;

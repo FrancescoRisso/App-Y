@@ -276,6 +276,11 @@
 	--color-checked: var(--ion-color-violet);
 }
 
+.diary-radio-violet {
+	--color: var(--ion-color-grey);
+	--color-checked: var(--ion-color-violet);
+}
+
 .text-violet {
 	color: var(--ion-color-violet);
 }

@@ -24,6 +24,7 @@ other dependences:
 */
 
 import { graphFields, surveyPages } from "../../types";
+import Deadline from "./Deadline";
 import ShoppingList from "./ShoppingList";
 
 export interface SurveyRouterProps {
@@ -36,7 +37,16 @@ export interface SurveyRouterProps {
 const SurveyRouter = ({ page, updateMaxScores, updateMinScores, updateScores }: SurveyRouterProps) => {
 	switch (page) {
 		case "alone?":
+			return <></>;
 		case "deadline":
+			return (
+				<Deadline
+					updateMaxScores={updateMaxScores}
+					updateMinScores={updateMinScores}
+					updateScores={updateScores}
+				/>
+			);
+
 		case "hobbies":
 		case "likeWhatYouDo":
 		case "mirror":
