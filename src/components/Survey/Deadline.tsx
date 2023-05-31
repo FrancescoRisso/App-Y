@@ -23,28 +23,19 @@ other dependences:
 	
 */
 
-import { useEffect, useMemo, useState } from "react";
-import { SurveyItemProps, graphFields, graphFieldsList } from "../../types";
+import { useContext, useMemo } from "react";
+import { deadlineItemNames, graphFields, graphFieldsList } from "../../types";
 import { getGraphFieldsZeroValues } from "../../util";
-import {
-	IonCard,
-	IonCardContent,
-	IonCol,
-	IonGrid,
-	IonItem,
-	IonLabel,
-	IonRadio,
-	IonRadioGroup,
-	IonRow
-} from "@ionic/react";
+import { IonCard, IonCardContent, IonCol, IonGrid, IonRadio, IonRadioGroup, IonRow } from "@ionic/react";
+import { AppContext } from "../AppContext";
 
 interface choiceItem {
-	name: "postpone" | "organize&do" | "organize&notDo" | "whichProject" | "noPlan";
+	name: deadlineItemNames;
 	text: string;
 	values: Record<graphFields, number>;
 }
 
-const Deadline = ({ updateMaxScores, updateMinScores, updateScores }: SurveyItemProps) => {
+const Deadline = () => {
 	const options: choiceItem[] = useMemo(
 		() => [
 			{
@@ -76,27 +67,35 @@ const Deadline = ({ updateMaxScores, updateMinScores, updateScores }: SurveyItem
 		[]
 	);
 
-	const [selected, setSelected] = useState<choiceItem | null>(null);
+	const allContext = useContext(AppContext);
+	const context = useMemo(
+		() => allContext.storedValues.weeklySurveyValues.deadline,
+		[allContext.storedValues.weeklySurveyValues.deadline]
+	);
 
-	useEffect(() => {
-		const minScores = getGraphFieldsZeroValues();
-		const maxScores = getGraphFieldsZeroValues();
+	const min = useMemo(() => {
+		const val = getGraphFieldsZeroValues();
 
 		options.forEach((option) => {
 			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-				if (option.values[field] < 0) minScores[field] += option.values[field];
-				else maxScores[field] += option.values[field];
+				if (option.values[field] < 0) val[field] += option.values[field];
 			});
 		});
 
-		updateMaxScores(maxScores);
-		updateMinScores(minScores);
-		//eslint-disable-next-line
-	}, []);
+		return val;
+	}, [options]);
 
-	useEffect(() => {
-		updateScores(selected?.values ?? getGraphFieldsZeroValues());
-	}, [selected, updateScores]);
+	const max = useMemo(() => {
+		const val = getGraphFieldsZeroValues();
+
+		options.forEach((option) => {
+			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
+				if (option.values[field] > 0) val[field] += option.values[field];
+			});
+		});
+
+		return val;
+	}, [options]);
 
 	return (
 		<IonCard color="white" className="mx-5 h-60-percent">
@@ -106,12 +105,13 @@ const Deadline = ({ updateMaxScores, updateMinScores, updateScores }: SurveyItem
 						<IonRow
 							key={index}
 							onClick={() => {
-								setSelected(opt);
+								context.selected.set(opt.name);
+								context.values.set({ min, max, cur: opt.values });
 							}}
 							style={{ height: `calc(100% / ${options.length})` }}
 						>
 							<IonCol size="2" className="mb-2">
-								<IonRadioGroup value={selected === opt}>
+								<IonRadioGroup value={context.selected.val === opt.name}>
 									<IonRadio
 										value={true}
 										className={`diary-radio diary-radio-violet center-vertically`}

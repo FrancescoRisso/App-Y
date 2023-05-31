@@ -1,9 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
-import { graphFields, surveyPages } from "../types";
+import { useMemo, useState } from "react";
+import { surveyPages } from "../types";
 import { Redirect } from "react-router";
 import Button from "../components/General_components/Button";
 import SurveyRouter from "../components/Survey/SurveyRouter";
-import { getGraphFieldsZeroValues } from "../util";
 /*
 
 description:
@@ -32,6 +31,7 @@ other dependences:
 export interface SurveyPageProps {}
 
 const SurveyPage = () => {
+	// const [page, setPage] = useState<"start" | surveyPages | "end">("deadline");
 	const [page, setPage] = useState<"start" | surveyPages | "end">("start");
 
 	const nextPage = useMemo((): surveyPages | "end" => {
@@ -78,25 +78,6 @@ const SurveyPage = () => {
 		}
 	}, [page]);
 
-	const [minScores, setMinScores] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
-	const [maxScores, setMaxScores] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
-	const [totScore, setTotScore] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
-
-	const [questionScore, setQuestionScore] = useState<Record<graphFields, number>>(getGraphFieldsZeroValues());
-
-	const updateScores = useCallback(
-		(curVal: Record<graphFields, number>, setVal: (val: Record<graphFields, number>) => void) => {
-			return (update: Record<graphFields, number>) => {
-				setVal(
-					Object.fromEntries(
-						Object.entries(curVal).map(([key, val]) => [key, val + update[key as graphFields]])
-					) as Record<graphFields, number>
-				);
-			};
-		},
-		[]
-	);
-
 	if (page === "end") {
 		// add scores TODO
 		return <Redirect to="/home" />;
@@ -111,20 +92,13 @@ const SurveyPage = () => {
 		<div className="h-100-percent justify-content-vertically-space-outside">
 			<h1 className="my-0 ion-text-center bold font-size-even-bigger">{title}</h1>
 
-			<SurveyRouter
-				page={page}
-				updateMaxScores={updateScores(maxScores, setMaxScores)}
-				updateMinScores={updateScores(minScores, setMinScores)}
-				updateScores={setQuestionScore}
-			/>
+			<SurveyRouter page={page} />
 
 			<Button
 				color="white"
 				fontSize="app"
 				text="Avanti"
 				action={() => {
-					updateScores(totScore, setTotScore)(questionScore);
-					setQuestionScore(getGraphFieldsZeroValues());
 					setPage(nextPage);
 				}}
 			/>

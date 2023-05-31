@@ -24,8 +24,8 @@ other dependences:
 */
 
 import { IonCard, IonCardContent, IonCheckbox, IonCol, IonGrid, IonRow } from "@ionic/react";
-import { useCallback, useMemo, useState, useEffect } from "react";
-import { SurveyItemProps, graphFields, graphFieldsList } from "../../types";
+import { useCallback, useMemo, useContext, useEffect } from "react";
+import { graphFields, graphFieldsList, shoppingItemNames } from "../../types";
 
 import champagne from "../../images/survey/champagne.png";
 import chips from "../../images/survey/chips.png";
@@ -37,20 +37,21 @@ import steak from "../../images/survey/steak.png";
 import strawberry from "../../images/survey/strawberry.png";
 
 import { getGraphFieldsZeroValues } from "../../util";
+import { AppContext } from "../AppContext";
 
 interface shoppingItem {
-	name: "champagne" | "chips" | "coke" | "donut" | "lattuce" | "pasta" | "steak" | "strawberry";
+	name: shoppingItemNames;
 	icon: string;
 	values: Record<graphFields, number>;
 }
 
-const ShoppingList = ({ updateMaxScores, updateMinScores, updateScores }: SurveyItemProps) => {
+const ShoppingList = () => {
 	const options: shoppingItem[] = useMemo(
 		() => [
 			{
 				name: "champagne",
 				icon: champagne,
-				values: Object.assign(getGraphFieldsZeroValues(), { health: 1 })
+				values: Object.assign(getGraphFieldsZeroValues(), { health: -1 })
 			},
 			{
 				name: "chips",
@@ -91,54 +92,70 @@ const ShoppingList = ({ updateMaxScores, updateMinScores, updateScores }: Survey
 		[]
 	);
 
-	const [selected, setSelected] = useState<shoppingItem[]>([]);
+	const allContext = useContext(AppContext);
+	const context = useMemo(
+		() => allContext.storedValues.weeklySurveyValues.shoppingList,
+		[allContext.storedValues.weeklySurveyValues.shoppingList]
+	);
+
+	const min = useMemo(() => {
+		const val = getGraphFieldsZeroValues();
+
+		options.forEach((option) => {
+			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
+				if (option.values[field] < 0) val[field] += option.values[field];
+			});
+		});
+
+		return val;
+	}, [options]);
+
+	const max = useMemo(() => {
+		const val = getGraphFieldsZeroValues();
+
+		options.forEach((option) => {
+			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
+				if (option.values[field] > 0) val[field] += option.values[field];
+			});
+		});
+
+		return val;
+	}, [options]);
+
+	const cur = useMemo(() => {
+		const val = getGraphFieldsZeroValues();
+
+		context.selected.val.forEach((optionName) => {
+			const option = options.filter((opt) => opt.name === optionName)[0];
+			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
+				val[field] += option.values[field];
+			});
+		});
+
+		return val;
+	}, [context.selected.val, options]);
 
 	const addItem = useCallback(
 		(item: shoppingItem) => {
-			const copy: typeof selected = JSON.parse(JSON.stringify(selected));
-			copy.push(item);
-			// if (selected.length === 3) copy.shift();
-			setSelected(copy);
+			context.selected.set([...context.selected.val, item.name]);
 		},
-		[selected]
+		[context, cur, max, min]
 	);
 
 	const removeItem = useCallback(
 		(item: shoppingItem) => {
-			setSelected(selected.filter((i) => i !== item));
+			context.selected.set(context.selected.val.filter((i) => i !== item.name));
 		},
-		[selected]
+		[context]
 	);
 
+	useEffect(() => {
+		context.values.set({ min, max, cur });
+	}, [min, max, cur, context.values.set]);
+
+	// const getOptionByName = useCallback((name: string) => options.filter((opt) => opt.name === name)[0], []);
+
 	const numCols = useMemo(() => 2, []);
-
-	useEffect(() => {
-		const minScores = getGraphFieldsZeroValues();
-		const maxScores = getGraphFieldsZeroValues();
-
-		options.forEach((option) => {
-			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-				if (option.values[field] < 0) minScores[field] += option.values[field];
-				else maxScores[field] += option.values[field];
-			});
-		});
-
-		updateMaxScores(maxScores);
-		updateMinScores(minScores);
-		//eslint-disable-next-line
-	}, []);
-
-	useEffect(() => {
-		const score = getGraphFieldsZeroValues();
-
-		selected.forEach((option) => {
-			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-				score[field] += option.values[field];
-			});
-		});
-
-		updateScores(score);
-	}, [selected, updateScores]);
 
 	return (
 		<IonCard color="white" className="mx-5">
@@ -148,7 +165,7 @@ const ShoppingList = ({ updateMaxScores, updateMinScores, updateScores }: Survey
 						<IonRow key={rowNo}>
 							{Array.from({ length: numCols }).map((_, colNo) => {
 								const item = options[rowNo * numCols + colNo];
-								const checked = selected.filter((sel) => sel.name === item.name).length > 0;
+								const checked = context.selected.val.filter((sel) => sel === item.name).length > 0;
 								return (
 									<IonCol
 										key={colNo}

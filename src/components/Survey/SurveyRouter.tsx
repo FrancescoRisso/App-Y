@@ -23,29 +23,20 @@ other dependences:
 	
 */
 
-import { graphFields, surveyPages } from "../../types";
+import { surveyPages } from "../../types";
 import Deadline from "./Deadline";
 import ShoppingList from "./ShoppingList";
 
 export interface SurveyRouterProps {
 	page: surveyPages;
-	updateMinScores: (update: Record<graphFields, number>) => void;
-	updateMaxScores: (update: Record<graphFields, number>) => void;
-	updateScores: (update: Record<graphFields, number>) => void;
 }
 
-const SurveyRouter = ({ page, updateMaxScores, updateMinScores, updateScores }: SurveyRouterProps) => {
+const SurveyRouter = ({ page }: SurveyRouterProps) => {
 	switch (page) {
 		case "alone?":
 			return <></>;
 		case "deadline":
-			return (
-				<Deadline
-					updateMaxScores={updateMaxScores}
-					updateMinScores={updateMinScores}
-					updateScores={updateScores}
-				/>
-			);
+			return <Deadline />;
 
 		case "hobbies":
 		case "likeWhatYouDo":
@@ -53,13 +44,7 @@ const SurveyRouter = ({ page, updateMaxScores, updateMinScores, updateScores }: 
 			return <></>;
 
 		case "shoppingList":
-			return (
-				<ShoppingList
-					updateMaxScores={updateMaxScores}
-					updateMinScores={updateMinScores}
-					updateScores={updateScores}
-				/>
-			);
+			return <ShoppingList />;
 
 		case "work":
 		default:

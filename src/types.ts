@@ -78,6 +78,7 @@ export interface AppContextStructure {
 		userAvatar: StateVariable<"notLoaded" | "default" | avatarSpecs>;
 		activities: StateVariable<"notLoaded" | "notSelected" | diaryActivities[]>;
 		userScores: StateVariable<"none" | "notLoaded" | Record<graphFields, number>>;
+		weeklySurveyValues: weeklySurveyStorageType;
 	};
 	loaders: {
 		loadAvatar: () => void;
@@ -195,8 +196,21 @@ export const isSurveyPages = (s: string): s is surveyPages => {
 	return surveyPagesList.includes(s as surveyPages);
 };
 
-export interface SurveyItemProps {
-	updateMinScores: (update: Record<graphFields, number>) => void;
-	updateMaxScores: (update: Record<graphFields, number>) => void;
-	updateScores: (update: Record<graphFields, number>) => void;
+export type shoppingItemNames = "champagne" | "chips" | "coke" | "donut" | "lattuce" | "pasta" | "steak" | "strawberry";
+export type deadlineItemNames = "postpone" | "organize&do" | "organize&notDo" | "whichProject" | "noPlan";
+
+export interface graphFieldsMinMaxVal {
+	min: Record<graphFields, number>;
+	max: Record<graphFields, number>;
+	cur: Record<graphFields, number>;
+}
+
+export interface weeklySurveyStorageItem<T> {
+	selected: StateVariable<T>;
+	values: StateVariable<graphFieldsMinMaxVal>;
+}
+
+export interface weeklySurveyStorageType {
+	shoppingList: weeklySurveyStorageItem<shoppingItemNames[]>;
+	deadline: weeklySurveyStorageItem<deadlineItemNames | null>;
 }
