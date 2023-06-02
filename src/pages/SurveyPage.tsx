@@ -1,8 +1,11 @@
-import { useMemo, useState } from "react";
-import { surveyPages } from "../types";
+import { useContext, useMemo, useState } from "react";
+import { graphFields, graphFieldsList, surveyPages } from "../types";
 import { Redirect } from "react-router";
 import Button from "../components/General_components/Button";
 import SurveyRouter from "../components/Survey/SurveyRouter";
+import { getGraphFieldsZeroValues } from "../util";
+import { AppContext } from "../components/AppContext";
+import API from "../api";
 /*
 
 description:
@@ -32,7 +35,13 @@ export interface SurveyPageProps {}
 
 const SurveyPage = () => {
 	// const [page, setPage] = useState<"start" | surveyPages | "end">("likeWhatYouDo");
-	const [page, setPage] = useState<"start" | surveyPages | "end">("start");
+	const [page, setPage] = useState<"start" | surveyPages | "end" | "redirect">("start");
+
+	const allContext = useContext(AppContext);
+	const context = useMemo(
+		() => allContext.storedValues.weeklySurveyValues,
+		[allContext.storedValues.weeklySurveyValues]
+	);
 
 	const nextPage = useMemo((): surveyPages | "end" => {
 		switch (page) {
@@ -79,7 +88,39 @@ const SurveyPage = () => {
 	}, [page]);
 
 	if (page === "end") {
-		// add scores TODO
+		const finalScores: Record<graphFields, number> = Object.assign(
+			getGraphFieldsZeroValues(),
+			Object.fromEntries(
+				graphFieldsList.map((field) => {
+					let minTot = 0,
+						maxTot = 0,
+						valTot = 0;
+
+					Object.entries(context).forEach(([pageName, pageChoice]) => {
+						minTot += pageChoice.values.val.min[field];
+						maxTot += pageChoice.values.val.max[field];
+						valTot += pageChoice.values.val.cur[field];
+					});
+
+					const res = maxTot - minTot === 0 ? 0 : (valTot - minTot) / (maxTot - minTot);
+
+					return [field, res];
+				})
+			)
+		);
+
+		const f = async () => {
+			const data = await API.setScores({
+				userID: await allContext.storage.getValue("userID"),
+				scores: finalScores
+			});
+			allContext.storedValues.userScores.set(finalScores);
+			setPage("redirect");
+		};
+		f();
+		return <></>;
+	}
+	if (page === "redirect") {
 		return <Redirect to="/home" />;
 	}
 

@@ -8,7 +8,10 @@ def getScores(db, request):
 		return json.dumps({"type": "param_error", "cause": "Missing userID"})
 
 	userId = request.args["userID"]
+	return getScoresInternal(db, userId)
 
+
+def getScoresInternal(db, userId):
 	try:
 		result = db.run_query(
 			"SELECT PASSION, ORGANIZATION, RELATIONSHIPS, CAREER, HEALTH, SELFCARE\

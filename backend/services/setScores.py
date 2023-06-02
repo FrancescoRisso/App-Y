@@ -1,6 +1,7 @@
 import json
 
 from log import log
+from .getScores import getScoresInternal
 
 
 def setScores(db, request):
@@ -21,7 +22,7 @@ def setScores(db, request):
 	# If so, instead of deleting and re-adding, compute the exponential moving average
 
 	try:
-		db.run_query("DELETE FROM STATS WHERE ID = %s", (userId,))
+		db.run_query("DELETE FROM stats WHERE ID=%s", (userId,))
 		db.run_query(
 			"""INSERT INTO stats (ID, PASSION, ORGANIZATION, RELATIONSHIPS, CAREER, HEALTH, SELFCARE)\
 				VALUES (%s, %s, %s, %s, %s, %s, %s)""",
@@ -40,4 +41,4 @@ def setScores(db, request):
 		return json.dumps({"type": "server_error", "cause": str(e)})
 
 	log("INFO", f"UserID {userId} inserted some scores")
-	return json.dumps({"type": "done"})
+	return getScoresInternal(db, userId)

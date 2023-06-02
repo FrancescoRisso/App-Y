@@ -81,7 +81,7 @@ const API: ServerServices = {
 	},
 
 	setScores: async ({ userID, scores }) => {
-		return fetchUrl<doneReturn | null>("/api/setScores", "POST", "done", { userID, scores });
+		return fetchUrl<getScoresReturn | null>("/api/setScores", "POST", "scores", { userID, scores });
 	}
 };
 

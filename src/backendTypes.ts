@@ -11,7 +11,7 @@ export interface ServerServices {
 	getActivities: ApiFunction<Id, getActivitiesReturn>;
 	setActivities: ApiFunction<IdPwdActivities, doneReturn>;
 	getScores: ApiFunction<Id, getScoresReturn>;
-	setScores: ApiFunction<IdScores, doneReturn>;
+	setScores: ApiFunction<IdScores, getScoresReturn>;
 }
 
 // --------------------------------------------------------------------
