@@ -139,7 +139,7 @@ const ShoppingList = () => {
 		(item: shoppingItem) => {
 			context.selected.set([...context.selected.val, item.name]);
 		},
-		[context, cur, max, min]
+		[context]
 	);
 
 	const removeItem = useCallback(
@@ -151,6 +151,7 @@ const ShoppingList = () => {
 
 	useEffect(() => {
 		context.values.set({ min, max, cur });
+		// eslint-disable-next-line
 	}, [min, max, cur, context.values.set]);
 
 	// const getOptionByName = useCallback((name: string) => options.filter((opt) => opt.name === name)[0], []);
