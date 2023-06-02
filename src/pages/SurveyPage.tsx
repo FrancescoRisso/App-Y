@@ -31,7 +31,7 @@ other dependences:
 export interface SurveyPageProps {}
 
 const SurveyPage = () => {
-	// const [page, setPage] = useState<"start" | surveyPages | "end">("deadline");
+	// const [page, setPage] = useState<"start" | surveyPages | "end">("likeWhatYouDo");
 	const [page, setPage] = useState<"start" | surveyPages | "end">("start");
 
 	const nextPage = useMemo((): surveyPages | "end" => {

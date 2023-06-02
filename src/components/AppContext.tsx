@@ -60,11 +60,17 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		max: getGraphFieldsZeroValues(),
 		cur: getGraphFieldsZeroValues()
 	});
+	const [likeWhatYouDoValues, setLikeWhatYouDoValues] = useState<graphFieldsMinMaxVal>({
+		min: getGraphFieldsZeroValues(),
+		max: getGraphFieldsZeroValues(),
+		cur: getGraphFieldsZeroValues()
+	});
 
 	// Selected for the survey
 	const [shoppingSel, setShoppingSel] = useState<shoppingItemNames[]>([]);
 	const [deadlineSel, setDeadlineSel] = useState<deadlineItemNames | null>(null);
 	const [workSel, setWorkSel] = useState<workItemNames | null>(null);
+	const [likeWhatYouDoSel, setLikeWhatYouDoSel] = useState<number>(50);
 
 	const clearUserData = useCallback(() => {
 		setUserDetails("notLoaded");
@@ -153,6 +159,10 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 						work: {
 							values: { val: workValues, set: setWorkValues },
 							selected: { val: workSel, set: setWorkSel }
+						},
+						likeWhatYouDo: {
+							values: { val: likeWhatYouDoValues, set: setLikeWhatYouDoValues },
+							selected: { val: likeWhatYouDoSel, set: setLikeWhatYouDoSel }
 						}
 					}
 				},

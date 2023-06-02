@@ -346,3 +346,38 @@ ion-card {
 
 	--checkmark-width: 0;
 }
+
+.my-slider {
+	height: 100%;
+	width: auto;
+}
+
+.my-slider-track {
+	background: var(--slider-color);
+	width: 30%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.my-slider-track.my-slider-track-0 {
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+.my-slider-track.my-slider-track-1 {
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.my-slider-thumb {
+	cursor: pointer;
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	height: 10%;
+	background: var(--slider-color);
+	border-radius: 20px;
+	border: 2px solid black;
+	display: block;
+}

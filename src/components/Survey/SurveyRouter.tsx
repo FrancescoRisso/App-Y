@@ -27,6 +27,7 @@ import { surveyPages } from "../../types";
 import Deadline from "./Deadline";
 import Work from "./Work";
 import ShoppingList from "./ShoppingList";
+import LikeWhatYouDo from "./LikeWhatYouDo";
 
 export interface SurveyRouterProps {
 	page: surveyPages;
@@ -40,7 +41,9 @@ const SurveyRouter = ({ page }: SurveyRouterProps) => {
 			return <Deadline />;
 
 		case "hobbies":
+			return <></>;
 		case "likeWhatYouDo":
+			return <LikeWhatYouDo />;
 		case "mirror":
 			return <></>;
 

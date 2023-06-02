@@ -220,4 +220,5 @@ export interface weeklySurveyStorageType {
 	shoppingList: weeklySurveyStorageItem<shoppingItemNames[]>;
 	deadline: weeklySurveyStorageItem<deadlineItemNames | null>;
 	work: weeklySurveyStorageItem<workItemNames | null>;
+	likeWhatYouDo: weeklySurveyStorageItem<number>;
 }
