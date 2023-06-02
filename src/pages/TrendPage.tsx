@@ -32,7 +32,7 @@ import RadarChart from "../components/Trend/RadarChart";
 import { graphFieldsNames } from "../util";
 import TrendCard from "../components/Trend/TrendCard";
 
-import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from "swiper";
+import { Keyboard, Pagination, Scrollbar, Zoom } from "swiper";
 
 import "swiper/css";
 import "swiper/css/autoplay";
