@@ -159,7 +159,8 @@ export const diaryActivitiesList = [
 
 export type diaryActivities = (typeof diaryActivitiesList)[number];
 
-export const graphFieldsList = ["relationships", "health", "career", "organization", "passion", "selfcare"] as const;
+const graphFieldsListConst = ["relationships", "health", "career", "organization", "passion", "selfcare"] as const;
+export const graphFieldsList = [...graphFieldsListConst];
 export type graphFields = (typeof graphFieldsList)[number];
 
 export type graphDataSetDetails = {
