@@ -11,6 +11,7 @@ export interface ServerServices {
 	getActivities: ApiFunction<Id, getActivitiesReturn>;
 	setActivities: ApiFunction<IdPwdActivities, doneReturn>;
 	getScores: ApiFunction<Id, getScoresReturn>;
+	setScores: ApiFunction<IdScores, doneReturn>;
 }
 
 // --------------------------------------------------------------------
@@ -108,3 +109,8 @@ export type doneReturn = { type: "done" };
 export type IdPwdActivities = { userID: string; activities: diaryActivities[] };
 
 export type getScoresReturn = { type: "scores"; scores: "none" | Record<graphFields, number> };
+
+export interface IdScores {
+	userID: string;
+	scores: Record<graphFields, number>;
+}

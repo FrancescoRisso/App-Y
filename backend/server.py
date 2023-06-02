@@ -12,6 +12,7 @@ from services.register import register
 from services.dailyActivities import dailyActivities
 from services.setActivities import setActivities
 from services.getScores import getScores
+from services.setScores import setScores
 
 ##
 #   Disable default flask logger
@@ -89,6 +90,12 @@ def apiSetActivities():
 def apiGetScores():
 	refreshDbConnection()
 	return getScores(db, request)
+
+
+@app.route("/api/setScores", methods=["POST"])
+def apiSetScores():
+	refreshDbConnection()
+	return setScores(db, request)
 
 
 if __name__ == "__main__":
