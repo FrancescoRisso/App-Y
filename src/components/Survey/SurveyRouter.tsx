@@ -25,7 +25,7 @@ other dependences:
 
 import { surveyPages } from "../../types";
 import Deadline from "./Deadline";
-import Work from "./LikeWhatYouDo";
+import Work from "./Work";
 import ShoppingList from "./ShoppingList";
 
 export interface SurveyRouterProps {
