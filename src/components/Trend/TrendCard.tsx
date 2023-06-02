@@ -25,7 +25,6 @@ other dependences:
 
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from "@ionic/react";
 import { useMemo } from "react";
-import { SwiperSlide } from "swiper/react";
 
 export type TrendCardProps = {
 	page: number;

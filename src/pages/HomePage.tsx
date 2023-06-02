@@ -14,7 +14,7 @@ context:
 
 */
 
-import { IonGrid, IonCol, IonRow, IonCard, IonCardContent, IonButton } from "@ionic/react";
+import { IonGrid, IonCol, IonRow, IonCard, IonCardContent } from "@ionic/react";
 import HomePageNavigation from "../components/HomePageSvgs/HomePageNavigation";
 import Avatar from "../components/General_components/Avatar";
 import { CircularProgressbar } from "react-circular-progressbar";
