@@ -110,7 +110,7 @@ const SurveyPage = () => {
 		);
 
 		const f = async () => {
-			const data = await API.setScores({
+			await API.setScores({
 				userID: await allContext.storage.getValue("userID"),
 				scores: finalScores
 			});
