@@ -25,6 +25,7 @@ other dependences:
 
 import { surveyPages } from "../../types";
 import Deadline from "./Deadline";
+import Work from "./LikeWhatYouDo";
 import ShoppingList from "./ShoppingList";
 
 export interface SurveyRouterProps {
@@ -47,6 +48,7 @@ const SurveyRouter = ({ page }: SurveyRouterProps) => {
 			return <ShoppingList />;
 
 		case "work":
+			return <Work />;
 		default:
 			return <></>;
 	}

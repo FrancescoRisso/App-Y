@@ -20,6 +20,7 @@ import {
 	diaryActivities,
 	graphFields,
 	graphFieldsMinMaxVal,
+	workItemNames,
 	shoppingItemNames,
 	userSpecs
 } from "../types";
@@ -54,10 +55,16 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		max: getGraphFieldsZeroValues(),
 		cur: getGraphFieldsZeroValues()
 	});
+	const [workValues, setWorkValues] = useState<graphFieldsMinMaxVal>({
+		min: getGraphFieldsZeroValues(),
+		max: getGraphFieldsZeroValues(),
+		cur: getGraphFieldsZeroValues()
+	});
 
 	// Selected for the survey
 	const [shoppingSel, setShoppingSel] = useState<shoppingItemNames[]>([]);
 	const [deadlineSel, setDeadlineSel] = useState<deadlineItemNames | null>(null);
+	const [workSel, setWorkSel] = useState<workItemNames | null>(null);
 
 	const clearUserData = useCallback(() => {
 		setUserDetails("notLoaded");
@@ -142,6 +149,10 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 						deadline: {
 							values: { val: deadlineValues, set: setDeadlineValues },
 							selected: { val: deadlineSel, set: setDeadlineSel }
+						},
+						work: {
+							values: { val: workValues, set: setWorkValues },
+							selected: { val: workSel, set: setWorkSel }
 						}
 					}
 				},

@@ -198,6 +198,12 @@ export const isSurveyPages = (s: string): s is surveyPages => {
 
 export type shoppingItemNames = "champagne" | "chips" | "coke" | "donut" | "lattuce" | "pasta" | "steak" | "strawberry";
 export type deadlineItemNames = "postpone" | "organize&do" | "organize&notDo" | "whichProject" | "noPlan";
+export type workItemNames =
+	| "dedicateResult"
+	| "dedicateNoResult"
+	| "noDedicateResult"
+	| "noDedicateNoResult"
+	| "dontMind";
 
 export interface graphFieldsMinMaxVal {
 	min: Record<graphFields, number>;
@@ -213,4 +219,5 @@ export interface weeklySurveyStorageItem<T> {
 export interface weeklySurveyStorageType {
 	shoppingList: weeklySurveyStorageItem<shoppingItemNames[]>;
 	deadline: weeklySurveyStorageItem<deadlineItemNames | null>;
+	work: weeklySurveyStorageItem<workItemNames | null>;
 }
