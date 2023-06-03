@@ -70,6 +70,7 @@ const NewGoalModal = ({ opened, close, initialTitle }: NewGoalModalProps) => {
 				setDays(0);
 				setHours(0);
 				setMins(0);
+				setTitle("");
 			}}
 			style={{ ["--height" as any]: "auto" }}
 		>
