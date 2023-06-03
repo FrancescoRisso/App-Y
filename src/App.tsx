@@ -43,6 +43,7 @@ import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
 import TrendPage from "./pages/TrendPage";
 import SurveyPage from "./pages/SurveyPage";
+import GoalsPage from "./pages/GoalsPage";
 
 setupIonicReact();
 
@@ -187,6 +188,22 @@ const App: React.FC = () => {
 									backgroundColor="violet"
 									header={{ color: "violet", height: "25vw", text: "", type: "rectangle" }}
 									pageContent={<SurveyPage />}
+									prevPage="/home"
+								/>
+							</Route>
+
+							<Route exact path="/goals">
+								<PageTemplate
+									backgroundColor="white"
+									header={{
+										color: "violet",
+										height: "90vw",
+										text: "Goals",
+										type: "cloud-left",
+										width: "100vw",
+										leaveEmptyLines: { bottom: 3 }
+									}}
+									pageContent={<GoalsPage />}
 									prevPage="/home"
 								/>
 							</Route>
