@@ -79,6 +79,7 @@ export interface AppContextStructure {
 		activities: StateVariable<"notLoaded" | "notSelected" | diaryActivities[]>;
 		userScores: StateVariable<"none" | "notLoaded" | Record<graphFields, number>>;
 		weeklySurveyValues: weeklySurveyStorageType;
+		goals: StateVariable<goalType[]>;
 	};
 	loaders: {
 		loadAvatar: () => void;
@@ -222,4 +223,10 @@ export interface weeklySurveyStorageType {
 	deadline: weeklySurveyStorageItem<deadlineItemNames | null>;
 	work: weeklySurveyStorageItem<workItemNames | null>;
 	likeWhatYouDo: weeklySurveyStorageItem<number>;
+}
+
+export interface goalType {
+	title: string;
+	startTime: moment.Moment;
+	endTime: moment.Moment;
 }

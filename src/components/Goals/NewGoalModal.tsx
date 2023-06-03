@@ -36,7 +36,9 @@ import {
 } from "@ionic/react";
 import Button from "../General_components/Button";
 import Input from "../General_components/Input";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { AppContext } from "../AppContext";
+import moment from "moment";
 
 export interface NewGoalModalProps {
 	opened: boolean;
@@ -54,6 +56,9 @@ const NewGoalModal = ({ opened, close, initialTitle }: NewGoalModalProps) => {
 	useEffect(() => {
 		setTitle(initialTitle);
 	}, [initialTitle]);
+
+	const allContext = useContext(AppContext);
+	const goals = useMemo(() => allContext.storedValues.goals, [allContext.storedValues.goals]);
 
 	return (
 		<IonModal
@@ -96,7 +101,17 @@ const NewGoalModal = ({ opened, close, initialTitle }: NewGoalModalProps) => {
 									text="Conferma"
 									disabled={(days === 0 && hours === 0 && mins === 0) || title === ""}
 									action={() => {
-										// TODO add goal
+										goals.set([
+											...goals.val,
+											{
+												title,
+												startTime: moment(),
+												endTime: moment()
+													.add(days, "days")
+													.add(hours, "hours")
+													.add(mins, "minutes")
+											}
+										]);
 										close();
 									}}
 								/>

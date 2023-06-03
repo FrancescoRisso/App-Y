@@ -18,7 +18,8 @@ import {
 } from "ionicons/icons";
 import meditating from "./images/diary/meditation.svg";
 import pet from "./images/diary/pet.svg";
-import { diaryActivities, graphFields } from "./types";
+import { diaryActivities, goalType, graphFields } from "./types";
+import moment from "moment";
 
 export const activityIcons: Record<diaryActivities, string> = {
 	alone: personOutline,
@@ -81,3 +82,26 @@ export const getGraphFieldsZeroValues = () => {
 		selfcare: 0
 	};
 };
+
+export const getDefaultGoals = (): goalType[] => [
+	{
+		title: "Andare in palestra 4 volte questa settimana",
+		startTime: moment().subtract(3, "days"),
+		endTime: moment().add(4, "days")
+	},
+	{
+		title: "Studiare quattro volte per 1 ora",
+		startTime: moment().subtract(1, "hour").subtract(3, "minutes"),
+		endTime: moment().add(4, "hour").add(57, "minutes")
+	},
+	{
+		title: "Leggere un nuovo libro",
+		startTime: moment().subtract(30, "days"),
+		endTime: moment().add(30, "days")
+	},
+	{
+		title: "Passare l'esame",
+		startTime: moment().subtract(4 * 30, "days"),
+		endTime: moment().add(10, "days")
+	}
+];

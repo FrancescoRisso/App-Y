@@ -22,12 +22,13 @@ import {
 	graphFieldsMinMaxVal,
 	workItemNames,
 	shoppingItemNames,
-	userSpecs
+	userSpecs,
+	goalType
 } from "../types";
 import useStorage from "../hooks/useStorage";
 import API from "../api";
 import moment from "moment";
-import { getGraphFieldsZeroValues } from "../util";
+import { getDefaultGoals, getGraphFieldsZeroValues } from "../util";
 
 export const AppContext = React.createContext({} as AppContextStructure);
 
@@ -71,6 +72,9 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 	const [deadlineSel, setDeadlineSel] = useState<deadlineItemNames | null>(null);
 	const [workSel, setWorkSel] = useState<workItemNames | null>(null);
 	const [likeWhatYouDoSel, setLikeWhatYouDoSel] = useState<number>(50);
+
+	// goals
+	const [goals, setGoals] = useState<goalType[]>(getDefaultGoals());
 
 	const clearUserData = useCallback(() => {
 		setUserDetails("notLoaded");
@@ -164,7 +168,8 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 							values: { val: likeWhatYouDoValues, set: setLikeWhatYouDoValues },
 							selected: { val: likeWhatYouDoSel, set: setLikeWhatYouDoSel }
 						}
-					}
+					},
+					goals: { val: goals, set: setGoals }
 				},
 				loaders: {
 					loadAvatar: updateAvatar,

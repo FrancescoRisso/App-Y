@@ -30,16 +30,22 @@ import gardening from "../images/goals/gardening.svg";
 import meditation from "../images/goals/meditation.svg";
 import running from "../images/goals/running.svg";
 import { Keyboard, Pagination, Scrollbar, Zoom } from "swiper";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 
 import NewGoalModal from "../components/Goals/NewGoalModal";
 import ProposedGoal from "../components/Goals/ProposedGoal";
+import { AppContext } from "../components/AppContext";
+import PendingGoal from "../components/Goals/PendingGoal";
+import { goalType } from "../types";
 
 export interface GoalsPageProps {}
 
 const GoalsPage = () => {
 	const swiperHeight = useMemo(() => 228, []);
 	const swiperWidth = useMemo(() => 165, []);
+
+	const context = useContext(AppContext);
+	const goals = useMemo(() => context.storedValues.goals, [context.storedValues.goals]);
 
 	const images: Record<string, string> = useMemo(() => {
 		return {
@@ -63,7 +69,7 @@ const GoalsPage = () => {
 				initialTitle={title}
 				opened={modalOpened}
 			/>
-			<div className="h-20-percent" style={{ position: "relative", bottom: "30%" }}>
+			<div className="h-15-percent" style={{ position: "relative", bottom: "30%" }}>
 				<Swiper
 					slidesPerView={2}
 					centeredSlides={true}
@@ -88,7 +94,26 @@ const GoalsPage = () => {
 					))}
 				</Swiper>
 			</div>
-			<div>Ciao</div>
+			<h1 className="ion-text-center mt-4">I tuoi obbiettivi:</h1>
+			<div className="pb-1">
+				{goals.val.length === 0 ? (
+					<p>
+						<i className="ml-3">Non hai obbiettivi al momento</i>
+					</p>
+				) : (
+					goals.val.map((goal, index) => (
+						<PendingGoal
+							end={goal.endTime}
+							removeMe={() => {
+								goals.set(goals.val.filter((g: goalType) => g !== goal));
+							}}
+							start={goal.startTime}
+							title={goal.title}
+							key={index}
+						/>
+					))
+				)}
+			</div>
 		</div>
 	);
 };

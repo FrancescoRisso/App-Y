@@ -198,6 +198,10 @@
 	margin-right: 6%;
 }
 
+.font-size-smaller {
+	font-size: 15px !important;
+}
+
 .font-size-app {
 	font-size: 20px !important;
 }
@@ -380,4 +384,9 @@ ion-card {
 	border-radius: 20px;
 	border: 2px solid black;
 	display: block;
+}
+
+.my-progress-bar {
+	height: 10px;
+	border-radius: 5px;
 }
