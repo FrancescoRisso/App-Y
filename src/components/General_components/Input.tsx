@@ -39,7 +39,9 @@ const Input = ({ type, onInputAction, label, error, value, options }: InputProps
 			<IonItem
 				color="grey"
 				shape="round"
-				className={`pill font-size-app item-horizontal-margin pill-height-normal ${error && "ion-invalid"}`}
+				className={`pill font-size-app item-horizontal-margin pill-height-normal ${
+					error && "ion-invalid"
+				} with-shadow`}
 				lines="none"
 			>
 				{options ? (
