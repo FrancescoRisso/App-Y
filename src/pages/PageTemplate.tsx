@@ -42,6 +42,7 @@ export interface PageTemplateProps {
 		logout?: boolean;
 		text: string;
 		alignTextBottom?: boolean;
+		leaveEmptyLines?: { top?: number; bottom?: number };
 	};
 }
 
@@ -59,6 +60,7 @@ const PageTemplate = ({ pageContent, footer, prevPage, loading, backgroundColor,
 						prevPage={prevPage}
 						text={header.text}
 						alignTextBottom={header.alignTextBottom}
+						leaveEmptyLines={header.leaveEmptyLines}
 					/>
 				)}
 				<div style={{ height: header ? `calc(100% - ${header.height})` : "100%" }}>

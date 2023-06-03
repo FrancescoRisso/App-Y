@@ -41,6 +41,7 @@ export interface TopPageTongueProps {
 	prevPage?: string;
 	logout?: boolean;
 	alignTextBottom?: boolean;
+	leaveEmptyLines?: { top?: number; bottom?: number };
 }
 
 export type tongueTypes = "tongue" | "cloud-center" | "rectangle" | "cloud-left" | "cloud-right";
@@ -54,7 +55,8 @@ const TopPageTongue = ({
 	width,
 	prevPage,
 	logout,
-	alignTextBottom
+	alignTextBottom,
+	leaveEmptyLines
 }: TopPageTongueProps) => {
 	const radius = useMemo(() => (type === "tongue" ? "61px" : 0), [type]);
 
@@ -101,13 +103,37 @@ const TopPageTongue = ({
 					/>
 				)}
 				<div className={`${alignTextBottom ? "align-bottom w-100-percent" : "center-vertically"}`}>
+					{text &&
+						leaveEmptyLines &&
+						leaveEmptyLines.top &&
+						Array.from({ length: leaveEmptyLines.top }).map((_, index) => (
+							<h1
+								key={index}
+								className="font-title my-0 ion-text-center"
+								style={{ color: `var(--ion-color-${color})` }}
+							>
+								-
+							</h1>
+						))}
 					{text && <h1 className="ion-text-center mx-3 no-vertical-margin font-title">{text}</h1>}
+					{text &&
+						leaveEmptyLines &&
+						leaveEmptyLines.bottom &&
+						Array.from({ length: leaveEmptyLines.bottom }).map((_, index) => (
+							<h1
+								key={index}
+								className="font-title my-0 ion-text-center"
+								style={{ color: `var(--ion-color-${color})` }}
+							>
+								-
+							</h1>
+						))}
 					{text && panda && <br />}
 					{panda && <PandaImg type={panda} width="50%" />}
 				</div>
 			</div>
 		),
-		[panda, text, prevPage, context, logout, iconColor, alignTextBottom]
+		[panda, text, prevPage, context, logout, iconColor, alignTextBottom, color, leaveEmptyLines]
 	);
 
 	if (redirect && prevPage) return <Redirect to={prevPage} />;
