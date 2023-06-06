@@ -17,29 +17,53 @@ import {
 	personOutline
 } from "ionicons/icons";
 import meditating from "./images/diary/meditation.svg";
+import meditatingWhite from "./images/diary/meditationWhite.svg";
 import pet from "./images/diary/pet.svg";
+import petWhite from "./images/diary/petWhite.svg";
 import { diaryActivities, goalType, graphFields } from "./types";
 import moment from "moment";
 
-export const activityIcons: Record<diaryActivities, string> = {
-	alone: personOutline,
-	cinema: filmOutline,
-	creativity: bulbOutline,
-	draw: colorPaletteOutline,
-	explore: mapOutline,
-	friends: peopleOutline,
-	love: heartOutline,
-	meditation: meditating,
-	music: musicalNotesOutline,
-	nature: leafOutline,
-	pet: pet,
-	play: gameControllerOutline,
-	relax: cafeOutline,
-	selfcare: fitnessOutline,
-	sport: footballOutline,
-	study: bookOutline,
-	timeManag: alarmOutline,
-	work: laptopOutline
+export const activityIcons: Record<"light" | "dark", Record<diaryActivities, string>> = {
+	light: {
+		alone: personOutline,
+		cinema: filmOutline,
+		creativity: bulbOutline,
+		draw: colorPaletteOutline,
+		explore: mapOutline,
+		friends: peopleOutline,
+		love: heartOutline,
+		meditation: meditatingWhite,
+		music: musicalNotesOutline,
+		nature: leafOutline,
+		pet: petWhite,
+		play: gameControllerOutline,
+		relax: cafeOutline,
+		selfcare: fitnessOutline,
+		sport: footballOutline,
+		study: bookOutline,
+		timeManag: alarmOutline,
+		work: laptopOutline
+	},
+	dark: {
+		alone: personOutline,
+		cinema: filmOutline,
+		creativity: bulbOutline,
+		draw: colorPaletteOutline,
+		explore: mapOutline,
+		friends: peopleOutline,
+		love: heartOutline,
+		meditation: meditating,
+		music: musicalNotesOutline,
+		nature: leafOutline,
+		pet: pet,
+		play: gameControllerOutline,
+		relax: cafeOutline,
+		selfcare: fitnessOutline,
+		sport: footballOutline,
+		study: bookOutline,
+		timeManag: alarmOutline,
+		work: laptopOutline
+	}
 };
 
 export const activityNames: Record<diaryActivities, string> = {

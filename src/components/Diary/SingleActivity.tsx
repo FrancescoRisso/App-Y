@@ -33,17 +33,18 @@ export interface SingleActivityProps {
 	selected: boolean;
 	mainColor: appColors;
 	invertSelection: () => void;
+	iconColor: "light" | "dark";
 }
 
-const SingleActivity = ({ activity, selected, mainColor, invertSelection }: SingleActivityProps) => {
+const SingleActivity = ({ activity, selected, mainColor, invertSelection, iconColor }: SingleActivityProps) => {
 	return (
 		<div className="ion-text-center">
 			<div className="w-100-percent pos-relative" onClick={invertSelection}>
 				<div className="diary-icon ion-text-center">
-					{activityIcons[activity].startsWith("/static") ? (
-						<img src={activityIcons[activity]} className="ionicon-full-size" alt="" />
+					{activityIcons.light[activity].startsWith("/static") ? (
+						<img src={activityIcons[iconColor][activity]} className="ionicon-full-size" alt="" />
 					) : (
-						<IonIcon icon={activityIcons[activity]} className="ionicon-full-size" />
+						<IonIcon icon={activityIcons.light[activity]} className="ionicon-full-size" />
 					)}
 				</div>
 				<span>

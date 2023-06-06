@@ -36,9 +36,18 @@ export interface ActivitesDisplayProps {
 	title: string;
 	selected: diaryActivities[];
 	setSelected: (act: diaryActivities[]) => void;
+	iconColor?: "light" | "dark";
 }
 
-const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, setSelected }: ActivitesDisplayProps) => {
+const ActivitesDisplay = ({
+	activities,
+	disabled,
+	mainColor,
+	title,
+	selected,
+	setSelected,
+	iconColor
+}: ActivitesDisplayProps) => {
 	const context = useContext(AppContext);
 
 	const numCols = useMemo(() => 3, []);
@@ -83,6 +92,7 @@ const ActivitesDisplay = ({ activities, disabled, mainColor, title, selected, se
 											}}
 											mainColor={mainColor}
 											selected={selected.includes(activity)}
+											iconColor={iconColor ?? "dark"}
 										/>
 									)}
 								</IonCol>

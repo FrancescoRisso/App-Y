@@ -102,7 +102,7 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 				activities={
 					typeof context.storedValues.activities.val !== "string" ? context.storedValues.activities.val : []
 				}
-				mainColor="white"
+				mainColor="violet"
 				selected={completedActivities}
 				setSelected={setCompletedActivities}
 				title={
@@ -110,6 +110,7 @@ const DiaryNight = ({ switchTime, animationDuration, sunMoonDistance }: DiaryNig
 						? "Seleziona le attività che hai completato:"
 						: "Non hai selezionato nessuna attività per oggi"
 				}
+				iconColor="light"
 			/>
 
 			<Button
