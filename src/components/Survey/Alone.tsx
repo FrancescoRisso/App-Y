@@ -118,26 +118,6 @@ const Alone = () => {
 							})}
 						</IonRow>
 					))}
-					{/* {options.map((opt, index) => (
-						<IonRow
-							key={index}
-							onClick={() => {
-								context.selected.set(opt.name);
-								context.values.set({ min, max, cur: opt.values });
-							}}
-							style={{ height: `calc(100% / ${options.length})` }}
-						>
-							<IonCol size="2" className="mb-2">
-								<IonRadioGroup value={context.selected.val === opt.name}>
-									<IonRadio
-										value={true}
-										className={`diary-radio diary-radio-violet center-vertically`}
-									/>
-								</IonRadioGroup>
-							</IonCol>
-							<IonCol><p className="font-size-app my-0 center-vertically">{opt.text}</p></IonCol>
-						</IonRow>
-					))} */}
 				</IonGrid>
 			</IonCardContent>
 		</IonCard>
