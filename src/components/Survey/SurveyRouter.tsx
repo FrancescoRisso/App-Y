@@ -30,6 +30,7 @@ import ShoppingList from "./ShoppingList";
 import LikeWhatYouDo from "./LikeWhatYouDo";
 import Alone from "./Alone";
 import Hobby from "./Hobby";
+import Mirror from "./Mirror";
 
 export interface SurveyRouterProps {
 	page: surveyPages;
@@ -50,14 +51,14 @@ const SurveyRouter = ({ page }: SurveyRouterProps) => {
 			return <LikeWhatYouDo />;
 
 		case "mirror":
-			return <></>;
+			return <Mirror />;
 
 		case "shoppingList":
 			return <ShoppingList />;
 
 		case "work":
 			return <Work />;
-			
+
 		default:
 			return <></>;
 	}

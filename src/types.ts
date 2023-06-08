@@ -207,6 +207,7 @@ export type workItemNames =
 	| "noDedicateNoResult"
 	| "dontMind";
 export type aloneItemNames = "sadAlone" | "sadTogether" | "happyAlone" | "happyTogether";
+export type mirrorItemNames = "negative" | "positive" | "neutral";
 
 export interface graphFieldsMinMaxVal {
 	min: Record<graphFields, number>;
@@ -226,6 +227,7 @@ export interface weeklySurveyStorageType {
 	likeWhatYouDo: weeklySurveyStorageItem<number>;
 	alone: weeklySurveyStorageItem<aloneItemNames | null>;
 	hobbies: weeklySurveyStorageItem<number>;
+	mirror: weeklySurveyStorageItem<mirrorItemNames | null>;
 }
 
 export interface goalType {

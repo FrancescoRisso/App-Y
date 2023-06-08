@@ -24,7 +24,8 @@ import {
 	shoppingItemNames,
 	userSpecs,
 	goalType,
-	aloneItemNames
+	aloneItemNames,
+	mirrorItemNames
 } from "../types";
 import useStorage from "../hooks/useStorage";
 import API from "../api";
@@ -77,6 +78,11 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		max: getGraphFieldsZeroValues(),
 		cur: getGraphFieldsZeroValues()
 	});
+	const [mirrorValues, setMirrorValues] = useState<graphFieldsMinMaxVal>({
+		min: getGraphFieldsZeroValues(),
+		max: getGraphFieldsZeroValues(),
+		cur: getGraphFieldsZeroValues()
+	});
 
 	// Selected for the survey
 	const [shoppingSel, setShoppingSel] = useState<shoppingItemNames[]>([]);
@@ -85,6 +91,7 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 	const [likeWhatYouDoSel, setLikeWhatYouDoSel] = useState<number>(50);
 	const [aloneSel, setAloneSel] = useState<aloneItemNames | null>(null);
 	const [numHobbiesSel, setNumHobbiesSel] = useState<number>(0);
+	const [mirrorSel, setMirrorSel] = useState<mirrorItemNames | null>(null);
 
 	// goals
 	const [goals, setGoals] = useState<goalType[]>(getDefaultGoals());
@@ -188,6 +195,10 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 						hobbies: {
 							values: { val: hobbiesValues, set: setHobbiesValues },
 							selected: { val: numHobbiesSel, set: setNumHobbiesSel }
+						},
+						mirror: {
+							values: { val: mirrorValues, set: setMirrorValues },
+							selected: { val: mirrorSel, set: setMirrorSel }
 						}
 					},
 					goals: { val: goals, set: setGoals }
