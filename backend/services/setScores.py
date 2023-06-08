@@ -5,7 +5,6 @@ from .getScores import getScoresInternal
 
 
 def setScores(db, request):
-	print("Here")
 	params = json.loads(request.data)
 
 	try:
