@@ -49,7 +49,7 @@ const Mirror = () => {
 				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: +2 })
 			},
 			{
-				name: "negative",
+				name: "positive",
 				text: "Come un bicchiere mezzo pieno",
 				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: 0 })
 			}
