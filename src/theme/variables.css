@@ -114,6 +114,13 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-grey-contrast-rgb: 0, 0, 0;
 	--ion-color-grey-shade: #cfcfcf;
 	--ion-color-grey-tint: #ededed;
+
+	--ion-color-white-violet-text: #ffffff;
+	--ion-color-white-violet-text-rgb: 255, 255, 255;
+	--ion-color-white-violet-text-contrast: #720ff1;
+	--ion-color-white-violet-text-contrast-rgb: 114, 15, 241;
+	--ion-color-white-violet-text-shade: #e0e0e0;
+	--ion-color-white-violet-text-tint: #ffffff;
 }
 
 .ion-color-white {

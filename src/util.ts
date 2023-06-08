@@ -20,7 +20,7 @@ import meditating from "./images/diary/meditation.svg";
 import meditatingWhite from "./images/diary/meditationWhite.svg";
 import pet from "./images/diary/pet.svg";
 import petWhite from "./images/diary/petWhite.svg";
-import { diaryActivities, goalType, graphFields } from "./types";
+import { diaryActivities, goalType, graphFields, ormons } from "./types";
 import moment from "moment";
 
 export const activityIcons: Record<"light" | "dark", Record<diaryActivities, string>> = {
@@ -129,3 +129,16 @@ export const getDefaultGoals = (): goalType[] => [
 		endTime: moment().add(10, "days")
 	}
 ];
+
+export const getOrmonName = (ormon: ormons) => {
+	switch (ormon) {
+		case "serotonin":
+			return "Seratonina";
+		case "oxytocin":
+			return "Ossitocina";
+		case "dopamine":
+			return "Dopamina";
+		case "endorphin":
+			return "Endorfina";
+	}
+};

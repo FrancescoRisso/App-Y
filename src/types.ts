@@ -80,6 +80,7 @@ export interface AppContextStructure {
 		userScores: StateVariable<"none" | "notLoaded" | Record<graphFields, number>>;
 		weeklySurveyValues: weeklySurveyStorageType;
 		goals: StateVariable<goalType[]>;
+		challengeCompleted: StateVariable<boolean>;
 	};
 	loaders: {
 		loadAvatar: () => void;
@@ -235,3 +236,7 @@ export interface goalType {
 	startTime: moment.Moment;
 	endTime: moment.Moment;
 }
+
+export type ormons = "serotonin" | "oxytocin" | "dopamine" | "endorphin";
+export const isOrmon = (ormon: string): ormon is ormons =>
+	["serotonin", "oxytocin", "dopamine", "endorphin"].includes(ormon);

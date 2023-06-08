@@ -93,6 +93,8 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 	const [numHobbiesSel, setNumHobbiesSel] = useState<number>(0);
 	const [mirrorSel, setMirrorSel] = useState<mirrorItemNames | null>(null);
 
+	const [challengeComplete, setChallengeComplete] = useState<boolean>(false);
+
 	// goals
 	const [goals, setGoals] = useState<goalType[]>(getDefaultGoals());
 
@@ -171,6 +173,7 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 					userAvatar: { val: avatar, set: setAvatar },
 					activities: { val: activities, set: setActivities },
 					userScores: { val: userScores, set: setUserScores },
+					challengeCompleted: { val: challengeComplete, set: setChallengeComplete },
 					weeklySurveyValues: {
 						shoppingList: {
 							values: { val: shoppingValues, set: setShoppingValues },

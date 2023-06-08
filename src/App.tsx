@@ -39,11 +39,14 @@ import PageTemplate from "./pages/PageTemplate";
 import GenericRouteRedirector from "./pages/GenericRouteRedirector";
 import TipsPage from "./pages/TipsPage";
 import DiaryPageManagement from "./pages/DiaryPageManagement";
-import { isTipCategory, tipCategoryName, tipsCategories } from "./types";
+import { isOrmon, isTipCategory, ormons, tipCategoryName, tipsCategories } from "./types";
 import TipsCategoryPage from "./pages/TipsCategoryPage";
 import TrendPage from "./pages/TrendPage";
 import SurveyPage from "./pages/SurveyPage";
 import GoalsPage from "./pages/GoalsPage";
+import ChallengeListPage from "./pages/ChallengeListPage";
+import { getOrmonName } from "./util";
+import ChallengeCategory from "./pages/ChallengeCategory";
 
 setupIonicReact();
 
@@ -173,15 +176,46 @@ const App: React.FC = () => {
 								}}
 							/>
 
-							{/* <Route exact path="/challenge">
+							<Route exact path="/challenge">
 								<PageTemplate
-									backgroundColor="white"
-									// headerColor="violet"
-									// header="Challenge"
+									backgroundColor="violet"
+									header={{
+										color: "white-violet-text",
+										height: "40vw",
+										text: "Challenges",
+										type: "tongue",
+										leaveEmptyLines: { top: 1 }
+									}}
 									pageContent={<ChallengeListPage />}
 									prevPage="/home"
 								/>
-							</Route> */}
+							</Route>
+
+							<Route
+								exact
+								path="/challenge/:ormon"
+								render={({ match }) => {
+									const ormon: ormons = isOrmon(match.params.ormon)
+										? match.params.ormon
+										: "endorphin";
+
+									return (
+										<PageTemplate
+											backgroundColor="violet"
+											header={{
+												color: "white-violet-text",
+												type: "tongue",
+												text: getOrmonName(ormon),
+												height: "40vw",
+												width: "100%",
+												leaveEmptyLines: { top: 1 }
+											}}
+											pageContent={<ChallengeCategory category={ormon} />}
+											prevPage="/challenge"
+										/>
+									);
+								}}
+							/>
 
 							<Route exact path="/survey">
 								<PageTemplate
