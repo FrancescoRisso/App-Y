@@ -72,6 +72,11 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		max: getGraphFieldsZeroValues(),
 		cur: getGraphFieldsZeroValues()
 	});
+	const [hobbiesValues, setHobbiesValues] = useState<graphFieldsMinMaxVal>({
+		min: getGraphFieldsZeroValues(),
+		max: getGraphFieldsZeroValues(),
+		cur: getGraphFieldsZeroValues()
+	});
 
 	// Selected for the survey
 	const [shoppingSel, setShoppingSel] = useState<shoppingItemNames[]>([]);
@@ -79,6 +84,7 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 	const [workSel, setWorkSel] = useState<workItemNames | null>(null);
 	const [likeWhatYouDoSel, setLikeWhatYouDoSel] = useState<number>(50);
 	const [aloneSel, setAloneSel] = useState<aloneItemNames | null>(null);
+	const [numHobbiesSel, setNumHobbiesSel] = useState<number>(0);
 
 	// goals
 	const [goals, setGoals] = useState<goalType[]>(getDefaultGoals());
@@ -178,6 +184,10 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 						alone: {
 							values: { val: aloneValues, set: setAloneValues },
 							selected: { val: aloneSel, set: setAloneSel }
+						},
+						hobbies: {
+							values: { val: hobbiesValues, set: setHobbiesValues },
+							selected: { val: numHobbiesSel, set: setNumHobbiesSel }
 						}
 					},
 					goals: { val: goals, set: setGoals }

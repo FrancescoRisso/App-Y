@@ -394,3 +394,8 @@ ion-card {
 	height: 10px;
 	border-radius: 5px;
 }
+
+.align-right {
+	position: absolute;
+	right: 0;
+}

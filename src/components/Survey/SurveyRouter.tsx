@@ -29,6 +29,7 @@ import Work from "./Work";
 import ShoppingList from "./ShoppingList";
 import LikeWhatYouDo from "./LikeWhatYouDo";
 import Alone from "./Alone";
+import Hobby from "./Hobby";
 
 export interface SurveyRouterProps {
 	page: surveyPages;
@@ -38,14 +39,16 @@ const SurveyRouter = ({ page }: SurveyRouterProps) => {
 	switch (page) {
 		case "alone?":
 			return <Alone />;
-			
+
 		case "deadline":
 			return <Deadline />;
 
 		case "hobbies":
-			return <></>;
+			return <Hobby />;
+
 		case "likeWhatYouDo":
 			return <LikeWhatYouDo />;
+
 		case "mirror":
 			return <></>;
 
@@ -54,6 +57,7 @@ const SurveyRouter = ({ page }: SurveyRouterProps) => {
 
 		case "work":
 			return <Work />;
+			
 		default:
 			return <></>;
 	}

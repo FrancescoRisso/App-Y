@@ -225,6 +225,7 @@ export interface weeklySurveyStorageType {
 	work: weeklySurveyStorageItem<workItemNames | null>;
 	likeWhatYouDo: weeklySurveyStorageItem<number>;
 	alone: weeklySurveyStorageItem<aloneItemNames | null>;
+	hobbies: weeklySurveyStorageItem<number>;
 }
 
 export interface goalType {
