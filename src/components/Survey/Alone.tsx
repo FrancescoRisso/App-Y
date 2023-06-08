@@ -98,24 +98,30 @@ const Alone = () => {
 				<IonGrid class="h-100-percent">
 					{Array.from({ length: Math.ceil(options.length / numCols) }).map((_, rowNo) => (
 						<IonRow key={rowNo} className="h-50-percent">
-							{Array.from({ length: numCols }).map((_, colNo) => {
-								const option = options[rowNo * numCols + colNo];
-								return (
-									<IonCol key={colNo}>
-										<img
-											src={option.image}
-											alt=""
-											className={`with-shadow${
-												context.selected.val === option.name ? "-green" : ""
-											} rounded`}
-											onClick={() => {
-												context.selected.set(option.name);
-												context.values.set({ min, max, cur: option.values });
-											}}
-										/>
-									</IonCol>
-								);
-							})}
+							{Array.from({ length: Math.min(numCols, options.length - rowNo * numCols) }).map(
+								(_, colNo, row) => {
+									const option = options[rowNo * numCols + colNo];
+									return (
+										<IonCol
+											key={colNo}
+											size={`${12 / numCols}`}
+											push={`${((numCols - row.length) * 6) / numCols}`}
+										>
+											<img
+												src={option.image}
+												alt=""
+												className={`with-shadow${
+													context.selected.val === option.name ? "-green" : ""
+												} rounded`}
+												onClick={() => {
+													context.selected.set(option.name);
+													context.values.set({ min, max, cur: option.values });
+												}}
+											/>
+										</IonCol>
+									);
+								}
+							)}
 						</IonRow>
 					))}
 				</IonGrid>

@@ -26,12 +26,16 @@ other dependences:
 import { useContext, useMemo } from "react";
 import { graphFields, graphFieldsList, mirrorItemNames } from "../../types";
 import { getGraphFieldsZeroValues } from "../../util";
-import { IonCard, IonCardContent, IonCol, IonGrid, IonRadio, IonRadioGroup, IonRow } from "@ionic/react";
+import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from "@ionic/react";
 import { AppContext } from "../AppContext";
+
+import mirroPositive from "../../images/survey/mirrorPositive.svg";
+import mirroNegative from "../../images/survey/mirrorNegative.svg";
+import mirroNeutral from "../../images/survey/mirrorNeutral.svg";
 
 interface choiceItem {
 	name: mirrorItemNames;
-	text: string;
+	image: string;
 	values: Record<graphFields, number>;
 }
 
@@ -40,18 +44,18 @@ const Mirror = () => {
 		() => [
 			{
 				name: "negative",
-				text: "Come un bicchiere mezzo vuoto",
+				image: mirroNegative,
 				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: -1 })
 			},
 			{
-				name: "neutral",
-				text: "Come un bicchiere riempito a metà",
-				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: +2 })
+				name: "positive",
+				image: mirroPositive,
+				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: 0 })
 			},
 			{
-				name: "positive",
-				text: "Come un bicchiere mezzo pieno",
-				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: 0 })
+				name: "neutral",
+				image: mirroNeutral,
+				values: Object.assign(getGraphFieldsZeroValues(), { selfcare: +2 })
 			}
 		],
 		[]
@@ -81,30 +85,38 @@ const Mirror = () => {
 		);
 	}, [options]);
 
+	const numCols = useMemo(() => 2, []);
+
 	return (
 		<IonCard color="white" className="mx-5 h-60-percent">
-			<IonCardContent className="h-100-percent">
+			<IonCardContent className="h-100-percent p-0">
 				<IonGrid class="h-100-percent">
-					{options.map((opt, index) => (
-						<IonRow
-							key={index}
-							onClick={() => {
-								context.selected.set(opt.name);
-								context.values.set({ min, max, cur: opt.values });
-							}}
-							style={{ height: `calc(100% / ${options.length})` }}
-						>
-							<IonCol size="2" className="mb-2">
-								<IonRadioGroup value={context.selected.val === opt.name}>
-									<IonRadio
-										value={true}
-										className={`diary-radio diary-radio-violet center-vertically`}
-									/>
-								</IonRadioGroup>
-							</IonCol>
-							<IonCol>
-								<p className="font-size-app my-0 center-vertically">{opt.text}</p>
-							</IonCol>
+					{Array.from({ length: Math.ceil(options.length / numCols) }).map((_, rowNo) => (
+						<IonRow key={rowNo} className="h-50-percent">
+							{Array.from({ length: Math.min(numCols, options.length - rowNo * numCols) }).map(
+								(_, colNo, row) => {
+									const option = options[rowNo * numCols + colNo];
+									return (
+										<IonCol
+											key={colNo}
+											size={`${12 / numCols}`}
+											push={`${((numCols - row.length) * 6) / numCols}`}
+										>
+											<img
+												src={option.image}
+												alt=""
+												className={`with-shadow${
+													context.selected.val === option.name ? "-green" : ""
+												} rounded`}
+												onClick={() => {
+													context.selected.set(option.name);
+													context.values.set({ min, max, cur: option.values });
+												}}
+											/>
+										</IonCol>
+									);
+								}
+							)}
 						</IonRow>
 					))}
 				</IonGrid>
