@@ -23,7 +23,8 @@ import {
 	workItemNames,
 	shoppingItemNames,
 	userSpecs,
-	goalType
+	goalType,
+	aloneItemNames
 } from "../types";
 import useStorage from "../hooks/useStorage";
 import API from "../api";
@@ -66,12 +67,18 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 		max: getGraphFieldsZeroValues(),
 		cur: getGraphFieldsZeroValues()
 	});
+	const [aloneValues, setAloneValues] = useState<graphFieldsMinMaxVal>({
+		min: getGraphFieldsZeroValues(),
+		max: getGraphFieldsZeroValues(),
+		cur: getGraphFieldsZeroValues()
+	});
 
 	// Selected for the survey
 	const [shoppingSel, setShoppingSel] = useState<shoppingItemNames[]>([]);
 	const [deadlineSel, setDeadlineSel] = useState<deadlineItemNames | null>(null);
 	const [workSel, setWorkSel] = useState<workItemNames | null>(null);
 	const [likeWhatYouDoSel, setLikeWhatYouDoSel] = useState<number>(50);
+	const [aloneSel, setAloneSel] = useState<aloneItemNames | null>(null);
 
 	// goals
 	const [goals, setGoals] = useState<goalType[]>(getDefaultGoals());
@@ -167,6 +174,10 @@ const AppContextProvider = ({ child }: AppContextProps) => {
 						likeWhatYouDo: {
 							values: { val: likeWhatYouDoValues, set: setLikeWhatYouDoValues },
 							selected: { val: likeWhatYouDoSel, set: setLikeWhatYouDoSel }
+						},
+						alone: {
+							values: { val: aloneValues, set: setAloneValues },
+							selected: { val: aloneSel, set: setAloneSel }
 						}
 					},
 					goals: { val: goals, set: setGoals }

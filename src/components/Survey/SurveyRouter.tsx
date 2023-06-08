@@ -28,6 +28,7 @@ import Deadline from "./Deadline";
 import Work from "./Work";
 import ShoppingList from "./ShoppingList";
 import LikeWhatYouDo from "./LikeWhatYouDo";
+import Alone from "./Alone";
 
 export interface SurveyRouterProps {
 	page: surveyPages;
@@ -36,7 +37,8 @@ export interface SurveyRouterProps {
 const SurveyRouter = ({ page }: SurveyRouterProps) => {
 	switch (page) {
 		case "alone?":
-			return <></>;
+			return <Alone />;
+			
 		case "deadline":
 			return <Deadline />;
 

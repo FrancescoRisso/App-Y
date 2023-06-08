@@ -326,6 +326,10 @@ ion-card {
 	box-shadow: 0px 4.17555px 4.17555px rgba(0, 0, 0, 0.25);
 }
 
+.with-shadow-green {
+	box-shadow: 0px 4.17555px 4.17555px rgba(30, 143, 75, 0.8);
+}
+
 .mx-as-card {
 	margin-left: 10px;
 	margin-right: 10px;

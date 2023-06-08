@@ -206,6 +206,7 @@ export type workItemNames =
 	| "noDedicateResult"
 	| "noDedicateNoResult"
 	| "dontMind";
+export type aloneItemNames = "sadAlone" | "sadTogether" | "happyAlone" | "happyTogether";
 
 export interface graphFieldsMinMaxVal {
 	min: Record<graphFields, number>;
@@ -223,6 +224,7 @@ export interface weeklySurveyStorageType {
 	deadline: weeklySurveyStorageItem<deadlineItemNames | null>;
 	work: weeklySurveyStorageItem<workItemNames | null>;
 	likeWhatYouDo: weeklySurveyStorageItem<number>;
+	alone: weeklySurveyStorageItem<aloneItemNames | null>;
 }
 
 export interface goalType {
