@@ -73,22 +73,12 @@ const Alone = () => {
 	);
 
 	const min: Record<graphFields, number> = useMemo(() => {
-		// const val = getGraphFieldsZeroValues();
-
 		return Object.assign(
 			getGraphFieldsZeroValues(),
 			Object.fromEntries(
 				graphFieldsList.map((field) => [field, Math.min(...options.map((opt) => opt.values[field]))])
 			)
 		);
-
-		// options.forEach((option) => {
-		// 	(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-		// 		if (option.values[field] < 0) val[field] += option.values[field];
-		// 	});
-		// });
-
-		// return val;
 	}, [options]);
 
 	const max = useMemo(() => {

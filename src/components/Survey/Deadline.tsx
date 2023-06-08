@@ -73,28 +73,22 @@ const Deadline = () => {
 		[allContext.storedValues.weeklySurveyValues.deadline]
 	);
 
-	const min = useMemo(() => {
-		const val = getGraphFieldsZeroValues();
-
-		options.forEach((option) => {
-			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-				if (option.values[field] < 0) val[field] += option.values[field];
-			});
-		});
-
-		return val;
+	const min: Record<graphFields, number> = useMemo(() => {
+		return Object.assign(
+			getGraphFieldsZeroValues(),
+			Object.fromEntries(
+				graphFieldsList.map((field) => [field, Math.min(...options.map((opt) => opt.values[field]))])
+			)
+		);
 	}, [options]);
 
 	const max = useMemo(() => {
-		const val = getGraphFieldsZeroValues();
-
-		options.forEach((option) => {
-			(graphFieldsList as unknown as graphFields[]).forEach((field) => {
-				if (option.values[field] > 0) val[field] += option.values[field];
-			});
-		});
-
-		return val;
+		return Object.assign(
+			getGraphFieldsZeroValues(),
+			Object.fromEntries(
+				graphFieldsList.map((field) => [field, Math.max(...options.map((opt) => opt.values[field]))])
+			)
+		);
 	}, [options]);
 
 	return (
