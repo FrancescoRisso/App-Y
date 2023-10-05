@@ -52,14 +52,14 @@ const SurveyPage = () => {
 			case "mirror":
 				return "deadline";
 			case "deadline":
-				return "hobbies";
-			case "hobbies":
+				return "likeWhatYouDo";
+			case "likeWhatYouDo":
 				return "work";
 			case "work":
 				return "alone?";
 			case "alone?":
-				return "likeWhatYouDo";
-			case "likeWhatYouDo":
+				return "hobbies";
+			case "hobbies":
 				return "end";
 			default:
 				return "end";
